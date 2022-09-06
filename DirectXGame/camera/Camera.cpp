@@ -14,6 +14,9 @@ Camera::Camera(int window_width, int window_height)
 
 	// ビュープロジェクションの合成
 	matViewProjection = matView * matProjection;
+
+	CalcRotation(target, eye);
+	distance = sqrt(pow(target.x - eye.x, 2) + pow(target.y - eye.y, 2) + pow(target.z - eye.z, 2));
 }
 
 void Camera::Update()
@@ -187,4 +190,25 @@ void Camera::MoveVector(const XMVECTOR & move)
 
 	SetEye(eye_moved);
 	SetTarget(target_moved);
+}
+
+void Camera::CalcRotation(XMFLOAT3 target, XMFLOAT3 eye)
+{
+	rotation.x = atan2(target.x - eye.x, target.z - eye.z);
+	rotation.x = rotation.x * 180.0f / PI - 90.0f;
+
+	rotation.y = atan2(target.y - eye.y, target.z - eye.z);
+	rotation.y = -rotation.y * 108.0f / PI;
+}
+
+void Camera::CalcTarget(float length, XMFLOAT3 rotation)
+{
+	float sinX = sinf(-rotation.x * PI / 180.0f);
+	float cosX = cosf(-rotation.x * PI / 180.0f);
+	float sinY = sinf(-rotation.y * PI / 180.0f);
+	float cosY = cosf(-rotation.y * PI / 180.0f);
+
+	target = { cosX * cosY * length + eye.x,
+		sinY * length + eye.y,
+		sinX * cosY * length + eye.z };
 }

@@ -3,6 +3,7 @@
 #include "Input.h"
 #include "Audio.h"
 #include <DirectXMath.h>
+#include "Camera.h"
 
 struct SceneButton
 {
@@ -30,4 +31,6 @@ protected:
 	Audio* audio = nullptr;
 
 	BaseScene* nextScene = nullptr;
+
+	Camera* camera = nullptr;
 };
