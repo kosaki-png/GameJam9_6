@@ -117,6 +117,12 @@ void GameScene::Update()
 		mousePos = { (float)p.x, (float)p.y };
 	}
 
+	// クリア
+	//if (objMng->GetClear())
+	//{
+	//	nextScene = new EndScene(1, time, damage, sign);
+	//}
+
 	text->Printf("%f", time);
 
 	lightGroup->Update();

@@ -24,70 +24,70 @@ TitleScene::~TitleScene()
 
 void TitleScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 {
-	// nullptrƒ`ƒFƒbƒN
+	// nullptrãƒã‚§ãƒƒã‚¯
 	BaseScene::Initialize(dxCommon, input, audio);
 
 	audio->Stop();
 
-	// ”Ä—p“I‰Šú‰»
+	// æ±Žç”¨çš„åˆæœŸåŒ–
 	{
-		// ƒJƒƒ‰¶¬
+		// ã‚«ãƒ¡ãƒ©ç”Ÿæˆ
 		camera = new FreeCamera(WinApp::window_width, WinApp::window_height);
 		camera->SetInput(input);
 
-		// 3DƒIƒuƒWƒFƒNƒg‚ÉƒJƒƒ‰‚ðƒZƒbƒg
+		// 3Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ã‚«ãƒ¡ãƒ©ã‚’ã‚»ãƒƒãƒˆ
 		Object3d::SetCamera(camera);
 
-		// ƒfƒoƒbƒOƒeƒLƒXƒg—pƒeƒNƒXƒ`ƒƒ“Ç‚Ýž‚Ý
+		// ãƒ‡ãƒãƒƒã‚°ãƒ†ã‚­ã‚¹ãƒˆç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£èª­ã¿è¾¼ã¿
 		if (!Sprite::LoadTexture(texNumber, L"Resources/font_sharp.png")) {
 			assert(0);
 			return;
 		}
-		// ƒfƒoƒbƒOƒeƒLƒXƒg‰Šú‰»
+		// ãƒ‡ãƒãƒƒã‚°ãƒ†ã‚­ã‚¹ãƒˆåˆæœŸåŒ–
 		text = Text::GetInstance();
 		text->Initialize(texNumber);
 
-		// ƒ‰ƒCƒg¶¬
+		// ãƒ©ã‚¤ãƒˆç”Ÿæˆ
 		lightGroup = LightGroup::Create();
-		// 3DƒIƒuƒGƒNƒg‚Éƒ‰ƒCƒg‚ðƒZƒbƒg
+		// 3Dã‚ªãƒ–ã‚¨ã‚¯ãƒˆã«ãƒ©ã‚¤ãƒˆã‚’ã‚»ãƒƒãƒˆ
 		Object3d::SetLightGroup(lightGroup);
 
-		// ƒp[ƒeƒBƒNƒ‹ƒ}ƒl[ƒWƒƒ¶¬
+		// ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ãƒžãƒãƒ¼ã‚¸ãƒ£ç”Ÿæˆ
 		particleMan = ParticleManager::GetInstance();
 		particleMan->SetCamera(camera);
 	}
 
-	// ƒXƒvƒ‰ƒCƒg‰ŠúÝ’è
+	// ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆåˆæœŸè¨­å®š
 	{
-		// ƒXƒvƒ‰ƒCƒg—pƒeƒNƒXƒ`ƒƒ“Ç‚Ýž‚Ý
+		// ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£èª­ã¿è¾¼ã¿
 		{
 			//Sprite::LoadTexture(1, L"Resources/Title1.png");
 		}
 
-		// ƒXƒvƒ‰ƒCƒg¶¬
+		// ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆç”Ÿæˆ
 		{
 			//title1 = Sprite::Create(1, { 0, 0 });
 		}
 
-		// ƒXƒvƒ‰ƒCƒg‰ŠúÝ’è
+		// ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆåˆæœŸè¨­å®š
 		{
 		}
 	}
 
-	// 3DƒIƒuƒWƒFƒNƒg‰ŠúÝ’è
+	// 3Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆåˆæœŸè¨­å®š
 	{
-		// ƒ‚ƒfƒ‹“Ç‚Ýž‚Ý
+		// ãƒ¢ãƒ‡ãƒ«èª­ã¿è¾¼ã¿
 		{
 			model = Model::CreateFromOBJ("cube");
 		}
 
-		// 3DƒIƒuƒWƒFƒNƒg¶¬
+		// 3Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”Ÿæˆ
 		{
 			object = Object3d::Create(model);
 			
 		}
 
-		// 3DƒIƒuƒWƒFƒNƒg‰ŠúÝ’è
+		// 3Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆåˆæœŸè¨­å®š
 		{
 			object->Initialize();
 		}
@@ -96,13 +96,13 @@ void TitleScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 
 void TitleScene::Update()
 {
-	// ƒRƒ“ƒgƒ[ƒ‰‚ÌXV
+	// ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã®æ›´æ–°
 	xinput.Update();
 
-	// Enter‚ÅŽw’è‚ÌƒV[ƒ“‚Ö
+	// Enterã§æŒ‡å®šã®ã‚·ãƒ¼ãƒ³ã¸
 	if (input->TriggerKey(DIK_RETURN) && change == true)
 	{
-		//ƒQ[ƒ€ƒV[ƒ“‚Ö
+		//ã‚²ãƒ¼ãƒ ã‚·ãƒ¼ãƒ³ã¸
 		nextScene = new GameScene();
 	}
 	else if (input->TriggerKey(DIK_RETURN) && change == false)
@@ -110,13 +110,13 @@ void TitleScene::Update()
 		nextScene = new SelectScene();
 	}
 
-	// ESCAPE‚ÅƒQ[ƒ€I—¹
+	// ESCAPEã§ã‚²ãƒ¼ãƒ çµ‚äº†
 	if (input->PushKey(DIK_ESCAPE))
 	{
 		PostQuitMessage(0);
 	}
 
-	// ƒ}ƒEƒXƒ|ƒCƒ“ƒg
+	// ãƒžã‚¦ã‚¹ãƒã‚¤ãƒ³ãƒˆ
 	{
 		static POINT p;
 		GetCursorPos(&p);
@@ -126,14 +126,14 @@ void TitleScene::Update()
 		mousePos = { (float)p.x, (float)p.y };
 	}
 
-	// ƒp[ƒeƒBƒNƒ‹¶¬
+	// ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ç”Ÿæˆ
 	//CreateParticles();
 
 	lightGroup->Update();
 	camera->Update();
 	particleMan->Update();
 
-	// 3DƒIƒuƒWƒFƒNƒgXV
+	// 3Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ›´æ–°
 	{
 		object->Update();
 	}
@@ -141,53 +141,53 @@ void TitleScene::Update()
 
 void TitleScene::Draw()
 {
-	// ƒRƒ}ƒ“ƒhƒŠƒXƒg‚ÌŽæ“¾
+	// ã‚³ãƒžãƒ³ãƒ‰ãƒªã‚¹ãƒˆã®å–å¾—
 	ID3D12GraphicsCommandList* cmdList = dxCommon->GetCommandList();
 
-	// ”wŒiƒXƒvƒ‰ƒCƒg•`‰æ
+	// èƒŒæ™¯ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæç”»
 	{
-		// ”wŒiƒXƒvƒ‰ƒCƒg•`‰æ‘Oˆ—
+		// èƒŒæ™¯ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæç”»å‰å‡¦ç†
 		Sprite::PreDraw(cmdList);
 
 		/// <summary>
-		/// ‚±‚±‚É”wŒiƒXƒvƒ‰ƒCƒg‚Ì•`‰æˆ—‚ð’Ç‰Á
+		/// ã“ã“ã«èƒŒæ™¯ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®æç”»å‡¦ç†ã‚’è¿½åŠ 
 		/// </summary>
 
-		// ƒXƒvƒ‰ƒCƒg•`‰æŒãˆ—
+		// ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæç”»å¾Œå‡¦ç†
 		Sprite::PostDraw();
-		// [“xƒoƒbƒtƒ@ƒNƒŠƒA
+		// æ·±åº¦ãƒãƒƒãƒ•ã‚¡ã‚¯ãƒªã‚¢
 		dxCommon->ClearDepthBuffer();
 	}
 
-	// 3D•`‰æ
+	// 3Dæç”»
 	{
-		// 3DƒIƒuƒWƒFƒNƒg‚Ì•`‰æ
+		// 3Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æç”»
 		Object3d::PreDraw(cmdList);
 
 		/// <summary>
-		/// ‚±‚±‚É3DƒIƒuƒWƒFƒNƒg‚Ì•`‰æˆ—‚ð’Ç‰Á
+		/// ã“ã“ã«3Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æç”»å‡¦ç†ã‚’è¿½åŠ 
 		/// </summary>
 
 		object->Draw();
 
 		Object3d::PostDraw();
-		// ƒp[ƒeƒBƒNƒ‹‚Ì•`‰æ
+		// ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®æç”»
 		particleMan->Draw(cmdList);
 	}
 
-	// ‘OŒiƒXƒvƒ‰ƒCƒg•`‰æ
+	// å‰æ™¯ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæç”»
 	{
-		// ‘OŒiƒXƒvƒ‰ƒCƒg•`‰æ‘Oˆ—
+		// å‰æ™¯ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæç”»å‰å‡¦ç†
 		Sprite::PreDraw(cmdList);
 
 		/// <summary>
-		/// ‚±‚±‚É‘OŒiƒXƒvƒ‰ƒCƒg‚Ì•`‰æˆ—‚ð’Ç‰Á
+		/// ã“ã“ã«å‰æ™¯ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®æç”»å‡¦ç†ã‚’è¿½åŠ 
 		/// </summary>
 
-		// ƒfƒoƒbƒOƒeƒLƒXƒg‚Ì•`‰æ
+		// ãƒ‡ãƒãƒƒã‚°ãƒ†ã‚­ã‚¹ãƒˆã®æç”»
 		text->DrawAll(cmdList);
 
-		// ƒXƒvƒ‰ƒCƒg•`‰æŒãˆ—
+		// ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæç”»å¾Œå‡¦ç†
 		Sprite::PostDraw();
 	}
 }

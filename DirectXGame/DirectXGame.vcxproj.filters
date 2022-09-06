@@ -138,6 +138,7 @@
     <ClCompile Include="base\FlameRate.cpp">
       <Filter>ソース ファイル\FlameRate</Filter>
     </ClCompile>
+
     <ClCompile Include="3d\ObjManager.cpp">
       <Filter>ソース ファイル\3d</Filter>
     </ClCompile>
@@ -150,6 +151,7 @@
     <ClCompile Include="camera\FreeCamera.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="ParticleGS.hlsl">
@@ -261,9 +263,11 @@
     <ClInclude Include="base\FlameRate.h">
       <Filter>ヘッダー ファイル\FlameRate</Filter>
     </ClInclude>
+
     <ClInclude Include="Define.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+
     <ClInclude Include="3d\ObjManager.h">
       <Filter>ヘッダー ファイル\3d</Filter>
     </ClInclude>
@@ -276,5 +280,6 @@
     <ClInclude Include="camera\FreeCamera.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+
   </ItemGroup>
 </Project>
