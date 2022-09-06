@@ -16,7 +16,7 @@ Camera::Camera(int window_width, int window_height)
 	matViewProjection = matView * matProjection;
 
 	CalcRotation(target, eye);
-	distance = sqrt(pow(target.x - eye.x, 2) + pow(target.y - eye.y, 2) + pow(target.z - eye.z, 2));
+	distance = (float)sqrt(pow(target.x - eye.x, 2) + pow(target.y - eye.y, 2) + pow(target.z - eye.z, 2));
 }
 
 void Camera::Update()

@@ -137,6 +137,11 @@ void TitleScene::Update()
 	{
 		object->Update();
 	}
+
+	if (input->TriggerKey(DIK_F1))
+	{
+		dxCommon->ChengeFullScreen();
+	}
 }
 
 void TitleScene::Draw()
