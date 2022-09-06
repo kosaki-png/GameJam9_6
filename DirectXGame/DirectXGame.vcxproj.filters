@@ -147,6 +147,9 @@
     <ClCompile Include="base\Vector3.cpp">
       <Filter>ソース ファイル\Base</Filter>
     </ClCompile>
+    <ClCompile Include="camera\FreeCamera.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="ParticleGS.hlsl">
@@ -269,6 +272,9 @@
     </ClInclude>
     <ClInclude Include="base\Vector3.h">
       <Filter>ヘッダー ファイル\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="camera\FreeCamera.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

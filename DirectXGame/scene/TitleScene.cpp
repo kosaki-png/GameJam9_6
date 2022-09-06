@@ -6,6 +6,8 @@
 #include <sstream>
 #include <iomanip>
 
+#include "FreeCamera.h"
+
 using namespace DirectX;
 
 TitleScene::TitleScene()
@@ -30,7 +32,8 @@ void TitleScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 	// 汎用的初期化
 	{
 		// カメラ生成
-		camera = new DebugCamera(WinApp::window_width, WinApp::window_height, input);
+		camera = new FreeCamera(WinApp::window_width, WinApp::window_height);
+		camera->SetInput(input);
 
 		// 3Dオブジェクトにカメラをセット
 		Object3d::SetCamera(camera);
@@ -75,20 +78,20 @@ void TitleScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 	{
 		// モデル読み込み
 		{
+			model = Model::CreateFromOBJ("cube");
 		}
 
 		// 3Dオブジェクト生成
 		{
+			object = Object3d::Create(model);
+			
 		}
 
 		// 3Dオブジェクト初期設定
 		{
+			object->Initialize();
 		}
 	}
-
-	// カメラ注視点をセット
-	camera->SetTarget({ 0, -1, 0 });
-	camera->SetDistance(25.0f);
 }
 
 void TitleScene::Update()
@@ -132,6 +135,7 @@ void TitleScene::Update()
 
 	// 3Dオブジェクト更新
 	{
+		object->Update();
 	}
 }
 
@@ -163,6 +167,8 @@ void TitleScene::Draw()
 		/// <summary>
 		/// ここに3Dオブジェクトの描画処理を追加
 		/// </summary>
+
+		object->Draw();
 
 		Object3d::PostDraw();
 		// パーティクルの描画

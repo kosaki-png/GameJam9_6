@@ -40,7 +40,6 @@ public:
 
 private:
 	Text* text;
-	DebugCamera* camera = nullptr;
 
 	LightGroup* lightGroup = nullptr;
 	float ambientColor0[3] = { 1,1,1 };
@@ -64,4 +63,7 @@ private:
 	int sharpCnt = 0;
 	int count = 0;
 	bool sharpMode = false;
+
+	Object3d* object = nullptr;
+	Model* model = nullptr;
 };
