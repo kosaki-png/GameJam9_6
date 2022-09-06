@@ -85,10 +85,6 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 	camera->SetTarget({ 0, 1, 0 });
 	camera->SetDistance(20.0f);
 
-	audio->PlayLoop(L"Resources/game.wav");
-
-	time = 0;
-
 	objMng = new ObjManager();
 	objMng->Initialize(input);
 }
@@ -120,24 +116,6 @@ void GameScene::Update()
 		ScreenToClient(FindWindowA(nullptr, "Hooper"), &p);
 		mousePos = { (float)p.x, (float)p.y };
 	}
-
-	// クリア
-	if (objMng->GetClear())
-	{
-		nextScene = new EndScene(1, time, damage, sign);
-	}
-
-	// ゲームオーバー
-	if (objMng->GetOver())
-	{
-		nextScene = new EndScene(0, time, damage, sign);
-	}
-
-	damage = objMng->GetDamage();
-	sign = objMng->GetSign();
-
-	// 時間
-	time += 0.022f;
 
 	text->Printf("%f", time);
 
