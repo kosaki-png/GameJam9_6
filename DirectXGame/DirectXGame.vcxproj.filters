@@ -147,6 +147,9 @@
     <ClCompile Include="base\Vector3.cpp">
       <Filter>ソース ファイル\Base</Filter>
     </ClCompile>
+    <ClCompile Include="BaseTaget.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="ParticleGS.hlsl">
@@ -237,9 +240,6 @@
     <ClInclude Include="3d\ParticleManager.h">
       <Filter>ヘッダー ファイル\3d</Filter>
     </ClInclude>
-    <ClInclude Include="SafeDelete.h">
-      <Filter>ヘッダー ファイル\Base</Filter>
-    </ClInclude>
     <ClInclude Include="2d\Text.h">
       <Filter>ヘッダー ファイル\2d</Filter>
     </ClInclude>
@@ -269,6 +269,9 @@
     </ClInclude>
     <ClInclude Include="base\Vector3.h">
       <Filter>ヘッダー ファイル\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseTaget.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
