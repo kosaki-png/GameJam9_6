@@ -92,7 +92,7 @@
     <ClCompile Include="3d\Object3d.cpp" />
     <ClCompile Include="3d\ParticleManager.cpp" />
     <ClCompile Include="audio\Audio.cpp" />
-    <ClCompile Include="BaseTaget.cpp" />
+    <ClCompile Include="BaseTarget.cpp" />
     <ClCompile Include="scene\BaseScene.cpp" />
     <ClCompile Include="camera\Camera.cpp" />
     <ClCompile Include="camera\DebugCamera.cpp" />
@@ -194,7 +194,7 @@
     <ClInclude Include="3d\Object3d.h" />
     <ClInclude Include="3d\ParticleManager.h" />
     <ClInclude Include="audio\Audio.h" />
-    <ClInclude Include="BaseTaget.h" />
+    <ClInclude Include="BaseTarget.h" />
     <ClInclude Include="scene\BaseScene.h" />
     <ClInclude Include="camera\Camera.h" />
     <ClInclude Include="camera\DebugCamera.h" />

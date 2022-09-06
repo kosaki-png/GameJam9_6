@@ -4,11 +4,11 @@
 #include "3d/Model.h"
 #include "base/SafeDelete.h"
 
-class BaseTaget
+class BaseTarget
 {
 private:
-	BaseTaget();
-	~BaseTaget();
+	BaseTarget();
+	~BaseTarget();
 
 	//‰Šú‰»
 	virtual void Initialize(std::string modelName);

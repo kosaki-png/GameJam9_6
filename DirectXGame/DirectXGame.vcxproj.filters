@@ -147,7 +147,7 @@
     <ClCompile Include="base\Vector3.cpp">
       <Filter>ソース ファイル\Base</Filter>
     </ClCompile>
-    <ClCompile Include="BaseTaget.cpp">
+    <ClCompile Include="BaseTarget.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -270,7 +270,7 @@
     <ClInclude Include="base\Vector3.h">
       <Filter>ヘッダー ファイル\Base</Filter>
     </ClInclude>
-    <ClInclude Include="BaseTaget.h">
+    <ClInclude Include="BaseTarget.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
