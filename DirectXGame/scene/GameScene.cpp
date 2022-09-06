@@ -122,22 +122,10 @@ void GameScene::Update()
 	}
 
 	// クリア
-	if (objMng->GetClear())
-	{
-		nextScene = new EndScene(1, time, damage, sign);
-	}
-
-	// ゲームオーバー
-	if (objMng->GetOver())
-	{
-		nextScene = new EndScene(0, time, damage, sign);
-	}
-
-	damage = objMng->GetDamage();
-	sign = objMng->GetSign();
-
-	// 時間
-	time += 0.022f;
+	//if (objMng->GetClear())
+	//{
+	//	nextScene = new EndScene(1, time, damage, sign);
+	//}
 
 	text->Printf("%f", time);
 
