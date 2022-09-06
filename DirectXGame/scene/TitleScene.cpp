@@ -63,6 +63,7 @@ void TitleScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 
 		// スプライト生成
 		{
+			//title1 = Sprite::Create(1, { 0, 0 });
 		}
 
 		// スプライト初期設定
@@ -88,6 +89,8 @@ void TitleScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 	// カメラ注視点をセット
 	camera->SetTarget({ 0, -1, 0 });
 	camera->SetDistance(25.0f);
+
+	count = 0;
 	sharpMode = false;
 }
 

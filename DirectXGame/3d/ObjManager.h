@@ -9,7 +9,6 @@
 #include <vector>
 
 #include "Define.h"
-
 class ObjManager
 {
 private: // エイリアス
@@ -33,7 +32,6 @@ public: // メンバ関数
 	void Initialize(Input* input);
 	void Update();
 	void Draw();
-
 private:	// メンバ変数
 	Input* input = nullptr;
 };

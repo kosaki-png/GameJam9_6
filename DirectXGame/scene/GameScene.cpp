@@ -85,10 +85,6 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 	camera->SetTarget({ 0, 1, 0 });
 	camera->SetDistance(20.0f);
 
-	audio->PlayLoop(L"Resources/game.wav");
-
-	time = 0;
-
 	objMng = new ObjManager();
 	objMng->Initialize(input);
 }

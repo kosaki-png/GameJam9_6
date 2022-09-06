@@ -138,15 +138,7 @@
     <ClCompile Include="base\FlameRate.cpp">
       <Filter>ソース ファイル\FlameRate</Filter>
     </ClCompile>
-    <ClCompile Include="base\Vector3.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="base\Vector2.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="3d\ObjManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
+
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="ParticleGS.hlsl">
@@ -258,17 +250,10 @@
     <ClInclude Include="base\FlameRate.h">
       <Filter>ヘッダー ファイル\FlameRate</Filter>
     </ClInclude>
-    <ClInclude Include="base\Vector3.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="base\Vector2.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="3d\ObjManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
+
     <ClInclude Include="Define.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+
   </ItemGroup>
 </Project>
