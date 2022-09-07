@@ -1,38 +1,46 @@
 #pragma once
-#include "base/Vector3.h"
-#include "3d/Object3d.h"
-#include "3d/Model.h"
-#include "base/SafeDelete.h"
+#include "Object3d.h"
+#include "Model.h"
+#include "SafeDelete.h"
+#include "CollisionPrimitive.h"
 
 class BaseTarget
 {
+private: // エイリアス
+// Microsoft::WRL::を省略
+	template <class T> using ComPtr = Microsoft::WRL::ComPtr<T>;
+	// DirectX::を省略
+	using XMFLOAT3 = DirectX::XMFLOAT3;
+	using XMVECTOR = DirectX::XMVECTOR;
+
+
 private:
 	BaseTarget();
 	~BaseTarget();
 
 	//初期化
-	virtual void Initialize(std::string modelName, Vector3 pos,int r);
+	virtual void Initialize(std::string modelName,XMFLOAT3  pos, int radius);
 	//更新
 	virtual void Update();
 	//描画
 	virtual void Draw();
 
 	//Set
-	void SetPosition(Vector3 pos) { position = pos; }
+	void SetPosition(XMFLOAT3 pos) { position = pos; }
 
 	//Get
-	Vector3 GetPosition() { return position; }
-	Vector3 GetVelocity() { return velocity; }
-	int GetR() { return r; }
-
+	XMFLOAT3 GetPosition() { return position; }
+	XMFLOAT3 GetVelocity() { return velocity; }
+	int GetRadius() { return sphere.radius; }
+	Sphere GetSphere() { return sphere; }
 
 private:
 
 	Object3d* obj;
 	Model* model;
-	
-	Vector3 position = { 0,0,0 };
-	Vector3 velocity = { 0,0,0 };
-	int r = 1;
+
+	Sphere sphere;
+	XMFLOAT3 position = { 0,0,0 };
+	XMFLOAT3 velocity = { 0,0,0 };
 };
 

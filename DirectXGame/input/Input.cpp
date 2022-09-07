@@ -177,6 +177,8 @@ bool Input::TriggerMouseMiddle()
 
 Input::MouseMove Input::GetMouseMove()
 {
+	//devMouse->GetDeviceState(sizeof(mouseState), &mouseState);
+
 	MouseMove tmp;
 	tmp.lX = mouseState.lX;
 	tmp.lY = mouseState.lY;

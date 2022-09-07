@@ -184,6 +184,7 @@ void DirectXCommon::ChengeFullScreen()
 	isFullScreen = !isFullScreen;
 
 	swapchain.Get()->SetFullscreenState(isFullScreen, nullptr);
+	
 }
 
 bool DirectXCommon::InitializeDXGIDevice()
@@ -281,7 +282,8 @@ bool DirectXCommon::CreateSwapChain()
 	swapchainDesc.BufferUsage = DXGI_USAGE_BACK_BUFFER;	// バックバッファとして使えるように
 	swapchainDesc.BufferCount = 2;	// バッファ数を２つに設定
 	swapchainDesc.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD; // フリップ後は速やかに破棄
-	swapchainDesc.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH; // フルスクリーン切り替えを許可	
+	swapchainDesc.Flags = 2; // フルスクリーン切り替えを許可	
+
 	ComPtr<IDXGISwapChain1> swapchain1;
 	HWND hwnd = winApp->GetHwnd();
 	result = dxgiFactory->CreateSwapChainForHwnd(

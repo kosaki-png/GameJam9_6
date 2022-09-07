@@ -164,7 +164,7 @@ public: // メンバ関数
 		viewDirty = true;
 	}
 
-	float GetLength() {
+	float GetDistance() {
 		return distance;
 	}
 
