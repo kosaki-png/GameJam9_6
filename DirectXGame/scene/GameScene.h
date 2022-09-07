@@ -13,7 +13,6 @@
 #include"XinputControll.h"
 
 #include "ObjManager.h"
-
 /// <summary>
 /// ゲームシーン
 /// </summary>
@@ -68,7 +67,7 @@ public: // メンバ関数
 
 private: // メンバ変数
 	Text* text = nullptr;
-
+	Score* score;
 	/// <summary>
 	/// ゲームシーン用
 	/// </summary>

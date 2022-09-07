@@ -1,6 +1,8 @@
 #pragma once
 #include "Sprite.h"
 #include "Text.h"
+#include "Score.h"
+#include "input/Input.h"
 
 class Ui 
 {
@@ -34,7 +36,7 @@ public:
 	/// <summary>
 	/// çXêV
 	/// </summary>
-	void Update();
+	void Update(Input* input);
 
 	/// <summary>
 	/// ï`âÊ
@@ -43,8 +45,10 @@ public:
 
 private:
 	Sprite* ui;
-	Text* score;
-	Text* timeLimit;
-	float scoreNum;
+	Score* score;
+	Score* timeLimit;
+	Score* rate;
+	float time;
+	static int num;
 };
 

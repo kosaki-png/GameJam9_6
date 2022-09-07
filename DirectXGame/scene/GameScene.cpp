@@ -136,6 +136,7 @@ void GameScene::Update()
 	// 各クラスの更新
 	{
 		objMng->Update();
+		ui->Update(input);
 	}
 }
 
@@ -186,7 +187,7 @@ void GameScene::Draw()
 		ui->Draw(cmdList);
 
 		// デバッグテキストの描画
-		text->DrawAll(cmdList);
+		//text->DrawAll(cmdList);
 
 		// スプライト描画後処理
 		Sprite::PostDraw();
