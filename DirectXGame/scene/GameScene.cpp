@@ -63,6 +63,8 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 
 		// スプライト生成
 		{
+			ui = new Ui();
+			ui->Initialize();
 		}
 	}
 
@@ -181,6 +183,7 @@ void GameScene::Draw()
 		/// </summary>
 
 		objMng->Draw();
+		ui->Draw(cmdList);
 
 		// デバッグテキストの描画
 		text->DrawAll(cmdList);
