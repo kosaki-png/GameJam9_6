@@ -7,6 +7,7 @@
 #include <iomanip>
 
 #include "FreeCamera.h"
+#include "Collision.h"
 
 using namespace DirectX;
 
@@ -92,6 +93,15 @@ void TitleScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 			object->Initialize();
 		}
 	}
+
+	XMFLOAT3 cameraEye = camera->GetEye();
+	XMFLOAT3 cameraTarget = camera->GetTarget();
+	float cameraDis = camera->GetDistance();
+	ray.start = XMVectorSet(cameraEye.x, cameraEye.y, cameraEye.z, 1.0f);
+	ray.dir = XMVectorSet((cameraTarget.x - cameraEye.x) / cameraDis, (cameraTarget.y - cameraEye.y) / cameraDis, (cameraTarget.z - cameraEye.z) / cameraDis, 1.0f);
+	
+	sphere.center = XMVectorSet(0, 0, 0, 1);
+	sphere.radius = 0.5f;
 }
 
 void TitleScene::Update()
@@ -142,6 +152,24 @@ void TitleScene::Update()
 	{
 		dxCommon->ChengeFullScreen();
 	}
+
+	//text->Printf("%f", Collision::CheckRay2Sphere(ray, sphere));
+	
+	XMFLOAT3 cameraEye = camera->GetEye();
+	XMFLOAT3 cameraTarget = camera->GetTarget();
+	float cameraDis = camera->GetDistance();
+	ray.start = XMVectorSet(cameraEye.x, cameraEye.y, cameraEye.z, 1.0f);
+	ray.dir = XMVectorSet((cameraTarget.x - cameraEye.x) / cameraDis, (cameraTarget.y - cameraEye.y) / cameraDis, (cameraTarget.z - cameraEye.z) / cameraDis, 1.0f);
+
+	if (Collision::CheckRay2Sphere(ray, sphere))
+	{
+		text->Printf("%f", Collision::CheckRay2Sphere(ray, sphere));
+	}
+	else
+	{
+		//text->Printf("%f", Collision::CheckRay2Sphere(ray, sphere));
+	}
+
 }
 
 void TitleScene::Draw()

@@ -10,6 +10,8 @@
 #include "LightGroup.h"
 #include "XinputControll.h"
 
+#include "CollisionPrimitive.h"
+
 #include "BaseScene.h"
 
 class TitleScene :
@@ -66,4 +68,7 @@ private:
 
 	Object3d* object = nullptr;
 	Model* model = nullptr;
+
+	Ray ray;
+	Sphere sphere;
 };
