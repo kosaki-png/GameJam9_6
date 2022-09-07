@@ -19,7 +19,7 @@ private:
 	~BaseTarget();
 
 	//‰Šú‰»
-	virtual void Initialize(std::string modelName,XMFLOAT3  pos, int radius);
+	virtual void Initialize(std::string modelName = (" "), XMFLOAT3  pos = { 0,0,0 }, int radius = 0);
 	//XV
 	virtual void Update();
 	//•`‰æ
@@ -42,5 +42,7 @@ private:
 	Sphere sphere;
 	XMFLOAT3 position = { 0,0,0 };
 	XMFLOAT3 velocity = { 0,0,0 };
+
+	bool isDead = false;
 };
 
