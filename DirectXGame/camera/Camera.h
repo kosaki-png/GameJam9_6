@@ -174,6 +174,8 @@ public: // メンバ関数
 		viewDirty = true;
 	}
 
+	XMFLOAT3 GetDir();
+
 protected:
 	void CalcRotation(XMFLOAT3 target, XMFLOAT3 eye);
 

@@ -93,6 +93,7 @@
     <ClCompile Include="3d\ParticleManager.cpp" />
     <ClCompile Include="audio\Audio.cpp" />
     <ClCompile Include="scene\TestScene.cpp" />
+    <ClCompile Include="player\Player.cpp" />
     <ClCompile Include="target\BaseTarget.cpp" />
     <ClCompile Include="camera\FreeCamera.cpp" />
     <ClCompile Include="scene\BaseScene.cpp" />
@@ -199,6 +200,7 @@
     <ClInclude Include="3d\ParticleManager.h" />
     <ClInclude Include="audio\Audio.h" />
     <ClInclude Include="scene\TestScene.h" />
+    <ClInclude Include="player\Player.h" />
     <ClInclude Include="target\BaseTarget.h" />
     <ClInclude Include="base\SafeDelete.h" />
     <ClInclude Include="camera\FreeCamera.h" />

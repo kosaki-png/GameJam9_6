@@ -192,6 +192,12 @@ void Camera::MoveVector(const XMVECTOR & move)
 	SetTarget(target_moved);
 }
 
+XMFLOAT3 Camera::GetDir()
+{
+	XMFLOAT3 result = { (target.x - eye.x) / distance, (target.y - eye.y) / distance, (target.z - eye.z) / distance };
+	return result;
+}
+
 void Camera::CalcRotation(XMFLOAT3 target, XMFLOAT3 eye)
 {
 	rotation.x = atan2(target.x - eye.x, target.z - eye.z);

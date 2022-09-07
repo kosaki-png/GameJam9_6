@@ -91,15 +91,6 @@ void TitleScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 		}
 	}
 
-	XMFLOAT3 cameraEye = camera->GetEye();
-	XMFLOAT3 cameraTarget = camera->GetTarget();
-	float cameraDis = camera->GetDistance();
-	ray.start = XMVectorSet(cameraEye.x, cameraEye.y, cameraEye.z, 1.0f);
-	ray.dir = XMVectorSet((cameraTarget.x - cameraEye.x) / cameraDis, (cameraTarget.y - cameraEye.y) / cameraDis, (cameraTarget.z - cameraEye.z) / cameraDis, 1.0f);
-	
-	sphere.center = XMVectorSet(0, 0, 0, 1);
-	sphere.radius = 0.5f;
-
 	text = text->GetInstance();
 
 }
@@ -118,14 +109,23 @@ void TitleScene::Update()
 		PostQuitMessage(0);
 	}
 
-	// マウスポイント
+	// 当たり判定
 	{
-		static POINT p;
-		GetCursorPos(&p);
-		WinApp* win = nullptr;
-		win = new WinApp();
-		ScreenToClient(FindWindowA(nullptr, "Hooper"), &p);
-		mousePos = { (float)p.x, (float)p.y };
+		// 視線のレイを取得
+		XMFLOAT3 tmp = camera->GetEye();
+		ray.start = XMVectorSet(tmp.x, tmp.y, tmp.z, 1.0f);
+		tmp = camera->GetDir();
+		ray.dir = XMVectorSet(tmp.x, tmp.y, tmp.z, 1.0f);
+
+		// 視線から当たり判定
+		//if (Collision::CheckRay2Sphere(ray, sphere))
+		//{
+		//	
+		//}
+		//else
+		//{
+		//	
+		//}
 	}
 
 	// パーティクル生成
@@ -140,30 +140,11 @@ void TitleScene::Update()
 		object->Update();
 	}
 
+	// フルスクリーン変更(使用禁止)
 	if (input->TriggerKey(DIK_F1))
 	{
 		dxCommon->ChengeFullScreen();
 	}
-
-	//text->Printf("%f", Collision::CheckRay2Sphere(ray, sphere));
-	
-	XMFLOAT3 cameraEye = camera->GetEye();
-	XMFLOAT3 cameraTarget = camera->GetTarget();
-	float cameraDis = camera->GetDistance();
-	ray.start = XMVectorSet(cameraEye.x, cameraEye.y, cameraEye.z, 1.0f);
-	ray.dir = XMVectorSet((cameraTarget.x - cameraEye.x) / cameraDis, (cameraTarget.y - cameraEye.y) / cameraDis, (cameraTarget.z - cameraEye.z) / cameraDis, 1.0f);
-
-	if (Collision::CheckRay2Sphere(ray, sphere))
-	{
-		text->Printf("%f", Collision::CheckRay2Sphere(ray, sphere));
-	}
-	else
-	{
-		//text->Printf("%f", Collision::CheckRay2Sphere(ray, sphere));
-	}
-
-
-	//text->Printf("%f", (float)input->GetMouseMove().lX);
 }
 
 void TitleScene::Draw()
@@ -173,15 +154,13 @@ void TitleScene::Draw()
 
 	// 背景スプライト描画
 	{
-		// 背景スプライト描画前処理
+		// 背景スプライト
 		Sprite::PreDraw(cmdList);
+		{
 
-		/// <summary>
-		/// ここに背景スプライトの描画処理を追加
-		/// </summary>
-
-		// スプライト描画後処理
+		}
 		Sprite::PostDraw();
+
 		// 深度バッファクリア
 		dxCommon->ClearDepthBuffer();
 	}
@@ -190,14 +169,11 @@ void TitleScene::Draw()
 	{
 		// 3Dオブジェクトの描画
 		Object3d::PreDraw(cmdList);
-
-		/// <summary>
-		/// ここに3Dオブジェクトの描画処理を追加
-		/// </summary>
-
-		object->Draw();
-
+		{
+			object->Draw();
+		}
 		Object3d::PostDraw();
+
 		// パーティクルの描画
 		particleMan->Draw(cmdList);
 	}
@@ -206,11 +182,9 @@ void TitleScene::Draw()
 	{
 		// 前景スプライト描画前処理
 		Sprite::PreDraw(cmdList);
+		{
 
-		/// <summary>
-		/// ここに前景スプライトの描画処理を追加
-		/// </summary>
-
+		}
 		// デバッグテキストの描画
 		text->DrawAll(cmdList);
 
