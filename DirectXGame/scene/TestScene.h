@@ -1,4 +1,5 @@
 #pragma once
+#include <array>
 #include "ParticleManager.h"
 #include "Text.h"
 #include "DebugCamera.h"
@@ -58,7 +59,7 @@ private:
 	// ‹ü‚ÌƒŒƒC
 	Ray ray;
 
-	BaseTarget* target = nullptr;
+	std::array<BaseTarget*, 20> target;
 
 	// ’n–Ê
 	Object3d* objGround = nullptr;

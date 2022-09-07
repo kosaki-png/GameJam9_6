@@ -105,8 +105,12 @@ void TestScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 		tmp = camera->GetDir();
 		ray.dir = XMVectorSet(tmp.x, tmp.y, tmp.z, 1.0f);
 
-		target = new BaseTarget();
-		target->Initialize("sphere");
+		for (int i = 0; i < 20; i++)
+		{
+			target[i] = new BaseTarget();
+			target[i]->Initialize("sphere");
+			target[i]->SetPosition({ (float)(i % 5), (float)(int)(i / 5) , 0 });
+		}
 	}
 
 }
@@ -145,25 +149,27 @@ void TestScene::Update()
 			ray.dir = XMVectorSet(tmp.x, tmp.y, tmp.z, 1.0f);
 		}
 
-		// 視線レイと的との当たり判定
-		if (Collision::CheckRay2Sphere(ray, target->GetSphere()))
+		for (int i = 0; i < 20; i++)
 		{
-			if (input->TriggerMouseLeft())
+			// 視線レイと的との当たり判定
+			if (Collision::CheckRay2Sphere(ray, target[i]->GetSphere()))
 			{
-				target->SetIsDead(true);
+				if (input->TriggerMouseLeft())
+				{
+					target[i]->SetIsDead(true);
+				}
 			}
-			text->Printf("%f", 100.0f);
-		}
 
-		// 復活
-		static int respownCnt = 0;
-		if (target->GetIsDead())
-		{
-			respownCnt++;
-			if (respownCnt > 200)
+			// 復活
+			static int respownCnt[20] = {};
+			if (target[i]->GetIsDead())
 			{
-				target->SetIsDead(false);
-				respownCnt = 0;
+				respownCnt[i]++;
+				if (respownCnt[i] > 200)
+				{
+					target[i]->SetIsDead(false);
+					respownCnt[i] = 0;
+				}
 			}
 		}
 	}
@@ -177,7 +183,10 @@ void TestScene::Update()
 	lightGroup->Update();
 	camera->Update();
 	particleMan->Update();
-	target->Update();
+	for (int i = 0; i < 20; i++)
+	{
+		target[i]->Update();
+	}
 }
 
 void TestScene::Draw()
@@ -187,15 +196,13 @@ void TestScene::Draw()
 
 	// 背景スプライト描画
 	{
-		// 背景スプライト描画前処理
+		// 背景スプライト
 		Sprite::PreDraw(cmdList);
-
-		/// <summary>
-		/// ここに背景スプライトの描画処理を追加
-		/// </summary>
-
-		// スプライト描画後処理
+		{
+			
+		}
 		Sprite::PostDraw();
+		
 		// 深度バッファクリア
 		dxCommon->ClearDepthBuffer();
 	}
@@ -204,14 +211,15 @@ void TestScene::Draw()
 	{
 		// 3Dオブジェクトの描画
 		Object3d::PreDraw(cmdList);
-
-		/// <summary>
-		/// ここに3Dオブジェクトの描画処理を追加
-		/// </summary>
-		objGround->Draw();
-		target->Draw();
-
+		{
+			objGround->Draw();
+			for (int i = 0; i < 20; i++)
+			{
+				target[i]->Draw();
+			}
+		}
 		Object3d::PostDraw();
+
 		// パーティクルの描画
 		particleMan->Draw(cmdList);
 	}
@@ -220,15 +228,12 @@ void TestScene::Draw()
 	{
 		// 前景スプライト描画前処理
 		Sprite::PreDraw(cmdList);
+		{
+			cross->Draw();
 
-		/// <summary>
-		/// ここに前景スプライトの描画処理を追加
-		/// </summary>
-		cross->Draw();
-		// デバッグテキストの描画
-		text->DrawAll(cmdList);
-
-		// スプライト描画後処理
+			// デバッグテキストの描画
+			text->DrawAll(cmdList);
+		}
 		Sprite::PostDraw();
 	}
 }

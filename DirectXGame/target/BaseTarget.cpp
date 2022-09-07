@@ -27,6 +27,9 @@ void BaseTarget::Update()
 {
 	sphere.center = DirectX::XMVectorSet(position.x, position.y, position.z, 0);
 
+	obj->SetPosition(position);
+	//obj->SetRotation(rotation);
+	
 	//Object3DXV
 	obj->Update();
 }
