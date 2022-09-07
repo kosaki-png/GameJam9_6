@@ -17,10 +17,7 @@ TitleScene::TitleScene()
 
 TitleScene::~TitleScene()
 {
-	safe_delete(title1);
-	safe_delete(title2);
-	safe_delete(sharp1);
-	safe_delete(sharp2);
+	
 }
 
 void TitleScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
@@ -79,7 +76,7 @@ void TitleScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 	{
 		// モデル読み込み
 		{
-			model = Model::CreateFromOBJ("cube");
+			model = Model::CreateFromOBJ("sphere");
 		}
 
 		// 3Dオブジェクト生成
@@ -94,6 +91,7 @@ void TitleScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 		}
 	}
 
+<<<<<<< Updated upstream
 	XMFLOAT3 cameraEye = camera->GetEye();
 	XMFLOAT3 cameraTarget = camera->GetTarget();
 	float cameraDis = camera->GetDistance();
@@ -102,20 +100,15 @@ void TitleScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 	
 	sphere.center = XMVectorSet(0, 0, 0, 1);
 	sphere.radius = 0.5f;
+=======
+	text = text->GetInstance();
+>>>>>>> Stashed changes
 }
 
 void TitleScene::Update()
 {
-	// コントローラの更新
-	xinput.Update();
-
 	// Enterで指定のシーンへ
-	if (input->TriggerKey(DIK_RETURN) && change == true)
-	{
-		//ゲームシーンへ
-		nextScene = new GameScene();
-	}
-	else if (input->TriggerKey(DIK_RETURN) && change == false)
+	if (input->TriggerKey(DIK_RETURN))
 	{
 		nextScene = new SelectScene();
 	}
@@ -153,6 +146,7 @@ void TitleScene::Update()
 		dxCommon->ChengeFullScreen();
 	}
 
+<<<<<<< Updated upstream
 	//text->Printf("%f", Collision::CheckRay2Sphere(ray, sphere));
 	
 	XMFLOAT3 cameraEye = camera->GetEye();
@@ -170,6 +164,9 @@ void TitleScene::Update()
 		//text->Printf("%f", Collision::CheckRay2Sphere(ray, sphere));
 	}
 
+=======
+	text->Printf("%f", (float)input->GetMouseMove().lX);
+>>>>>>> Stashed changes
 }
 
 void TitleScene::Draw()

@@ -48,23 +48,10 @@ private:
 
 	ParticleManager* particleMan = nullptr;
 
-	Xinput xinput;
-
 	float centerX = 1280 / 2;
 	float centerY = 720 / 2;
 
 	XMFLOAT2 mousePos;
-
-	Sprite* title1 = nullptr;
-	Sprite* title2 = nullptr;
-	Sprite* sharp1 = nullptr;
-	Sprite* sharp2 = nullptr;
-	bool change = true; //êÿÇËë÷Ç¶
-
-	// âBÇµóvëf
-	int sharpCnt = 0;
-	int count = 0;
-	bool sharpMode = false;
 
 	Object3d* object = nullptr;
 	Model* model = nullptr;
