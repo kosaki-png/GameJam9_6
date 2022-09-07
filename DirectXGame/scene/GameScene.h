@@ -8,7 +8,7 @@
 #include "Text.h"
 #include "DebugCamera.h"
 #include "LightGroup.h"
-
+#include "ui/Ui.h"
 #include "BaseScene.h"
 #include"XinputControll.h"
 
@@ -75,6 +75,7 @@ private: // メンバ変数
 	DebugCamera* camera = nullptr;
 	Sprite* spriteBG = nullptr;
 	ParticleManager* particleMan = nullptr;
+	Ui* ui = nullptr;
 
 	/*Input* input;*/
 	// xinput用
@@ -98,10 +99,8 @@ private: // メンバ変数
 	XMFLOAT2 mousePos;
 
 	ObjManager* objMng = nullptr;
-
 	bool damage = false;
 
 	bool sign = false;
-
 	float time = 0;
 };
