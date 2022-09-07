@@ -11,7 +11,7 @@ private:
 	~BaseTarget();
 
 	//‰Šú‰»
-	virtual void Initialize(std::string modelName);
+	virtual void Initialize(std::string modelName, Vector3 pos,int r);
 	//XV
 	virtual void Update();
 	//•`‰æ
@@ -23,6 +23,7 @@ private:
 	//Get
 	Vector3 GetPosition() { return position; }
 	Vector3 GetVelocity() { return velocity; }
+	int GetR() { return r; }
 
 
 private:
