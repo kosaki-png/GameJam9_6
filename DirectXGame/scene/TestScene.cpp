@@ -125,58 +125,58 @@ void TestScene::Update()
 		PostQuitMessage(0);
 	}
 
-	// パーティクル生成
-	//CreateParticles();
+	// フルスクリーン用（使用禁止）
+	if (input->TriggerKey(DIK_F1))
+	{
+		dxCommon->ChengeFullScreen();
+	}
+	
+	// カーソルを消して中心固定
+	ShowCursor(false);
+	SetCursorPos(centerX, centerY);
 
-	lightGroup->Update();
-	camera->Update();
-	particleMan->Update();
+	// ターゲット判定
+	{
+		// 視線レイの更新
+		{
+			XMFLOAT3 tmp = camera->GetEye();
+			ray.start = XMVectorSet(tmp.x, tmp.y, tmp.z, 1.0f);
+			tmp = camera->GetDir();
+			ray.dir = XMVectorSet(tmp.x, tmp.y, tmp.z, 1.0f);
+		}
 
+		// 視線レイと的との当たり判定
+		if (Collision::CheckRay2Sphere(ray, target->GetSphere()))
+		{
+			if (input->TriggerMouseLeft())
+			{
+				target->SetIsDead(true);
+			}
+			text->Printf("%f", 100.0f);
+		}
+
+		// 復活
+		static int respownCnt = 0;
+		if (target->GetIsDead())
+		{
+			respownCnt++;
+			if (respownCnt > 200)
+			{
+				target->SetIsDead(false);
+				respownCnt = 0;
+			}
+		}
+	}
+	
 	// 3Dオブジェクト更新
 	{
 		object->Update();
 		objGround->Update();
 	}
 
-	if (input->TriggerKey(DIK_F1))
-	{
-		dxCommon->ChengeFullScreen();
-	}
-	
-	// 
-	ShowCursor(false);
-	SetCursorPos(centerX, centerY);
-
-	// 視線レイの更新
-	{
-		XMFLOAT3 tmp = camera->GetEye();
-		ray.start = XMVectorSet(tmp.x, tmp.y, tmp.z, 1.0f);
-		tmp = camera->GetDir();
-		ray.dir = XMVectorSet(tmp.x, tmp.y, tmp.z, 1.0f);
-	}
-
-	// 視線レイと的との当たり判定
-	if (Collision::CheckRay2Sphere(ray, target->GetSphere()))
-	{
-		if (input->TriggerMouseLeft())
-		{
-			target->SetIsDead(true);
-		}
-		text->Printf("%f", 100.0f);
-	}
-
-	// 復活
-	static int respownCnt = 0;
-	if (target->GetIsDead())
-	{
-		respownCnt++;
-		if (respownCnt > 200)
-		{
-			target->SetIsDead(false);
-			respownCnt = 0;
-		}
-	}
-
+	lightGroup->Update();
+	camera->Update();
+	particleMan->Update();
 	target->Update();
 }
 
