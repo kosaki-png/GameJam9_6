@@ -11,6 +11,8 @@
 
 #include "BaseScene.h"
 
+#include "BaseTarget.h"
+
 class TestScene :
     public BaseScene
 {
@@ -56,5 +58,6 @@ private:
 	Ray ray;
 	Sphere sphere;
 
+	BaseTarget* target = nullptr;
 };
 

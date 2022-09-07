@@ -1,5 +1,9 @@
 #include "BaseTarget.h"
 
+BaseTarget::BaseTarget()
+{
+}
+
 BaseTarget::~BaseTarget()
 {
 	safe_delete(obj);
@@ -14,8 +18,8 @@ void BaseTarget::Initialize(std::string modelName, XMFLOAT3 pos, int radius)
 	obj = Object3d::Create(model);
 
 	position = pos;
-	sphere.center = DirectX::XMVectorSet(pos.x, pos.y, pos.z, 0);
-	sphere.radius = radius;
+	sphere.center = DirectX::XMVectorSet(pos.x, pos.y, pos.z, 1.0f);
+	sphere.radius = 0.5f;
 }
 
 //çXêV

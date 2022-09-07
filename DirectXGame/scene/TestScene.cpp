@@ -91,16 +91,13 @@ void TestScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 		}
 	}
 
-	XMFLOAT3 cameraEye = camera->GetEye();
-	XMFLOAT3 cameraTarget = camera->GetTarget();
-	float cameraDis = camera->GetDistance();
-	ray.start = XMVectorSet(cameraEye.x, cameraEye.y, cameraEye.z, 1.0f);
-	ray.dir = XMVectorSet((cameraTarget.x - cameraEye.x) / cameraDis, (cameraTarget.y - cameraEye.y) / cameraDis, (cameraTarget.z - cameraEye.z) / cameraDis, 1.0f);
+	XMFLOAT3 tmp = camera->GetEye();
+	ray.start = XMVectorSet(tmp.x, tmp.y, tmp.z, 1.0f);
+	tmp = camera->GetDir();
+	ray.dir = XMVectorSet(tmp.x, tmp.y, tmp.z, 1.0f);
 
-	sphere.center = XMVectorSet(0, 0, 0, 1);
-	sphere.radius = 0.5f;
-
-	text = text->GetInstance();
+	target = new BaseTarget();
+	target->Initialize("sphere");
 
 }
 
@@ -116,16 +113,6 @@ void TestScene::Update()
 	if (input->PushKey(DIK_ESCAPE))
 	{
 		PostQuitMessage(0);
-	}
-
-	// マウスポイント
-	{
-		static POINT p;
-		GetCursorPos(&p);
-		WinApp* win = nullptr;
-		win = new WinApp();
-		ScreenToClient(FindWindowA(nullptr, "Hooper"), &p);
-		mousePos = { (float)p.x, (float)p.y };
 	}
 
 	// パーティクル生成
@@ -145,25 +132,20 @@ void TestScene::Update()
 		dxCommon->ChengeFullScreen();
 	}
 
-	//text->Printf("%f", Collision::CheckRay2Sphere(ray, sphere));
+	XMFLOAT3 tmp = camera->GetEye();
+	ray.start = XMVectorSet(tmp.x, tmp.y, tmp.z, 1.0f);
+	tmp = camera->GetDir();
+	ray.dir = XMVectorSet(tmp.x, tmp.y, tmp.z, 1.0f);
 
-	XMFLOAT3 cameraEye = camera->GetEye();
-	XMFLOAT3 cameraTarget = camera->GetTarget();
-	float cameraDis = camera->GetDistance();
-	ray.start = XMVectorSet(cameraEye.x, cameraEye.y, cameraEye.z, 1.0f);
-	ray.dir = XMVectorSet((cameraTarget.x - cameraEye.x) / cameraDis, (cameraTarget.y - cameraEye.y) / cameraDis, (cameraTarget.z - cameraEye.z) / cameraDis, 1.0f);
-
-	if (Collision::CheckRay2Sphere(ray, sphere))
+	if (Collision::CheckRay2Sphere(ray, target->GetSphere()))
 	{
 		text->Printf("%f", Collision::CheckRay2Sphere(ray, sphere));
 	}
 	else
 	{
-		//text->Printf("%f", Collision::CheckRay2Sphere(ray, sphere));
 	}
 
-
-	//text->Printf("%f", (float)input->GetMouseMove().lX);
+	target->Update();
 }
 
 void TestScene::Draw()
@@ -195,7 +177,7 @@ void TestScene::Draw()
 		/// ここに3Dオブジェクトの描画処理を追加
 		/// </summary>
 
-		object->Draw();
+		target->Draw();
 
 		Object3d::PostDraw();
 		// パーティクルの描画

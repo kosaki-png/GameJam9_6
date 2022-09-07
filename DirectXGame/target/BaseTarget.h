@@ -13,8 +13,7 @@ private: // エイリアス
 	using XMFLOAT3 = DirectX::XMFLOAT3;
 	using XMVECTOR = DirectX::XMVECTOR;
 
-
-private:
+public:
 	BaseTarget();
 	~BaseTarget();
 

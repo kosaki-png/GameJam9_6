@@ -8,72 +8,6 @@
     <FxCompile Include="shader\ParticleVS.hlsl" />
     <FxCompile Include="shader\SpritePixelShader.hlsl" />
     <FxCompile Include="shader\SpriteVertexShader.hlsl" />
-    <Filter Include="ソース ファイル">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="ヘッダー ファイル">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="リソース ファイル">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="シェーダーファイル">
-      <UniqueIdentifier>{aa2489de-0aae-496a-880c-071c5f497759}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Scene">
-      <UniqueIdentifier>{1b610d95-84e9-4a92-a5b1-1f372cdc4109}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\Scene">
-      <UniqueIdentifier>{c4d86ca4-40c1-445a-96cf-3b56acf90d08}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\3d">
-      <UniqueIdentifier>{d6808153-af4c-49ef-b717-c50620ed189c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\2d">
-      <UniqueIdentifier>{0eac0882-d556-42e3-b438-b3f1adcb0bcb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Camera">
-      <UniqueIdentifier>{53a40607-e11a-4e3c-a06c-b2fff22df774}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Input">
-      <UniqueIdentifier>{753c8eb2-3ca6-4255-b5b8-3fda79fb0327}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Collision">
-      <UniqueIdentifier>{583d73e8-ea36-462f-aad9-13846e979a8a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Base">
-      <UniqueIdentifier>{8e0abc23-15ff-4baa-b7f7-3dbe8444b5f7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\3d">
-      <UniqueIdentifier>{f032642a-dbcf-4383-ac90-a457021742c7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\2d">
-      <UniqueIdentifier>{2f9ba5a2-7485-45a5-98ed-017d9340fb73}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\Camera">
-      <UniqueIdentifier>{11e97bf8-c62e-4264-94b6-e1f55430f411}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\Input">
-      <UniqueIdentifier>{43ff5738-7ca8-4461-9cf6-0e63468a2154}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\Collision">
-      <UniqueIdentifier>{c6d47c99-a2f3-4a81-822a-00066d7dfa32}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\Base">
-      <UniqueIdentifier>{625711b2-62e8-4f8b-8b5a-07947339fa3a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\FlameRate">
-      <UniqueIdentifier>{ff91095b-2f9a-462d-b816-271fd143bd53}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\FlameRate">
-      <UniqueIdentifier>{0eb2f91e-5ed3-464b-b476-9954d7683791}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\ui">
-      <UniqueIdentifier>{862c2744-f45f-41e8-9130-0dd2f56ffc48}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="2d\Sprite.cpp" />
@@ -84,6 +18,9 @@
     <ClCompile Include="3d\Object3d.cpp" />
     <ClCompile Include="3d\ParticleManager.cpp" />
     <ClCompile Include="audio\Audio.cpp" />
+    <ClCompile Include="scene\TestScene.cpp" />
+    <ClCompile Include="player\Player.cpp" />
+    <ClCompile Include="target\BaseTarget.cpp" />
     <ClCompile Include="camera\FreeCamera.cpp" />
     <ClCompile Include="scene\BaseScene.cpp" />
     <ClCompile Include="camera\Camera.cpp" />
@@ -103,16 +40,9 @@
     <ClCompile Include="scene\TitleScene.cpp" />
     <ClCompile Include="base\Vector2.cpp" />
     <ClCompile Include="base\Vector3.cpp" />
+    <ClCompile Include="ui\Score.cpp" />
+    <ClCompile Include="ui\Ui.cpp" />
     <ClCompile Include="xinput\XinputControll.cpp" />
-    <ClCompile Include="target\BaseTarget.cpp" />
-    <ClCompile Include="ui\Ui.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="scene\TestScene.cpp">
-    <ClCompile Include="ui\Score.cpp">
-    <ClCompile Include="player\Player.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="2d\Sprite.h" />
@@ -124,6 +54,9 @@
     <ClInclude Include="3d\Object3d.h" />
     <ClInclude Include="3d\ParticleManager.h" />
     <ClInclude Include="audio\Audio.h" />
+    <ClInclude Include="scene\TestScene.h" />
+    <ClInclude Include="player\Player.h" />
+    <ClInclude Include="target\BaseTarget.h" />
     <ClInclude Include="base\SafeDelete.h" />
     <ClInclude Include="camera\FreeCamera.h" />
     <ClInclude Include="scene\BaseScene.h" />
@@ -144,16 +77,9 @@
     <ClInclude Include="scene\TitleScene.h" />
     <ClInclude Include="base\Vector2.h" />
     <ClInclude Include="base\Vector3.h" />
+    <ClInclude Include="ui\Score.h" />
+    <ClInclude Include="ui\Ui.h" />
     <ClInclude Include="xinput\XinputControll.h" />
-    <ClInclude Include="target\BaseTarget.h" />
-    <ClInclude Include="ui\Ui.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="scene\TestScene.h">
-    <ClInclude Include="ui\Score.h">
-    <ClInclude Include="player\Player.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="shader\OBJShaderHeader.hlsli" />

@@ -46,11 +46,11 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <LibraryPath>$(LibraryPath)</LibraryPath>
-    <IncludePath>$(ProjectDir);$(ProjectDir)3d\;$(ProjectDir)2d\;$(ProjectDir)camera\;$(ProjectDir)base\;$(ProjectDir)input\;$(ProjectDir)audio\;$(ProjectDir)scene\;$(ProjectDir)dynamics\;$(ProjectDir)xinput\;$(ProjectDir)player\;$(ProjectDir)shader\;$(ProjectDir)target\;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir);$(ProjectDir)3d\;$(ProjectDir)2d\;$(ProjectDir)camera\;$(ProjectDir)base\;$(ProjectDir)input\;$(ProjectDir)audio\;$(ProjectDir)scene\;$(ProjectDir)dynamics\;$(ProjectDir)xinput\;$(ProjectDir)player\;$(ProjectDir)shader\;$(ProjectDir)target;$(ProjectDir)ui;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir);$(ProjectDir)3d\;$(ProjectDir)2d\;$(ProjectDir)camera\;$(ProjectDir)base\;$(ProjectDir)input\;$(ProjectDir)audio\;$(ProjectDir)scene\;$(ProjectDir)dynamics\;$(ProjectDir)xinput\;$(ProjectDir)player\;$(ProjectDir)shader\;$(ProjectDir)target\;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir);$(ProjectDir)3d\;$(ProjectDir)2d\;$(ProjectDir)camera\;$(ProjectDir)base\;$(ProjectDir)input\;$(ProjectDir)audio\;$(ProjectDir)scene\;$(ProjectDir)dynamics\;$(ProjectDir)xinput\;$(ProjectDir)player\;$(ProjectDir)shader\;$(ProjectDir)target;$(ProjectDir)ui;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
