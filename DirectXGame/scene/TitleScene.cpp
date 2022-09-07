@@ -91,7 +91,6 @@ void TitleScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 		}
 	}
 
-<<<<<<< Updated upstream
 	XMFLOAT3 cameraEye = camera->GetEye();
 	XMFLOAT3 cameraTarget = camera->GetTarget();
 	float cameraDis = camera->GetDistance();
@@ -100,9 +99,9 @@ void TitleScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 	
 	sphere.center = XMVectorSet(0, 0, 0, 1);
 	sphere.radius = 0.5f;
-=======
+
 	text = text->GetInstance();
->>>>>>> Stashed changes
+
 }
 
 void TitleScene::Update()
@@ -146,7 +145,6 @@ void TitleScene::Update()
 		dxCommon->ChengeFullScreen();
 	}
 
-<<<<<<< Updated upstream
 	//text->Printf("%f", Collision::CheckRay2Sphere(ray, sphere));
 	
 	XMFLOAT3 cameraEye = camera->GetEye();
@@ -164,9 +162,8 @@ void TitleScene::Update()
 		//text->Printf("%f", Collision::CheckRay2Sphere(ray, sphere));
 	}
 
-=======
+
 	text->Printf("%f", (float)input->GetMouseMove().lX);
->>>>>>> Stashed changes
 }
 
 void TitleScene::Draw()
