@@ -1,25 +1,21 @@
 #pragma once
-
-#include "SafeDelete.h"
-#include <DirectXMath.h>
-#include "Sprite.h"
-#include "Object3d.h"
 #include "ParticleManager.h"
 #include "Text.h"
 #include "DebugCamera.h"
 #include "LightGroup.h"
 #include "XinputControll.h"
+#include "Sprite.h"
+#include "Object3d.h"
 
 #include "CollisionPrimitive.h"
 
 #include "BaseScene.h"
 
-
-class TitleScene :
-	public BaseScene
+class TestScene :
+    public BaseScene
 {
 private: // エイリアス
-	// Microsoft::WRL::を省略
+// Microsoft::WRL::を省略
 	template <class T> using ComPtr = Microsoft::WRL::ComPtr<T>;
 	// DirectX::を省略
 	using XMFLOAT2 = DirectX::XMFLOAT2;
@@ -32,8 +28,8 @@ private: // 静的メンバ変数
 	static const int texNumber = 0;
 
 public:
-	TitleScene();
-	~TitleScene();
+	TestScene();
+	~TestScene();
 
 	void Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio) override;
 
@@ -59,4 +55,6 @@ private:
 
 	Ray ray;
 	Sphere sphere;
+
 };
+

@@ -8,7 +8,6 @@
     <FxCompile Include="shader\ParticleVS.hlsl" />
     <FxCompile Include="shader\SpritePixelShader.hlsl" />
     <FxCompile Include="shader\SpriteVertexShader.hlsl" />
-
     <Filter Include="ソース ファイル">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
@@ -106,6 +105,12 @@
     <ClCompile Include="base\Vector3.cpp" />
     <ClCompile Include="xinput\XinputControll.cpp" />
     <ClCompile Include="target\BaseTarget.cpp" />
+    <ClCompile Include="ui\Ui.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="scene\TestScene.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="2d\Sprite.h" />
@@ -139,6 +144,12 @@
     <ClInclude Include="base\Vector3.h" />
     <ClInclude Include="xinput\XinputControll.h" />
     <ClInclude Include="target\BaseTarget.h" />
+    <ClInclude Include="ui\Ui.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="scene\TestScene.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="shader\OBJShaderHeader.hlsli" />

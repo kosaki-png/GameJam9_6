@@ -1,11 +1,14 @@
 ﻿#include "WinApp.h"
 #include "DirectXCommon.h"
 #include "Audio.h"
+
 #include "BaseScene.h"
 #include "TitleScene.h"
 #include "SelectScene.h"
 #include "GameScene.h"
 #include "EndScene.h"
+#include "TestScene.h"
+
 #include "LightGroup.h"
 #include "ParticleManager.h"
 #include "FlameRate.h"
@@ -67,7 +70,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 #pragma endregion
 
 	// 最初のシーン
-	scene = new TitleScene();
+	scene = new TestScene();
 	//scene = new SelectScene();
 	//scene = new GameScene();
 	//scene = new EndScene();
