@@ -108,6 +108,39 @@
     <ClCompile Include="target\BaseTarget.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="2d\Sprite.h" />
+    <ClInclude Include="3d\DirectionalLight.h" />
+    <ClInclude Include="3d\LightGroup.h" />
+    <ClInclude Include="3d\Material.h" />
+    <ClInclude Include="3d\Mesh.h" />
+    <ClInclude Include="3d\Model.h" />
+    <ClInclude Include="3d\Object3d.h" />
+    <ClInclude Include="3d\ParticleManager.h" />
+    <ClInclude Include="audio\Audio.h" />
+    <ClInclude Include="base\SafeDelete.h" />
+    <ClInclude Include="camera\FreeCamera.h" />
+    <ClInclude Include="scene\BaseScene.h" />
+    <ClInclude Include="camera\Camera.h" />
+    <ClInclude Include="camera\DebugCamera.h" />
+    <ClInclude Include="2d\Text.h" />
+    <ClInclude Include="base\DirectXCommon.h" />
+    <ClInclude Include="base\Define.h" />
+    <ClInclude Include="dynamics\Collision.h" />
+    <ClInclude Include="dynamics\CollisionPrimitive.h" />
+    <ClInclude Include="scene\EndScene.h" />
+    <ClInclude Include="base\FlameRate.h" />
+    <ClInclude Include="3d\ObjManager.h" />
+    <ClInclude Include="scene\GameScene.h" />
+    <ClInclude Include="input\Input.h" />
+    <ClInclude Include="base\WinApp.h" />
+    <ClInclude Include="scene\SelectScene.h" />
+    <ClInclude Include="scene\TitleScene.h" />
+    <ClInclude Include="base\Vector2.h" />
+    <ClInclude Include="base\Vector3.h" />
+    <ClInclude Include="xinput\XinputControll.h" />
+    <ClInclude Include="target\BaseTarget.h" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="shader\OBJShaderHeader.hlsli" />
     <None Include="shader\SpriteShaderHeader.hlsli" />
     <None Include="shader\Particle.hlsli" />
