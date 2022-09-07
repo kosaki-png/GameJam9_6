@@ -64,6 +64,9 @@
     <Filter Include="ソース ファイル\FlameRate">
       <UniqueIdentifier>{0eb2f91e-5ed3-464b-b476-9954d7683791}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\ui">
+      <UniqueIdentifier>{862c2744-f45f-41e8-9130-0dd2f56ffc48}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scene\SelectScene.cpp">

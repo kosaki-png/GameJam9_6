@@ -112,6 +112,7 @@
     <ClCompile Include="scene\TitleScene.cpp" />
     <ClCompile Include="base\Vector2.cpp" />
     <ClCompile Include="base\Vector3.cpp" />
+    <ClCompile Include="ui\Ui.cpp" />
     <ClCompile Include="xinput\XinputControll.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -216,6 +217,7 @@
     <ClInclude Include="scene\TitleScene.h" />
     <ClInclude Include="base\Vector2.h" />
     <ClInclude Include="base\Vector3.h" />
+    <ClInclude Include="ui\Ui.h" />
     <ClInclude Include="xinput\XinputControll.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
