@@ -55,9 +55,13 @@ private:
 	Object3d* object = nullptr;
 	Model* model = nullptr;
 
+	// ‹ü‚ÌƒŒƒC
 	Ray ray;
-	Sphere sphere;
 
 	BaseTarget* target = nullptr;
+
+	Object3d* objGround = nullptr;
+	Model* modelGround = nullptr;
+
 };
 

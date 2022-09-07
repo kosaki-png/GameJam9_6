@@ -77,17 +77,20 @@ void TestScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 		// モデル読み込み
 		{
 			model = Model::CreateFromOBJ("sphere");
+			modelGround = Model::CreateFromOBJ("ground");
 		}
 
 		// 3Dオブジェクト生成
 		{
 			object = Object3d::Create(model);
-
+			objGround = Object3d::Create(modelGround);
 		}
 
 		// 3Dオブジェクト初期設定
 		{
 			object->Initialize();
+			objGround->Initialize();
+			objGround->SetPosition({0,-5, 0});
 		}
 	}
 
@@ -125,6 +128,7 @@ void TestScene::Update()
 	// 3Dオブジェクト更新
 	{
 		object->Update();
+		objGround->Update();
 	}
 
 	if (input->TriggerKey(DIK_F1))
@@ -139,7 +143,7 @@ void TestScene::Update()
 
 	if (Collision::CheckRay2Sphere(ray, target->GetSphere()))
 	{
-		text->Printf("%f", Collision::CheckRay2Sphere(ray, sphere));
+		text->Printf("%f", 100.0f);
 	}
 	else
 	{
@@ -176,7 +180,7 @@ void TestScene::Draw()
 		/// <summary>
 		/// ここに3Dオブジェクトの描画処理を追加
 		/// </summary>
-
+		objGround->Draw();
 		target->Draw();
 
 		Object3d::PostDraw();
