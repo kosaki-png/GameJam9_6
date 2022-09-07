@@ -17,7 +17,16 @@ TestScene::TestScene()
 
 TestScene::~TestScene()
 {
-
+	delete cross;
+	delete model;
+	delete modelGround;
+	delete object;
+	delete objGround;
+	for (int i = 0; i < 20; i++)
+	{
+		delete target[i];
+	}
+	delete camera;
 }
 
 void TestScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
