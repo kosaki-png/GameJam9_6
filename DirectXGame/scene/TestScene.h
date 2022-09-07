@@ -47,8 +47,8 @@ private:
 
 	ParticleManager* particleMan = nullptr;
 
-	float centerX = 1280 / 2;
-	float centerY = 720 / 2;
+	float centerX = 1920 / 2;
+	float centerY = 1080 / 2;
 
 	XMFLOAT2 mousePos;
 
@@ -60,8 +60,11 @@ private:
 
 	BaseTarget* target = nullptr;
 
+	// 地面
 	Object3d* objGround = nullptr;
 	Model* modelGround = nullptr;
 
+	// クロスヘア
+	Sprite* cross = nullptr;
 };
 

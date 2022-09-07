@@ -60,11 +60,15 @@ void TestScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 		// スプライト用テクスチャ読み込み
 		{
 			//Sprite::LoadTexture(1, L"Resources/Title1.png");
+			Sprite::LoadTexture(10, L"Resources/centerDot.png");
 		}
 
 		// スプライト生成
 		{
 			//title1 = Sprite::Create(1, { 0, 0 });
+			cross = Sprite::Create(10, { centerX, centerY });
+			cross->SetAnchorPoint({ 0.5f, 0.5f });
+			cross->SetSize({ 16, 16 });
 		}
 
 		// スプライト初期設定
@@ -94,13 +98,16 @@ void TestScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 		}
 	}
 
-	XMFLOAT3 tmp = camera->GetEye();
-	ray.start = XMVectorSet(tmp.x, tmp.y, tmp.z, 1.0f);
-	tmp = camera->GetDir();
-	ray.dir = XMVectorSet(tmp.x, tmp.y, tmp.z, 1.0f);
+	// 視線レイの初期設定
+	{
+		XMFLOAT3 tmp = camera->GetEye();
+		ray.start = XMVectorSet(tmp.x, tmp.y, tmp.z, 1.0f);
+		tmp = camera->GetDir();
+		ray.dir = XMVectorSet(tmp.x, tmp.y, tmp.z, 1.0f);
 
-	target = new BaseTarget();
-	target->Initialize("sphere");
+		target = new BaseTarget();
+		target->Initialize("sphere");
+	}
 
 }
 
@@ -135,18 +142,39 @@ void TestScene::Update()
 	{
 		dxCommon->ChengeFullScreen();
 	}
+	
+	// 
+	ShowCursor(false);
+	SetCursorPos(centerX, centerY);
 
-	XMFLOAT3 tmp = camera->GetEye();
-	ray.start = XMVectorSet(tmp.x, tmp.y, tmp.z, 1.0f);
-	tmp = camera->GetDir();
-	ray.dir = XMVectorSet(tmp.x, tmp.y, tmp.z, 1.0f);
+	// 視線レイの更新
+	{
+		XMFLOAT3 tmp = camera->GetEye();
+		ray.start = XMVectorSet(tmp.x, tmp.y, tmp.z, 1.0f);
+		tmp = camera->GetDir();
+		ray.dir = XMVectorSet(tmp.x, tmp.y, tmp.z, 1.0f);
+	}
 
+	// 視線レイと的との当たり判定
 	if (Collision::CheckRay2Sphere(ray, target->GetSphere()))
 	{
+		if (input->TriggerMouseLeft())
+		{
+			target->SetIsDead(true);
+		}
 		text->Printf("%f", 100.0f);
 	}
-	else
+
+	// 復活
+	static int respownCnt = 0;
+	if (target->GetIsDead())
 	{
+		respownCnt++;
+		if (respownCnt > 200)
+		{
+			target->SetIsDead(false);
+			respownCnt = 0;
+		}
 	}
 
 	target->Update();
@@ -196,7 +224,7 @@ void TestScene::Draw()
 		/// <summary>
 		/// ここに前景スプライトの描画処理を追加
 		/// </summary>
-
+		cross->Draw();
 		// デバッグテキストの描画
 		text->DrawAll(cmdList);
 

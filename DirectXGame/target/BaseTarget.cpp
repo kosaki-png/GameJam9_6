@@ -34,5 +34,8 @@ void BaseTarget::Update()
 //•`‰æ
 void BaseTarget::Draw()
 {
-	obj->Draw();
+	if(!isDead)
+	{
+		obj->Draw();
+	}
 }
