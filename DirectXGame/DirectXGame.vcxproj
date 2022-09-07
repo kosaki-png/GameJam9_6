@@ -92,10 +92,7 @@
     <ClCompile Include="3d\Object3d.cpp" />
     <ClCompile Include="3d\ParticleManager.cpp" />
     <ClCompile Include="audio\Audio.cpp" />
-<<<<<<< HEAD
     <ClCompile Include="target\BaseTarget.cpp" />
-=======
->>>>>>> d8c4d125e4b3ceee29552aedfe4c9a6164a53828
     <ClCompile Include="camera\FreeCamera.cpp" />
     <ClCompile Include="scene\BaseScene.cpp" />
     <ClCompile Include="camera\Camera.cpp" />
@@ -200,10 +197,7 @@
     <ClInclude Include="3d\Object3d.h" />
     <ClInclude Include="3d\ParticleManager.h" />
     <ClInclude Include="audio\Audio.h" />
-<<<<<<< HEAD
     <ClInclude Include="target\BaseTarget.h" />
-=======
->>>>>>> d8c4d125e4b3ceee29552aedfe4c9a6164a53828
     <ClInclude Include="base\SafeDelete.h" />
     <ClInclude Include="camera\FreeCamera.h" />
     <ClInclude Include="scene\BaseScene.h" />

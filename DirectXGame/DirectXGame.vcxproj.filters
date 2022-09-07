@@ -8,8 +8,7 @@
     <FxCompile Include="shader\ParticleVS.hlsl" />
     <FxCompile Include="shader\SpritePixelShader.hlsl" />
     <FxCompile Include="shader\SpriteVertexShader.hlsl" />
-<<<<<<< HEAD
-=======
+
     <Filter Include="ソース ファイル">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
@@ -76,7 +75,6 @@
     <Filter Include="ソース ファイル\ui">
       <UniqueIdentifier>{862c2744-f45f-41e8-9130-0dd2f56ffc48}</UniqueIdentifier>
     </Filter>
->>>>>>> d8c4d125e4b3ceee29552aedfe4c9a6164a53828
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="2d\Sprite.cpp" />
@@ -87,10 +85,9 @@
     <ClCompile Include="3d\Object3d.cpp" />
     <ClCompile Include="3d\ParticleManager.cpp" />
     <ClCompile Include="audio\Audio.cpp" />
-<<<<<<< HEAD
+
     <ClCompile Include="target\BaseTarget.cpp" />
-=======
->>>>>>> d8c4d125e4b3ceee29552aedfe4c9a6164a53828
+
     <ClCompile Include="camera\FreeCamera.cpp" />
     <ClCompile Include="scene\BaseScene.cpp" />
     <ClCompile Include="camera\Camera.cpp" />
@@ -111,10 +108,7 @@
     <ClCompile Include="base\Vector2.cpp" />
     <ClCompile Include="base\Vector3.cpp" />
     <ClCompile Include="xinput\XinputControll.cpp" />
-<<<<<<< HEAD
-=======
     <ClCompile Include="target\BaseTarget.cpp" />
->>>>>>> d8c4d125e4b3ceee29552aedfe4c9a6164a53828
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="2d\Sprite.h" />
@@ -126,10 +120,7 @@
     <ClInclude Include="3d\Object3d.h" />
     <ClInclude Include="3d\ParticleManager.h" />
     <ClInclude Include="audio\Audio.h" />
-<<<<<<< HEAD
     <ClInclude Include="target\BaseTarget.h" />
-=======
->>>>>>> d8c4d125e4b3ceee29552aedfe4c9a6164a53828
     <ClInclude Include="base\SafeDelete.h" />
     <ClInclude Include="camera\FreeCamera.h" />
     <ClInclude Include="scene\BaseScene.h" />
@@ -151,10 +142,7 @@
     <ClInclude Include="base\Vector2.h" />
     <ClInclude Include="base\Vector3.h" />
     <ClInclude Include="xinput\XinputControll.h" />
-<<<<<<< HEAD
-=======
     <ClInclude Include="target\BaseTarget.h" />
->>>>>>> d8c4d125e4b3ceee29552aedfe4c9a6164a53828
   </ItemGroup>
   <ItemGroup>
     <None Include="shader\OBJShaderHeader.hlsli" />
