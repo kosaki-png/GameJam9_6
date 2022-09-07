@@ -163,7 +163,7 @@ void TitleScene::Update()
 	}
 
 
-	text->Printf("%f", (float)input->GetMouseMove().lX);
+	//text->Printf("%f", (float)input->GetMouseMove().lX);
 }
 
 void TitleScene::Draw()
