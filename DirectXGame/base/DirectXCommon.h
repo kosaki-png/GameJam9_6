@@ -68,6 +68,11 @@ public: // メンバ関数
 	/// <returns>描画コマンドリスト</returns>
 	ID3D12GraphicsCommandList* GetCommandList() { return commandList.Get(); }
 
+	/// <summary>
+	/// フルスクリーン切り替え
+	/// </summary>
+	void ChengeFullScreen();
+
 private: // メンバ変数
 	// ウィンドウズアプリケーション管理
 	WinApp* winApp;
@@ -91,6 +96,8 @@ private: // メンバ変数
 	float frameRate = 0.0f;
 	float commandWaitTime = 0.0f;
 	std::chrono::steady_clock::time_point lastUpdate;
+
+	bool isFullScreen = false;
 
 private: // メンバ関数
 	/// <summary>

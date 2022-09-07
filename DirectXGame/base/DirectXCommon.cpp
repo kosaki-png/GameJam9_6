@@ -179,6 +179,13 @@ void DirectXCommon::ClearDepthBuffer()
 	commandList->ClearDepthStencilView(dsvH, D3D12_CLEAR_FLAG_DEPTH, 1.0f, 0, 0, nullptr);
 }
 
+void DirectXCommon::ChengeFullScreen()
+{
+	isFullScreen = !isFullScreen;
+
+	swapchain.Get()->SetFullscreenState(isFullScreen, nullptr);
+}
+
 bool DirectXCommon::InitializeDXGIDevice()
 {
 	HRESULT result = S_FALSE;
