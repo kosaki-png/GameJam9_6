@@ -64,6 +64,9 @@
     <Filter Include="ソース ファイル\FlameRate">
       <UniqueIdentifier>{0eb2f91e-5ed3-464b-b476-9954d7683791}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\ui">
+      <UniqueIdentifier>{862c2744-f45f-41e8-9130-0dd2f56ffc48}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scene\SelectScene.cpp">
@@ -138,7 +141,18 @@
     <ClCompile Include="base\FlameRate.cpp">
       <Filter>ソース ファイル\FlameRate</Filter>
     </ClCompile>
-
+    <ClCompile Include="3d\ObjManager.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="base\Vector2.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="base\Vector3.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\Ui.cpp">
+      <Filter>ソース ファイル\ui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="ParticleGS.hlsl">
@@ -250,10 +264,20 @@
     <ClInclude Include="base\FlameRate.h">
       <Filter>ヘッダー ファイル\FlameRate</Filter>
     </ClInclude>
-
     <ClInclude Include="Define.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-
+    <ClInclude Include="3d\ObjManager.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="base\Vector2.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="base\Vector3.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\Ui.h">
+      <Filter>ソース ファイル\ui</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
