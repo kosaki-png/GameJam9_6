@@ -18,7 +18,7 @@ public:
 	~BaseTarget();
 
 	//‰Šú‰»
-	virtual void Initialize(std::string modelName = (" "), XMFLOAT3 pos = { 0,0,0 }, int radius = 0.5f);
+	virtual void Initialize(std::string modelName = (" "), XMFLOAT3 pos = { 0,0,0 }, float radius = 0.5f);
 	//XV
 	virtual void Update();
 	//•`‰æ
