@@ -33,6 +33,7 @@ public:
 	XMFLOAT3 GetVelocity() { return velocity; }
 	int GetRadius() { return sphere.radius; }
 	Sphere GetSphere() { return sphere; }
+	bool GetIsDead() { return isDead; }
 
 private:
 
