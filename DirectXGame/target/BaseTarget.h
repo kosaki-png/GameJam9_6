@@ -26,6 +26,7 @@ public:
 
 	//Set
 	void SetPosition(XMFLOAT3 pos) { position = pos; }
+	void SetIsDead(bool setDead) { isDead = setDead; }
 
 	//Get
 	XMFLOAT3 GetPosition() { return position; }
