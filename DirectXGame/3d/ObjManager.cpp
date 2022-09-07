@@ -10,6 +10,8 @@ ObjManager::~ObjManager()
 
 void ObjManager::Initialize(Input* input)
 {
+	// “ü—Íî•ñæ“¾
+	this->input = input;
 }
 
 void ObjManager::Update()

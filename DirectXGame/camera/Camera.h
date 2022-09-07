@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include <DirectXMath.h>
+#include <input/Input.h>
 
 /// <summary>
 /// カメラ基本機能
@@ -88,7 +89,10 @@ public: // メンバ関数
 	/// </summary>
 	/// <param name="eye">座標</param>
 	inline void SetEye(XMFLOAT3 eye) {
-		this->eye = eye; viewDirty = true;
+		this->eye = eye; 
+		// ターゲットとカメラ座標から角度を算出
+		CalcRotation(target, eye);
+		viewDirty = true;
 	}
 
 	/// <summary>
@@ -104,7 +108,10 @@ public: // メンバ関数
 	/// </summary>
 	/// <param name="target">座標</param>
 	inline void SetTarget(XMFLOAT3 target) {
-		this->target = target; viewDirty = true;
+		this->target = target;
+		// ターゲットとカメラ座標から角度を算出
+		CalcRotation(target, eye);
+		viewDirty = true;
 	}
 
 	/// <summary>
@@ -137,6 +144,41 @@ public: // メンバ関数
 	void MoveVector(const XMFLOAT3& move);
 	void MoveVector(const XMVECTOR& move);
 
+	/// <summary>
+	/// インプットのセット
+	/// </summary>
+	/// <param name="input"></param>
+	void SetInput(Input* input) { this->input = input; }
+
+	/// <summary>
+	/// カメラの角度取得
+	/// </summary>
+	/// <returns></returns>
+	XMFLOAT3 GetRotation() {
+		return rotation;
+	}
+
+	void SetRotation(XMFLOAT3 rotation) {
+		this->rotation = rotation;
+		CalcTarget(distance, rotation);
+		viewDirty = true;
+	}
+
+	float GetLength() {
+		return distance;
+	}
+
+	void SetDistance(float distance) {
+		this->distance = distance;
+		CalcTarget(distance, rotation);
+		viewDirty = true;
+	}
+
+protected:
+	void CalcRotation(XMFLOAT3 target, XMFLOAT3 eye);
+
+	void CalcTarget(float length, XMFLOAT3 rotation);
+
 protected: // メンバ変数
 	// ビュー行列
 	XMMATRIX matView = DirectX::XMMatrixIdentity();
@@ -153,12 +195,18 @@ protected: // メンバ変数
 	// 射影行列ダーティフラグ
 	bool projectionDirty = false;
 	// 視点座標
-	XMFLOAT3 eye = {0, 0, -20};
+	XMFLOAT3 eye = {0, 0, -5};
 	// 注視点座標
 	XMFLOAT3 target = {0, 0, 0};
 	// 上方向ベクトル
 	XMFLOAT3 up = {0, 1, 0};
 	// アスペクト比
 	float aspectRatio = 1.0f;
+
+	XMFLOAT3 rotation;
+	float distance;
+
+	Input* input = nullptr;
+	const float PI = 3.141592653589;
 };
 

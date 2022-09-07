@@ -148,40 +148,41 @@
       <Filter>ソース ファイル\Base</Filter>
     </ClCompile>
     <ClCompile Include="BaseTarget.cpp">
+    <ClCompile Include="camera\FreeCamera.cpp
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="ParticleGS.hlsl">
+    <FxCompile Include="shader\ParticleGS.hlsl">
       <Filter>シェーダーファイル</Filter>
     </FxCompile>
-    <FxCompile Include="ParticlePS.hlsl">
+    <FxCompile Include="shader\ParticlePS.hlsl">
       <Filter>シェーダーファイル</Filter>
     </FxCompile>
-    <FxCompile Include="ParticleVS.hlsl">
+    <FxCompile Include="shader\ParticleVS.hlsl">
       <Filter>シェーダーファイル</Filter>
     </FxCompile>
-    <FxCompile Include="SpritePixelShader.hlsl">
+    <FxCompile Include="shader\SpritePixelShader.hlsl">
       <Filter>シェーダーファイル</Filter>
     </FxCompile>
-    <FxCompile Include="SpriteVertexShader.hlsl">
+    <FxCompile Include="shader\SpriteVertexShader.hlsl">
       <Filter>シェーダーファイル</Filter>
     </FxCompile>
-    <FxCompile Include="OBJPixelShader.hlsl">
+    <FxCompile Include="shader\OBJPixelShader.hlsl">
       <Filter>シェーダーファイル</Filter>
     </FxCompile>
-    <FxCompile Include="OBJVertexShader.hlsl">
+    <FxCompile Include="shader\OBJVertexShader.hlsl">
       <Filter>シェーダーファイル</Filter>
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Particle.hlsli">
+    <None Include="shader\Particle.hlsli">
       <Filter>シェーダーファイル</Filter>
     </None>
-    <None Include="SpriteShaderHeader.hlsli">
+    <None Include="shader\SpriteShaderHeader.hlsli">
       <Filter>シェーダーファイル</Filter>
     </None>
-    <None Include="OBJShaderHeader.hlsli">
+    <None Include="shader\OBJShaderHeader.hlsli">
       <Filter>シェーダーファイル</Filter>
     </None>
   </ItemGroup>
@@ -258,7 +259,7 @@
     <ClInclude Include="base\FlameRate.h">
       <Filter>ヘッダー ファイル\FlameRate</Filter>
     </ClInclude>
-    <ClInclude Include="Define.h">
+    <ClInclude Include="base\Define.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="3d\ObjManager.h">
@@ -271,6 +272,11 @@
       <Filter>ヘッダー ファイル\Base</Filter>
     </ClInclude>
     <ClInclude Include="BaseTarget.h">
+
+    <ClInclude Include="camera\FreeCamera.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="base\SafeDelete.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
