@@ -109,10 +109,11 @@ void TestScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 		{
 			target[i] = new BaseTarget();
 			target[i]->Initialize("sphere");
-			target[i]->SetPosition({ (float)(i % 5), (float)(int)(i / 5) , 0 });
+			target[i]->SetPosition({ (float)(i % 5) - 2.0f, (float)(int)(i / 5) - 1 , 0 });
 		}
 	}
 
+	sensi = camera->GetSensi();
 }
 
 void TestScene::Update()
@@ -138,6 +139,19 @@ void TestScene::Update()
 	// カーソルを消して中心固定
 	ShowCursor(false);
 	SetCursorPos(centerX, centerY);
+
+	// カメラ感度切り替え
+	if (input->TriggerKey(DIK_UP))
+	{
+		sensi += 0.005f;
+		camera->SetSensi(sensi);
+	}
+	if (input->TriggerKey(DIK_DOWN))
+	{
+		sensi -= 0.005f;
+		camera->SetSensi(sensi);
+	}
+	text->Printf("%f", sensi);
 
 	// ターゲット判定
 	{

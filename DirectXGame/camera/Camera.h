@@ -176,6 +176,9 @@ public: // メンバ関数
 
 	XMFLOAT3 GetDir();
 
+	void SetSensi(float sensi) { this->sensi = sensi; }
+	float GetSensi() { return sensi; }
+
 protected:
 	void CalcRotation(XMFLOAT3 target, XMFLOAT3 eye);
 
@@ -210,5 +213,7 @@ protected: // メンバ変数
 
 	Input* input = nullptr;
 	const float PI = 3.141592653589;
+
+	float sensi = 0.1f;
 };
 

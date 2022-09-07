@@ -23,8 +23,8 @@ void FreeCamera::Update()
 	{
 		Input::MouseMove mouseMove = input->GetMouseMove();
 
-		rotation.x += (float)mouseMove.lX / 10;
-		rotation.y += (float)mouseMove.lY / 10;
+		rotation.x += (float)mouseMove.lX * sensi;
+		rotation.y += (float)mouseMove.lY * sensi;
 
 		SetRotation(rotation);
 	}

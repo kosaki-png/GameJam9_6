@@ -67,5 +67,6 @@ private:
 
 	// ƒNƒƒXƒwƒA
 	Sprite* cross = nullptr;
+	float sensi = 0;
 };
 
