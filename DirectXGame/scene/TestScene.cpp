@@ -104,7 +104,7 @@ void TestScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 		sensi = camera->GetSensi();
 
 		// ウェーブの初期化
-		wave = new FlickWave();
+		wave = new TestWave();
 		wave->Initialize(input, camera);
 	}
 

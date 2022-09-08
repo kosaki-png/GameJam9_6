@@ -27,7 +27,11 @@ void FlickWave::Initialize(Input* input, Camera* camera)
 		{
 			targets[i] = new BaseTarget();
 			targets[i]->Initialize("sphere");
-			targets[i]->SetPosition({ (float)(i % 5) - 2.0f, (float)(int)(i / 5) - 1 , 0 });
+		}
+
+		for (int i = 0; i < TARGET_AMOUNT; i++)
+		{
+			targets[i]->SetPosition(ResetPos());
 		}
 	}
 }
@@ -54,18 +58,11 @@ void FlickWave::Update()
 			{
 				if (input->TriggerMouseLeft())
 				{
-					// 生きているなら殺す
-					if (!targets[i]->GetIsDead())
-					{
-						targets[i]->SetIsDead(true);
-						ui->AddScore(10);
-						ui->AddCount();
-					}
-					// 死んでいたならミスカウントを増やす
-					else
-					{
-						ui->AddMiss();
-					}
+					ui->AddScore(10);
+					ui->AddCount();
+
+					// 位置リセット
+					targets[i]->SetPosition(ResetPos());
 				}
 
 				// どれか一つにでも当たっている
@@ -110,4 +107,20 @@ void FlickWave::DrawUi(ID3D12GraphicsCommandList* cmdList)
 {
 	// uiの描画
 	BaseWave::DrawUi(cmdList);
+}
+
+XMFLOAT3 FlickWave::ResetPos()
+{
+	XMFLOAT3 result = { (float)(rand() % 5) - 2, (float)(rand() % 4) - 1, 0 };
+
+	for (int i = 0; i < TARGET_AMOUNT; i++)
+	{
+		auto tmp = targets[i]->GetPosition();
+		if (tmp.x == result.x && tmp.y == result.y)
+		{
+			return FlickWave::ResetPos();
+		}
+	}
+
+	return result;
 }
