@@ -4,6 +4,7 @@
 #include "Score.h"
 #include "input/Input.h"
 #include "SafeDelete.h"
+#include "Stopwatch.h"
 
 class Ui 
 {
@@ -82,6 +83,7 @@ private:
 	Score* rate;
 	Score* parcent;
 	float time;
+	std::unique_ptr<diagnostics::Stopwatch> sw1;
 
 	static float countNum;//“–‚Ä‚½”
 	static float missNum; //ŠO‚µ‚½”

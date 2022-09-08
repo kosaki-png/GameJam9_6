@@ -47,15 +47,19 @@ void Ui::Initialize()
 	Sprite::LoadTexture(3, L"Resources/font_sharp.png");
 	timeLimit = new Score();
 	timeLimit->Initialize(3);
-	timeLimit->SetPos(870, -5);
+	timeLimit->SetPos(900, -5);
 	timeLimit->SetSize(0.9f);
-	time = 99999;
+	time = 59;
+
+	// 時間測定を開始した状態でインスタンスを作成
+	sw1 = diagnostics::Stopwatch::startNew();
 }
 
 void Ui::Update()
 {
-	timeLimit->Printf("%.0f", time);
-	time--;
+	float s = sw1->getElapsedSeconds();
+	float d = 60 -s;
+	timeLimit->Printf("0:%.0f",d);
 
 	Rate();
 	score->Printf("%d", scoreNum);
