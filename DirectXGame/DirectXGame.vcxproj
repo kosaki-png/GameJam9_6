@@ -94,6 +94,7 @@
     <ClCompile Include="audio\Audio.cpp" />
     <ClCompile Include="scene\TestScene.cpp" />
     <ClCompile Include="player\Player.cpp" />
+    <ClCompile Include="ui\Stopwatch.cpp" />
     <ClCompile Include="target\BaseTarget.cpp" />
     <ClCompile Include="camera\FreeCamera.cpp" />
     <ClCompile Include="scene\BaseScene.cpp" />
@@ -225,6 +226,7 @@
     <ClInclude Include="base\Vector2.h" />
     <ClInclude Include="base\Vector3.h" />
     <ClInclude Include="ui\Score.h" />
+    <ClInclude Include="ui\Stopwatch.h" />
     <ClInclude Include="ui\Ui.h" />
     <ClInclude Include="wave\BaseWave.h" />
     <ClInclude Include="wave\TestWave.h" />

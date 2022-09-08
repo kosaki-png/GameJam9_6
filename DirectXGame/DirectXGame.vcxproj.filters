@@ -43,6 +43,7 @@
     <ClCompile Include="ui\Score.cpp" />
     <ClCompile Include="ui\Ui.cpp" />
     <ClCompile Include="xinput\XinputControll.cpp" />
+    <ClCompile Include="ui\Stopwatch.cpp" />
     <ClCompile Include="wave\BaseWave.cpp" />
     <ClCompile Include="wave\TestWave.cpp" />
   </ItemGroup>
@@ -82,6 +83,7 @@
     <ClInclude Include="ui\Score.h" />
     <ClInclude Include="ui\Ui.h" />
     <ClInclude Include="xinput\XinputControll.h" />
+    <ClInclude Include="ui\Stopwatch.h" />
     <ClInclude Include="wave\BaseWave.h" />
     <ClInclude Include="wave\TestWave.h" />
   </ItemGroup>
