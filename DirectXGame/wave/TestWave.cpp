@@ -41,7 +41,7 @@ void TestWave::Draw()
 void TestWave::DrawUi(ID3D12GraphicsCommandList* cmdList)
 {
 	// ui‚Ì•`‰æ
-	BaseWave::Draw(cmdList);
+	BaseWave::DrawUi(cmdList);
 }*/
 
 #include "TestWave.h"
