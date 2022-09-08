@@ -7,11 +7,9 @@
 #include "XinputControll.h"
 #include "Sprite.h"
 #include "Object3d.h"
-
 #include "CollisionPrimitive.h"
 
 #include "BaseScene.h"
-
 #include "BaseWave.h"
 
 class TestScene :

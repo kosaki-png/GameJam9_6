@@ -9,6 +9,7 @@
 #include "FreeCamera.h"
 #include "Collision.h"
 #include "TestWave.h"
+#include "FlickWave.h"
 
 using namespace DirectX;
 
@@ -103,7 +104,7 @@ void TestScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 		sensi = camera->GetSensi();
 
 		// ウェーブの初期化
-		wave = new TestWave();
+		wave = new FlickWave();
 		wave->Initialize(input, camera);
 	}
 
@@ -142,16 +143,26 @@ void TestScene::Update()
 		{
 			if (input->TriggerKey(DIK_UP))
 			{
-				sensi += 0.005f;
+				sensi += 0.001f;
 				camera->SetSensi(sensi);
 			}
 			if (input->TriggerKey(DIK_DOWN))
 			{
-				sensi -= 0.005f;
+				sensi -= 0.001f;
+				camera->SetSensi(sensi);
+			}
+			if (input->TriggerKey(DIK_RIGHT))
+			{
+				sensi += 0.01f;
+				camera->SetSensi(sensi);
+			}
+			if (input->TriggerKey(DIK_LEFT))
+			{
+				sensi -= 0.01f;
 				camera->SetSensi(sensi);
 			}
 			// 感度を表示
-			text->Printf("%f", sensi);
+			text->Printf("%d", (int)(sensi * 1000));
 		}
 
 		// 3Dオブジェクト更新

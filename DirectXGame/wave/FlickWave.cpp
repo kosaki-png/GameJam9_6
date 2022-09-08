@@ -1,71 +1,22 @@
-/*#include "TestWave.h"
+#include "FlickWave.h"
 
 using namespace DirectX;
 
-TestWave::TestWave()
+FlickWave::FlickWave()
 {
 }
 
-TestWave::~TestWave()
-{
-	delete ui;
-}
-
-void TestWave::Initialize(Input* input, Camera* camera)
-{
-	// uiの初期化
-	BaseWave::Initialize(input, camera);
-
-	// ここに初期化処理
-	{
-
-	}
-}
-
-void TestWave::Update()
-{
-	// ここに更新処理
-	{
-
-	}
-
-	// uiの更新
-	BaseWave::Update();
-}
-
-void TestWave::Draw()
-{
-	// ここに描画処理
-	{
-
-	}
-}
-
-void TestWave::DrawUi(ID3D12GraphicsCommandList* cmdList)
-{
-	// uiの描画
-	BaseWave::DrawUi(cmdList);
-}
-*/
-
-#include "TestWave.h"
-
-using namespace DirectX;
-
-TestWave::TestWave()
-{
-}
-
-TestWave::~TestWave()
+FlickWave::~FlickWave()
 {
 	for (int i = 0; i < TARGET_AMOUNT; i++)
 	{
-		delete target[i];
+		delete targets[i];
 	}
+
 	delete ui;
 }
 
-void TestWave::Initialize(Input* input, Camera* camera)
+void FlickWave::Initialize(Input* input, Camera* camera)
 {
 	// uiの初期化
 	BaseWave::Initialize(input, camera);
@@ -74,14 +25,14 @@ void TestWave::Initialize(Input* input, Camera* camera)
 	{
 		for (int i = 0; i < TARGET_AMOUNT; i++)
 		{
-			target[i] = new BaseTarget();
-			target[i]->Initialize("sphere");
-			target[i]->SetPosition({ (float)(i % 5) - 2.0f, (float)(int)(i / 5) - 1 , 0 });
+			targets[i] = new BaseTarget();
+			targets[i]->Initialize("sphere");
+			targets[i]->SetPosition({ (float)(i % 5) - 2.0f, (float)(int)(i / 5) - 1 , 0 });
 		}
 	}
 }
 
-void TestWave::Update()
+void FlickWave::Update()
 {
 	// ここに更新処理
 	{
@@ -99,14 +50,14 @@ void TestWave::Update()
 		for (int i = 0; i < TARGET_AMOUNT; i++)
 		{
 			// 視線レイと的との当たり判定
-			if (Collision::CheckRay2Sphere(ray, target[i]->GetSphere()))
+			if (Collision::CheckRay2Sphere(ray, targets[i]->GetSphere()))
 			{
 				if (input->TriggerMouseLeft())
 				{
 					// 生きているなら殺す
-					if (!target[i]->GetIsDead())
+					if (!targets[i]->GetIsDead())
 					{
-						target[i]->SetIsDead(true);
+						targets[i]->SetIsDead(true);
 						ui->AddScore(10);
 						ui->AddCount();
 					}
@@ -119,17 +70,6 @@ void TestWave::Update()
 
 				// どれか一つにでも当たっている
 				allColl = true;
-			}
-
-			// 復活
-			if (target[i]->GetIsDead())
-			{
-				respownCnt[i]++;
-				if (respownCnt[i] > 200)
-				{
-					target[i]->SetIsDead(false);
-					respownCnt[i] = 0;
-				}
 			}
 		}
 
@@ -146,7 +86,7 @@ void TestWave::Update()
 		// 的の更新
 		for (int i = 0; i < TARGET_AMOUNT; i++)
 		{
-			target[i]->Update();
+			targets[i]->Update();
 		}
 	}
 
@@ -154,19 +94,19 @@ void TestWave::Update()
 	BaseWave::Update();
 }
 
-void TestWave::Draw()
+void FlickWave::Draw()
 {
 	// ここに描画処理
 	{
 		// 的の描画
 		for (int i = 0; i < TARGET_AMOUNT; i++)
 		{
-			target[i]->Draw();
+			targets[i]->Draw();
 		}
 	}
 }
 
-void TestWave::DrawUi(ID3D12GraphicsCommandList* cmdList)
+void FlickWave::DrawUi(ID3D12GraphicsCommandList* cmdList)
 {
 	// uiの描画
 	BaseWave::DrawUi(cmdList);
