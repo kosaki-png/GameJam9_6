@@ -1,6 +1,9 @@
 #include "Ui.h"
 
-int Ui::num = 0;
+int   Ui::scoreNum = 0;//スコアの値
+float Ui::rateNum  = 0;//割合の値
+float Ui::countNum = 0;//当てた数の値
+float Ui::missNum  = 0;//外した数
 
 Ui::Ui()
 {
@@ -20,13 +23,13 @@ void Ui::Initialize()
 	Sprite::LoadTexture(2, L"Resources/font_cursive.png");
 	score = new Score();
 	score->Initialize(2);
-	score->SetPos(735,7);
+	score->SetPos(700,9);
 	score->SetSize(0.7f);
 
 	//割合初期化
 	rate = new Score();
 	rate->Initialize(2);
-	rate->SetPos(1180, 7);
+	rate->SetPos(1150,7);
 	rate->SetSize(0.7f);
 
 	//制限時間初期化
@@ -42,17 +45,15 @@ void Ui::Update(Input* input)
 {
 	timeLimit->Printf("%.2f", time);
 	time--;
-    
-	int s = 0;
-	int d = 0;
-	if (input->TriggerKey(DIK_SPACE))
+    		
+	if (countNum != 0 || missNum != 0)
 	{
-		num+= 10;
+		Rate();
 	}
 
-	score->Printf("%d", num);
+	score->Printf("%d", scoreNum);
 
-	rate->Printf("%d", d);
+	rate->Printf("%.0f", rateNum);
 }
 
 void Ui::Draw(ID3D12GraphicsCommandList* cmdList)
