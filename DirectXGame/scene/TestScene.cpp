@@ -192,6 +192,8 @@ void TestScene::Update()
 				if (input->TriggerMouseLeft())
 				{
 					target[i]->SetIsDead(true);
+					ui->AddScore(10);
+					ui->AddCount();
 				}
 			}
 
