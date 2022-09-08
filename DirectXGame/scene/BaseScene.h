@@ -33,4 +33,7 @@ protected:
 	BaseScene* nextScene = nullptr;
 
 	Camera* camera = nullptr;
+
+	float centerX = 1920 / 2;
+	float centerY = 1080 / 2;
 };

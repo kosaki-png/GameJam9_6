@@ -18,9 +18,7 @@ TestScene::TestScene()
 TestScene::~TestScene()
 {
 	delete cross;
-	delete model;
 	delete modelGround;
-	delete object;
 	delete objGround;
 	for (int i = 0; i < 20; i++)
 	{
@@ -59,10 +57,6 @@ void TestScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 		lightGroup = LightGroup::Create();
 		// 3Dオブエクトにライトをセット
 		Object3d::SetLightGroup(lightGroup);
-
-		// パーティクルマネージャ生成
-		particleMan = ParticleManager::GetInstance();
-		particleMan->SetCamera(camera);
 	}
 
 	// スプライト初期設定
@@ -90,19 +84,16 @@ void TestScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 	{
 		// モデル読み込み
 		{
-			model = Model::CreateFromOBJ("sphere");
 			modelGround = Model::CreateFromOBJ("ground");
 		}
 
 		// 3Dオブジェクト生成
 		{
-			object = Object3d::Create(model);
 			objGround = Object3d::Create(modelGround);
 		}
 
 		// 3Dオブジェクト初期設定
 		{
-			object->Initialize();
 			objGround->Initialize();
 			objGround->SetPosition({0,-5, 0});
 		}
@@ -237,7 +228,6 @@ void TestScene::Update()
 	
 	// 3Dオブジェクト更新
 	{
-		object->Update();
 		objGround->Update();
 	}
 
@@ -245,7 +235,6 @@ void TestScene::Update()
 	{
 		lightGroup->Update();
 		camera->Update();
-		particleMan->Update();
 		for (int i = 0; i < 20; i++)
 		{
 			target[i]->Update();
@@ -285,9 +274,6 @@ void TestScene::Draw()
 			}
 		}
 		Object3d::PostDraw();
-
-		// パーティクルの描画
-		particleMan->Draw(cmdList);
 	}
 
 	// 前景スプライト描画

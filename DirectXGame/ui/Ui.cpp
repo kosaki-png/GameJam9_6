@@ -11,6 +11,10 @@ Ui::Ui()
 
 Ui::~Ui()
 {
+	delete ui;
+	delete score;
+	delete timeLimit;
+	delete rate;
 }
 
 void Ui::Initialize()

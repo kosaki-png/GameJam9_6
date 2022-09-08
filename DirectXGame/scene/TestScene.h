@@ -47,19 +47,10 @@ private:
 	LightGroup* lightGroup = nullptr;
 	float ambientColor0[3] = { 1,1,1 };
 
-	ParticleManager* particleMan = nullptr;
-
-	float centerX = 1920 / 2;
-	float centerY = 1080 / 2;
-
-	XMFLOAT2 mousePos;
-
-	Object3d* object = nullptr;
-	Model* model = nullptr;
-
 	// 視線のレイ
 	Ray ray;
 
+	// ターゲット
 	std::array<BaseTarget*, 20> target;
 
 	// 地面
