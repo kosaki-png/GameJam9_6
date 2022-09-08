@@ -8,6 +8,7 @@
 
 #include "FreeCamera.h"
 #include "Collision.h"
+#include "TestWave.h"
 
 using namespace DirectX;
 
@@ -20,12 +21,8 @@ TestScene::~TestScene()
 	delete cross;
 	delete modelGround;
 	delete objGround;
-	for (int i = 0; i < 20; i++)
-	{
-		delete target[i];
-	}
 	delete camera;
-	delete ui;
+	delete wave;
 }
 
 void TestScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
@@ -99,29 +96,14 @@ void TestScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 		}
 	}
 
-	// 視線レイの初期設定
-	{
-		XMFLOAT3 tmp = camera->GetEye();
-		ray.start = XMVectorSet(tmp.x, tmp.y, tmp.z, 1.0f);
-		tmp = camera->GetDir();
-		ray.dir = XMVectorSet(tmp.x, tmp.y, tmp.z, 1.0f);
-
-		for (int i = 0; i < 20; i++)
-		{
-			target[i] = new BaseTarget();
-			target[i]->Initialize("sphere");
-			target[i]->SetPosition({ (float)(i % 5) - 2.0f, (float)(int)(i / 5) - 1 , 0 });
-		}
-	}
-
 	// 各クラスの初期化
 	{
 		// 感度設定
 		sensi = camera->GetSensi();
 
-		// UI
-		ui = new Ui();
-		ui->Initialize();
+		// ウェーブの初期化
+		wave = new TestWave();
+		wave->Initialize(input, camera);
 	}
 }
 
@@ -164,67 +146,6 @@ void TestScene::Update()
 		// 感度を表示
 		text->Printf("%f", sensi);
 	}
-
-	// ターゲット判定
-	{
-		// 視線レイの更新
-		{
-			XMFLOAT3 tmp = camera->GetEye();
-			ray.start = XMVectorSet(tmp.x, tmp.y, tmp.z, 1.0f);
-			tmp = camera->GetDir();
-			ray.dir = XMVectorSet(tmp.x, tmp.y, tmp.z, 1.0f);
-		}
-
-		// 全ての的に当たっているか
-		bool allColl = false;
-		for (int i = 0; i < 20; i++)
-		{
-			// 視線レイと的との当たり判定
-			if (Collision::CheckRay2Sphere(ray, target[i]->GetSphere()))
-			{
-				if (input->TriggerMouseLeft())
-				{
-					// 生きているなら殺す
-					if (!target[i]->GetIsDead())
-					{
-						target[i]->SetIsDead(true);
-						ui->AddScore(10);
-						ui->AddCount();
-					}
-					// 死んでいたならミスカウントを増やす
-					else
-					{
-						ui->AddMiss();
-					}
-				}
-
-				// 当たっている
-				allColl = true;
-			}
-
-			// 復活
-			static int respownCnt[20] = {};
-			if (target[i]->GetIsDead())
-			{
-				respownCnt[i]++;
-				if (respownCnt[i] > 200)
-				{
-					target[i]->SetIsDead(false);
-					respownCnt[i] = 0;
-				}
-			}
-		}
-
-		// 全てに当たっていなかったら
-		if (!allColl)
-		{
-			if (input->TriggerMouseLeft())
-			{
-				// ミスを増やす
-				ui->AddMiss();
-			}
-		}
-	}
 	
 	// 3Dオブジェクト更新
 	{
@@ -235,11 +156,9 @@ void TestScene::Update()
 	{
 		lightGroup->Update();
 		camera->Update();
-		for (int i = 0; i < 20; i++)
-		{
-			target[i]->Update();
-		}
-		ui->Update();
+		
+		// ウェーブの更新
+		wave->Update();
 	}
 	
 }
@@ -268,10 +187,8 @@ void TestScene::Draw()
 		Object3d::PreDraw(cmdList);
 		{
 			objGround->Draw();
-			for (int i = 0; i < 20; i++)
-			{
-				target[i]->Draw();
-			}
+			
+			wave->Draw();
 		}
 		Object3d::PostDraw();
 	}
@@ -282,7 +199,7 @@ void TestScene::Draw()
 		Sprite::PreDraw(cmdList);
 		{
 			cross->Draw();
-			ui->Draw(cmdList);
+			wave->DrawUi(cmdList);
 
 			// デバッグテキストの描画
 			text->DrawAll(cmdList);
