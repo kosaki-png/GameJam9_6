@@ -12,8 +12,7 @@
 
 #include "BaseScene.h"
 
-#include "BaseTarget.h"
-#include "Ui.h"
+#include "BaseWave.h"
 
 class TestScene :
     public BaseScene
@@ -47,12 +46,6 @@ private:
 	LightGroup* lightGroup = nullptr;
 	float ambientColor0[3] = { 1,1,1 };
 
-	// 視線のレイ
-	Ray ray;
-
-	// ターゲット
-	std::array<BaseTarget*, 20> target;
-
 	// 地面
 	Object3d* objGround = nullptr;
 	Model* modelGround = nullptr;
@@ -61,7 +54,7 @@ private:
 	Sprite* cross = nullptr;
 	float sensi = 0;
 
-	// UI
-	Ui* ui = nullptr;
+	// ウェーブ
+	BaseWave* wave = nullptr;
 };
 
