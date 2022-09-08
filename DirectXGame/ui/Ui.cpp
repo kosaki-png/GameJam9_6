@@ -2,7 +2,7 @@
 
 int   Ui::scoreNum = 0;//スコアの値
 float Ui::rateNum  = 0;//割合の値
-float Ui::countNum = 0;//当てた数の値
+float Ui::countNum = 1;//当てた数の値
 float Ui::missNum  = 0;//外した数
 
 Ui::Ui()
@@ -23,7 +23,7 @@ void Ui::Initialize()
 	Sprite::LoadTexture(2, L"Resources/font_cursive.png");
 	score = new Score();
 	score->Initialize(2);
-	score->SetPos(700,9);
+	score->SetPos(700,7);
 	score->SetSize(0.7f);
 
 	//割合初期化
@@ -32,27 +32,29 @@ void Ui::Initialize()
 	rate->SetPos(1150,7);
 	rate->SetSize(0.7f);
 
+	//パーセント初期化
+	parcent = new Score();
+	parcent->Initialize(2);
+	parcent->SetPos(1200, 7);
+	parcent->SetSize(0.7f);
+
 	//制限時間初期化
 	Sprite::LoadTexture(3, L"Resources/font_sharp.png");
 	timeLimit = new Score();
 	timeLimit->Initialize(3);
 	timeLimit->SetPos(870, -5);
 	timeLimit->SetSize(0.9f);
-	time = 9999;
+	time = 99999;
 }
 
 void Ui::Update()
 {
-	timeLimit->Printf("%.2f", time);
+	timeLimit->Printf("%.0f", time);
 	time--;
-    		
-	if (countNum != 0 || missNum != 0)
-	{
-		Rate();
-	}
 
+	Rate();
 	score->Printf("%d", scoreNum);
-
+	parcent->Print("%", 1230, 25, 0.5f);
 	rate->Printf("%.0f", rateNum);
 }
 
@@ -62,4 +64,5 @@ void Ui::Draw(ID3D12GraphicsCommandList* cmdList)
 	score->DrawAll(cmdList);
 	timeLimit->DrawAll(cmdList);
 	rate->DrawAll(cmdList);
+	parcent->DrawAll(cmdList);
 }

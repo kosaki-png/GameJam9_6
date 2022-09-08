@@ -3,6 +3,7 @@
 #include "Text.h"
 #include "Score.h"
 #include "input/Input.h"
+#include "SafeDelete.h"
 
 class Ui 
 {
@@ -79,6 +80,7 @@ private:
 	Score* score;
 	Score* timeLimit;
 	Score* rate;
+	Score* parcent;
 	float time;
 
 	static float countNum;//“–‚Ä‚½”
