@@ -184,6 +184,8 @@ void TestScene::Update()
 			ray.dir = XMVectorSet(tmp.x, tmp.y, tmp.z, 1.0f);
 		}
 
+		// 全ての的に当たっているか
+		bool allColl = false;
 		for (int i = 0; i < 20; i++)
 		{
 			// 視線レイと的との当たり判定
@@ -191,10 +193,22 @@ void TestScene::Update()
 			{
 				if (input->TriggerMouseLeft())
 				{
-					target[i]->SetIsDead(true);
-					ui->AddScore(10);
-					ui->AddCount();
+					// 生きているなら殺す
+					if (!target[i]->GetIsDead())
+					{
+						target[i]->SetIsDead(true);
+						ui->AddScore(10);
+						ui->AddCount();
+					}
+					// 死んでいたならミスカウントを増やす
+					else
+					{
+						ui->AddMiss();
+					}
 				}
+
+				// 当たっている
+				allColl = true;
 			}
 
 			// 復活
@@ -207,6 +221,16 @@ void TestScene::Update()
 					target[i]->SetIsDead(false);
 					respownCnt[i] = 0;
 				}
+			}
+		}
+
+		// 全てに当たっていなかったら
+		if (!allColl)
+		{
+			if (input->TriggerMouseLeft())
+			{
+				// ミスを増やす
+				ui->AddMiss();
 			}
 		}
 	}
@@ -226,7 +250,7 @@ void TestScene::Update()
 		{
 			target[i]->Update();
 		}
-		ui->Update(input);
+		ui->Update();
 	}
 	
 }

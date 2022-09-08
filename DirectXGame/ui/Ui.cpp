@@ -41,7 +41,7 @@ void Ui::Initialize()
 	time = 9999;
 }
 
-void Ui::Update(Input* input)
+void Ui::Update()
 {
 	timeLimit->Printf("%.2f", time);
 	time--;

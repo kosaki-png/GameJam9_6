@@ -136,7 +136,7 @@ void GameScene::Update()
 	// 各クラスの更新
 	{
 		objMng->Update();
-		ui->Update(input);
+		ui->Update();
 	}
 }
 

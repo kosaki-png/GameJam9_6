@@ -36,7 +36,7 @@ public:
 	/// <summary>
 	/// XV
 	/// </summary>
-	void Update(Input* input);
+	void Update();
 
 	/// <summary>
 	/// •`‰æ
