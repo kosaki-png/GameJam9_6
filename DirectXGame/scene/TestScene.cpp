@@ -27,6 +27,7 @@ TestScene::~TestScene()
 		delete target[i];
 	}
 	delete camera;
+	delete ui;
 }
 
 void TestScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
@@ -122,7 +123,15 @@ void TestScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 		}
 	}
 
-	sensi = camera->GetSensi();
+	// 各クラスの初期化
+	{
+		// 感度設定
+		sensi = camera->GetSensi();
+
+		// UI
+		ui = new Ui();
+		ui->Initialize();
+	}
 }
 
 void TestScene::Update()
@@ -150,17 +159,20 @@ void TestScene::Update()
 	SetCursorPos(centerX, centerY);
 
 	// カメラ感度切り替え
-	if (input->TriggerKey(DIK_UP))
 	{
-		sensi += 0.005f;
-		camera->SetSensi(sensi);
+		if (input->TriggerKey(DIK_UP))
+		{
+			sensi += 0.005f;
+			camera->SetSensi(sensi);
+		}
+		if (input->TriggerKey(DIK_DOWN))
+		{
+			sensi -= 0.005f;
+			camera->SetSensi(sensi);
+		}
+		// 感度を表示
+		text->Printf("%f", sensi);
 	}
-	if (input->TriggerKey(DIK_DOWN))
-	{
-		sensi -= 0.005f;
-		camera->SetSensi(sensi);
-	}
-	text->Printf("%f", sensi);
 
 	// ターゲット判定
 	{
@@ -203,13 +215,18 @@ void TestScene::Update()
 		objGround->Update();
 	}
 
-	lightGroup->Update();
-	camera->Update();
-	particleMan->Update();
-	for (int i = 0; i < 20; i++)
+	// 各クラス更新
 	{
-		target[i]->Update();
+		lightGroup->Update();
+		camera->Update();
+		particleMan->Update();
+		for (int i = 0; i < 20; i++)
+		{
+			target[i]->Update();
+		}
+		ui->Update(input);
 	}
+	
 }
 
 void TestScene::Draw()
@@ -253,6 +270,7 @@ void TestScene::Draw()
 		Sprite::PreDraw(cmdList);
 		{
 			cross->Draw();
+			ui->Draw(cmdList);
 
 			// デバッグテキストの描画
 			text->DrawAll(cmdList);

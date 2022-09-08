@@ -13,6 +13,7 @@
 #include "BaseScene.h"
 
 #include "BaseTarget.h"
+#include "Ui.h"
 
 class TestScene :
     public BaseScene
@@ -68,5 +69,8 @@ private:
 	// ÉNÉçÉXÉwÉA
 	Sprite* cross = nullptr;
 	float sensi = 0;
+
+	// UI
+	Ui* ui = nullptr;
 };
 
