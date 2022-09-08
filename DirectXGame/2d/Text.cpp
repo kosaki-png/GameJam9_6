@@ -88,3 +88,10 @@ void Text::DrawAll(ID3D12GraphicsCommandList* cmdList)
 
 	spriteIndex = 0;
 }
+
+void Text::Destroy()
+{
+	for (int i = 0; i < _countof(spriteDatas); i++) {
+		delete spriteDatas[i];
+	}
+}

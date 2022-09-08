@@ -58,6 +58,7 @@ TestWave::~TestWave()
 	{
 		delete target[i];
 	}
+	delete ui;
 }
 
 void TestWave::Initialize(Input* input, Camera* camera)

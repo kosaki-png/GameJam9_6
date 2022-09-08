@@ -124,6 +124,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	}
 
 	// 各種解放
+	Text::GetInstance()->Destroy();
 	safe_delete(scene);
 	safe_delete(audio);
 	safe_delete(dxCommon);

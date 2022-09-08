@@ -23,6 +23,7 @@ TestScene::~TestScene()
 	delete objGround;
 	delete camera;
 	delete wave;
+	delete lightGroup;
 }
 
 void TestScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
@@ -105,6 +106,10 @@ void TestScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 		wave = new TestWave();
 		wave->Initialize(input, camera);
 	}
+
+	// カーソルを消す
+	ShowCursor(false);
+
 }
 
 void TestScene::Update()
@@ -116,9 +121,10 @@ void TestScene::Update()
 	}
 
 	// ESCAPEでゲーム終了
-	if (input->PushKey(DIK_ESCAPE))
+	if (input->TriggerKey(DIK_ESCAPE))
 	{
-		PostQuitMessage(0);
+		option = !option;
+		ShowCursor(option);
 	}
 
 	// フルスクリーン用（使用禁止）
@@ -127,40 +133,41 @@ void TestScene::Update()
 		dxCommon->ChengeFullScreen();
 	}
 	
-	// カーソルを消して中心固定
-	ShowCursor(false);
-	SetCursorPos(centerX, centerY);
+	if (!option)
+	{
+		// カーソルを中心固定
+		SetCursorPos(centerX, centerY);
 
-	// カメラ感度切り替え
-	{
-		if (input->TriggerKey(DIK_UP))
+		// カメラ感度切り替え
 		{
-			sensi += 0.005f;
-			camera->SetSensi(sensi);
+			if (input->TriggerKey(DIK_UP))
+			{
+				sensi += 0.005f;
+				camera->SetSensi(sensi);
+			}
+			if (input->TriggerKey(DIK_DOWN))
+			{
+				sensi -= 0.005f;
+				camera->SetSensi(sensi);
+			}
+			// 感度を表示
+			text->Printf("%f", sensi);
 		}
-		if (input->TriggerKey(DIK_DOWN))
-		{
-			sensi -= 0.005f;
-			camera->SetSensi(sensi);
-		}
-		// 感度を表示
-		text->Printf("%f", sensi);
-	}
-	
-	// 3Dオブジェクト更新
-	{
-		objGround->Update();
-	}
 
-	// 各クラス更新
-	{
-		lightGroup->Update();
-		camera->Update();
-		
-		// ウェーブの更新
-		wave->Update();
+		// 3Dオブジェクト更新
+		{
+			objGround->Update();
+		}
+
+		// 各クラス更新
+		{
+			lightGroup->Update();
+			camera->Update();
+
+			// ウェーブの更新
+			wave->Update();
+		}
 	}
-	
 }
 
 void TestScene::Draw()
