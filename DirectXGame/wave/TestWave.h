@@ -1,12 +1,7 @@
-/*#pragma once
-#include "BaseWave.h"
-
-class TestWave :
-    public BaseWave
-{
+/*
 public:
-    TestWave();
-    ~TestWave();
+    クラス名();
+    ~クラス名();
 
     void Initialize(Input* input, Camera* camera) override;
     void Update() override;
@@ -14,9 +9,7 @@ public:
     void DrawUi(ID3D12GraphicsCommandList* cmdList) override;
 
 private:
-
-
-};*/
+*/
 
 #pragma once
 #include "BaseWave.h"

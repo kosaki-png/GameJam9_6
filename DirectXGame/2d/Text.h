@@ -39,6 +39,8 @@ public:// メンバ関数
 
 	void DrawAll(ID3D12GraphicsCommandList * cmdList);
 
+	void Destroy();
+
 private:
 	Text();
 	Text(const Text&) = delete;

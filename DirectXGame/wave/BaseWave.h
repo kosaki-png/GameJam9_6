@@ -25,7 +25,7 @@ public:
 
 public:
 	BaseWave();
-	~BaseWave();
+	virtual ~BaseWave();
 
 	virtual void Initialize(Input* input, Camera* camera);
 	virtual void Update();

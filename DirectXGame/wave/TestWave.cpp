@@ -1,11 +1,14 @@
 /*#include "TestWave.h"
 
+using namespace DirectX;
+
 TestWave::TestWave()
 {
 }
 
 TestWave::~TestWave()
 {
+	delete ui;
 }
 
 void TestWave::Initialize(Input* input, Camera* camera)
@@ -42,7 +45,8 @@ void TestWave::DrawUi(ID3D12GraphicsCommandList* cmdList)
 {
 	// uiの描画
 	BaseWave::DrawUi(cmdList);
-}*/
+}
+*/
 
 #include "TestWave.h"
 
@@ -58,6 +62,7 @@ TestWave::~TestWave()
 	{
 		delete target[i];
 	}
+	delete ui;
 }
 
 void TestWave::Initialize(Input* input, Camera* camera)
@@ -80,63 +85,61 @@ void TestWave::Update()
 {
 	// ここに更新処理
 	{
-		// ターゲット判定
+		// 視線レイの更新
 		{
-			// 視線レイの更新
-			{
-				XMFLOAT3 tmp = camera->GetEye();
-				ray.start = XMVectorSet(tmp.x, tmp.y, tmp.z, 1.0f);
-				tmp = camera->GetDir();
-				ray.dir = XMVectorSet(tmp.x, tmp.y, tmp.z, 1.0f);
-			}
+			XMFLOAT3 tmp = camera->GetEye();
+			ray.start = XMVectorSet(tmp.x, tmp.y, tmp.z, 1.0f);
+			tmp = camera->GetDir();
+			ray.dir = XMVectorSet(tmp.x, tmp.y, tmp.z, 1.0f);
+		}
 
-			// 全ての的に当たっているか
-			bool allColl = false;
-			for (int i = 0; i < TARGET_AMOUNT; i++)
-			{
-				// 視線レイと的との当たり判定
-				if (Collision::CheckRay2Sphere(ray, target[i]->GetSphere()))
-				{
-					if (input->TriggerMouseLeft())
-					{
-						// 生きているなら殺す
-						if (!target[i]->GetIsDead())
-						{
-							target[i]->SetIsDead(true);
-							ui->AddScore(10);
-							ui->AddCount();
-						}
-						// 死んでいたならミスカウントを増やす
-						else
-						{
-							ui->AddMiss();
-						}
-					}
-
-					// 当たっている
-					allColl = true;
-				}
-
-				// 復活
-				if (target[i]->GetIsDead())
-				{
-					respownCnt[i]++;
-					if (respownCnt[i] > 200)
-					{
-						target[i]->SetIsDead(false);
-						respownCnt[i] = 0;
-					}
-				}
-			}
-
-			// 全てに当たっていなかったら
-			if (!allColl)
+		// 全ての的に当たっているか
+		bool allColl = false;
+		// 的ごとに当たり判定
+		for (int i = 0; i < TARGET_AMOUNT; i++)
+		{
+			// 視線レイと的との当たり判定
+			if (Collision::CheckRay2Sphere(ray, target[i]->GetSphere()))
 			{
 				if (input->TriggerMouseLeft())
 				{
-					// ミスを増やす
-					ui->AddMiss();
+					// 生きているなら殺す
+					if (!target[i]->GetIsDead())
+					{
+						target[i]->SetIsDead(true);
+						ui->AddScore(10);
+						ui->AddCount();
+					}
+					// 死んでいたならミスカウントを増やす
+					else
+					{
+						ui->AddMiss();
+					}
 				}
+
+				// どれか一つにでも当たっている
+				allColl = true;
+			}
+
+			// 復活
+			if (target[i]->GetIsDead())
+			{
+				respownCnt[i]++;
+				if (respownCnt[i] > 200)
+				{
+					target[i]->SetIsDead(false);
+					respownCnt[i] = 0;
+				}
+			}
+		}
+
+		// 全てに当たっていなかったら
+		if (!allColl)
+		{
+			if (input->TriggerMouseLeft())
+			{
+				// ミスを増やす
+				ui->AddMiss();
 			}
 		}
 

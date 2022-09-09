@@ -7,11 +7,9 @@
 #include "XinputControll.h"
 #include "Sprite.h"
 #include "Object3d.h"
-
 #include "CollisionPrimitive.h"
 
 #include "BaseScene.h"
-
 #include "BaseWave.h"
 
 class TestScene :
@@ -42,7 +40,7 @@ public:
 
 private:
 	Text* text;
-
+	bool option = false;
 	LightGroup* lightGroup = nullptr;
 	float ambientColor0[3] = { 1,1,1 };
 

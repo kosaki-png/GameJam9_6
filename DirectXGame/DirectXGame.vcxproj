@@ -119,6 +119,7 @@
     <ClCompile Include="ui\Ui.cpp" />
     <ClCompile Include="wave\BaseWave.cpp" />
     <ClCompile Include="wave\EasyWave.cpp" />
+    <ClCompile Include="wave\FlickWave.cpp" />
     <ClCompile Include="wave\TestWave.cpp" />
     <ClCompile Include="xinput\XinputControll.cpp" />
   </ItemGroup>
@@ -231,6 +232,7 @@
     <ClInclude Include="ui\Ui.h" />
     <ClInclude Include="wave\BaseWave.h" />
     <ClInclude Include="wave\EasyWave.h" />
+    <ClInclude Include="wave\FlickWave.h" />
     <ClInclude Include="wave\TestWave.h" />
     <ClInclude Include="xinput\XinputControll.h" />
   </ItemGroup>

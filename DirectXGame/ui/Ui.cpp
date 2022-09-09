@@ -12,7 +12,7 @@ Ui::Ui()
 Ui::~Ui()
 {
 	safe_delete(ui);
-	safe_delete(score);
+	delete score;
 	safe_delete(timeLimit);
 	safe_delete(rate);
 	safe_delete(parcent);
