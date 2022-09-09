@@ -22,9 +22,7 @@ GameScene::~GameScene()
 	delete cross;
 	delete modelGround;
 	delete objGround;
-	delete camera;
 	delete wave;
-	delete lightGroup;
 }
 
 void GameScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
@@ -43,14 +41,8 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 		// 3Dオブジェクトにカメラをセット
 		Object3d::SetCamera(camera);
 
-		// デバッグテキスト用テクスチャ読み込み
-		if (!Sprite::LoadTexture(texNumber, L"Resources/font_sharp.png")) {
-			assert(0);
-			return;
-		}
 		// デバッグテキスト初期化
 		text = Text::GetInstance();
-		text->Initialize(texNumber);
 
 		// ライト生成
 		lightGroup = LightGroup::Create();
@@ -118,6 +110,11 @@ void GameScene::Update()
 	// Enterで指定のシーンへ
 	if (input->TriggerKey(DIK_RETURN))
 	{
+		if (!option)
+		{
+			ShowCursor(true);
+		}
+		
 		nextScene = new EndScene();
 	}
 
@@ -125,6 +122,17 @@ void GameScene::Update()
 	if (input->TriggerKey(DIK_R))
 	{
 		//nextScene = new TestScene();
+	}
+
+	// クリアフラグでゲームクリア
+	if (wave->GetClearFlag())
+	{
+		if (!option)
+		{
+			ShowCursor(true);
+		}
+
+		nextScene = new EndScene();
 	}
 
 	// ESCAPEでゲーム終了

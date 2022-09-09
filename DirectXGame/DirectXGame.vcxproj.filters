@@ -46,8 +46,11 @@
     <ClCompile Include="ui\Stopwatch.cpp" />
     <ClCompile Include="wave\BaseWave.cpp" />
     <ClCompile Include="wave\TestWave.cpp" />
-    <ClCompile Include="wave\EasyWave.cpp" />
     <ClCompile Include="wave\FlickWave.cpp" />
+    <ClCompile Include="wave\EasyWave.cpp" />
+    <ClCompile Include="wave\FollowWave.cpp" />
+    <ClCompile Include="target\MoveTarget.cpp" />
+    <ClCompile Include="2d\SpriteData.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="2d\Sprite.h" />
@@ -88,8 +91,11 @@
     <ClInclude Include="ui\Stopwatch.h" />
     <ClInclude Include="wave\BaseWave.h" />
     <ClInclude Include="wave\TestWave.h" />
-    <ClInclude Include="wave\EasyWave.h" />
     <ClInclude Include="wave\FlickWave.h" />
+    <ClInclude Include="wave\EasyWave.h" />
+    <ClInclude Include="wave\FollowWave.h" />
+    <ClInclude Include="target\MoveTarget.h" />
+    <ClInclude Include="2d\SpriteData.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="shader\OBJShaderHeader.hlsli" />

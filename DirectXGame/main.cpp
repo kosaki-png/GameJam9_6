@@ -67,10 +67,15 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	// パーティクルマネージャ初期化
 	ParticleManager::GetInstance()->Initialize(dxCommon->GetDevice());
 
+	// デバッグテキスト用テクスチャ読み込み
+	Sprite::LoadTexture(0, L"Resources/font_sharp.png");
+	// デバッグテキスト初期化
+	Text::GetInstance()->Initialize(0);
+
 #pragma endregion
 
 	// 最初のシーン
-	scene = new TestScene();
+	scene = new GameScene();
 	//scene = new SelectScene();
 	//scene = new GameScene();
 	//scene = new EndScene();
