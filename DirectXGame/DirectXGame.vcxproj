@@ -92,6 +92,7 @@
     <ClCompile Include="3d\Object3d.cpp" />
     <ClCompile Include="3d\ParticleManager.cpp" />
     <ClCompile Include="audio\Audio.cpp" />
+    <ClCompile Include="wave\FollowWave.cpp" />
     <ClCompile Include="scene\TestScene.cpp" />
     <ClCompile Include="player\Player.cpp" />
     <ClCompile Include="ui\Stopwatch.cpp" />
@@ -118,6 +119,7 @@
     <ClCompile Include="ui\Score.cpp" />
     <ClCompile Include="ui\Ui.cpp" />
     <ClCompile Include="wave\BaseWave.cpp" />
+    <ClCompile Include="wave\EasyWave.cpp" />
     <ClCompile Include="wave\FlickWave.cpp" />
     <ClCompile Include="wave\TestWave.cpp" />
     <ClCompile Include="xinput\XinputControll.cpp" />
@@ -203,6 +205,7 @@
     <ClInclude Include="3d\Object3d.h" />
     <ClInclude Include="3d\ParticleManager.h" />
     <ClInclude Include="audio\Audio.h" />
+    <ClInclude Include="wave\FollowWave.h" />
     <ClInclude Include="scene\TestScene.h" />
     <ClInclude Include="player\Player.h" />
     <ClInclude Include="target\BaseTarget.h" />
@@ -230,6 +233,7 @@
     <ClInclude Include="ui\Stopwatch.h" />
     <ClInclude Include="ui\Ui.h" />
     <ClInclude Include="wave\BaseWave.h" />
+    <ClInclude Include="wave\EasyWave.h" />
     <ClInclude Include="wave\FlickWave.h" />
     <ClInclude Include="wave\TestWave.h" />
     <ClInclude Include="xinput\XinputControll.h" />
