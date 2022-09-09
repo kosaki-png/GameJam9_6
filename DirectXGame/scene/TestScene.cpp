@@ -104,7 +104,7 @@ void TestScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 		sensi = camera->GetSensi();
 
 		// ウェーブの初期化
-		wave = new TestWave();
+		wave = new FlickWave();
 		wave->Initialize(input, camera);
 	}
 
@@ -119,6 +119,12 @@ void TestScene::Update()
 	if (input->TriggerKey(DIK_RETURN))
 	{
 		nextScene = new SelectScene();
+	}
+
+	// Rでリスタート
+	if (input->TriggerKey(DIK_R))
+	{
+		nextScene = new TestScene();
 	}
 
 	// ESCAPEでゲーム終了

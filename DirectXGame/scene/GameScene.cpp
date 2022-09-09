@@ -1,12 +1,15 @@
 ﻿#include "GameScene.h"
+#include "SelectScene.h"
 #include "EndScene.h"
-#include"TitleScene.h"
-#include"SelectScene.h"
-#include"Collision.h"
 
 #include <cassert>
 #include <sstream>
 #include <iomanip>
+
+#include "FreeCamera.h"
+#include "Collision.h"
+#include "TestWave.h"
+#include "FlickWave.h"
 
 using namespace DirectX;
 
@@ -16,7 +19,12 @@ GameScene::GameScene()
 
 GameScene::~GameScene()
 {
-	safe_delete(objMng);
+	delete cross;
+	delete modelGround;
+	delete objGround;
+	delete camera;
+	delete wave;
+	delete lightGroup;
 }
 
 void GameScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
@@ -29,7 +37,8 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 	// 汎用的初期化
 	{
 		// カメラ生成
-		camera = new DebugCamera(WinApp::window_width, WinApp::window_height, input);
+		camera = new FreeCamera(WinApp::window_width, WinApp::window_height);
+		camera->SetInput(input);
 
 		// 3Dオブジェクトにカメラをセット
 		Object3d::SetCamera(camera);
@@ -39,7 +48,6 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 			assert(0);
 			return;
 		}
-
 		// デバッグテキスト初期化
 		text = Text::GetInstance();
 		text->Initialize(texNumber);
@@ -48,23 +56,26 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 		lightGroup = LightGroup::Create();
 		// 3Dオブエクトにライトをセット
 		Object3d::SetLightGroup(lightGroup);
-
-		// パーティクルマネージャ生成
-		particleMan = ParticleManager::GetInstance();
-		particleMan->SetCamera(camera);
-
 	}
 
 	// スプライト初期設定
 	{
 		// スプライト用テクスチャ読み込み
 		{
+			//Sprite::LoadTexture(1, L"Resources/Title1.png");
+			Sprite::LoadTexture(10, L"Resources/centerDot.png");
 		}
 
 		// スプライト生成
 		{
-			ui = new Ui();
-			ui->Initialize();
+			//title1 = Sprite::Create(1, { 0, 0 });
+			cross = Sprite::Create(10, { centerX, centerY });
+			cross->SetAnchorPoint({ 0.5f, 0.5f });
+			cross->SetSize({ 16, 16 });
+		}
+
+		// スプライト初期設定
+		{
 		}
 	}
 
@@ -72,71 +83,107 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 	{
 		// モデル読み込み
 		{
+			modelGround = Model::CreateFromOBJ("ground");
 		}
 
 		// 3Dオブジェクト生成
 		{
+			objGround = Object3d::Create(modelGround);
 		}
 
-		// 3Dオブジェクト初期位置設定
+		// 3Dオブジェクト初期設定
 		{
+			objGround->Initialize();
+			objGround->SetPosition({ 0,-5, 0 });
 		}
 	}
 
-	// カメラ注視点をセット
-	camera->SetTarget({ 0, 1, 0 });
-	camera->SetDistance(20.0f);
+	// 各クラスの初期化
+	{
+		// 感度設定
+		sensi = camera->GetSensi();
 
-	objMng = new ObjManager();
-	objMng->Initialize(input);
+		// ウェーブの初期化
+		wave = new FlickWave();
+		wave->Initialize(input, camera);
+	}
+
+	// カーソルを消す
+	ShowCursor(false);
+	option = false;
 }
 
 void GameScene::Update()
 {
-	// コントローラの更新
-	//xinput.Update();
+	// Enterで指定のシーンへ
+	if (input->TriggerKey(DIK_RETURN))
+	{
+		nextScene = new EndScene();
+	}
 
-	// シーン移行
-	//if (input->TriggerKey(DIK_SPACE)/* || xinput.TriggerButtom(0, xinput_A)*/)
-	//{
-	//	// 選択したマップでエンドシーンへ
-	//	nextScene = new EndScene(1, time, damage, sign);
-	//}
+	// Rでリスタート
+	if (input->TriggerKey(DIK_R))
+	{
+		//nextScene = new TestScene();
+	}
 
 	// ESCAPEでゲーム終了
-	if (input->PushKey(DIK_ESCAPE))
+	if (input->TriggerKey(DIK_ESCAPE))
 	{
-		PostQuitMessage(0);
+		option = !option;
+		ShowCursor(option);
 	}
 
-	// マウスポイント
+	// フルスクリーン用（使用禁止）
+	if (input->TriggerKey(DIK_F1))
 	{
-		static POINT p;
-		GetCursorPos(&p);
-		WinApp* win = nullptr;
-		win = new WinApp();
-		ScreenToClient(FindWindowA(nullptr, "Hooper"), &p);
-		mousePos = { (float)p.x, (float)p.y };
+		dxCommon->ChengeFullScreen();
 	}
 
-	// クリア
-	//if (objMng->GetClear())
-	//{
-	//	nextScene = new EndScene(1, time, damage, sign);
-	//}
-
-	text->Printf("%f", time);
-
-	lightGroup->Update();
-	camera->Update();
-	particleMan->Update();
-
-	// 3Dオブジェクト更新
-	{}
-	// 各クラスの更新
+	if (!option)
 	{
-		objMng->Update();
-		ui->Update();
+		// カーソルを中心固定
+		SetCursorPos(centerX, centerY);
+
+		// カメラ感度切り替え
+		{
+			if (input->TriggerKey(DIK_UP))
+			{
+				sensi += 0.001f;
+				camera->SetSensi(sensi);
+			}
+			if (input->TriggerKey(DIK_DOWN))
+			{
+				sensi -= 0.001f;
+				camera->SetSensi(sensi);
+			}
+			if (input->TriggerKey(DIK_RIGHT))
+			{
+				sensi += 0.01f;
+				camera->SetSensi(sensi);
+			}
+			if (input->TriggerKey(DIK_LEFT))
+			{
+				sensi -= 0.01f;
+				camera->SetSensi(sensi);
+			}
+			// 感度を表示
+			text->Printf("%d", (int)(sensi * 1000));
+		}
+
+		// 3Dオブジェクト更新
+		{
+			objGround->Update();
+		}
+
+		// 各クラス更新
+		{
+			lightGroup->Update();
+			camera->Update();
+
+			// ウェーブの更新
+			wave->Update();
+		}
 	}
 }
 
@@ -147,15 +194,13 @@ void GameScene::Draw()
 
 	// 背景スプライト描画
 	{
-		// 背景スプライト描画前処理
+		// 背景スプライト
 		Sprite::PreDraw(cmdList);
+		{
 
-		/// <summary>
-		/// ここに背景スプライトの描画処理を追加
-		/// </summary>
-
-		// スプライト描画後処理
+		}
 		Sprite::PostDraw();
+
 		// 深度バッファクリア
 		dxCommon->ClearDepthBuffer();
 	}
@@ -164,57 +209,25 @@ void GameScene::Draw()
 	{
 		// 3Dオブジェクトの描画
 		Object3d::PreDraw(cmdList);
+		{
+			objGround->Draw();
 
-		/// <summary>
-		/// ここに3Dオブジェクトの描画処理を追加
-		/// </summary>
-
+			wave->Draw();
+		}
 		Object3d::PostDraw();
-		// パーティクルの描画
-		particleMan->Draw(cmdList);
 	}
 
 	// 前景スプライト描画
 	{
 		// 前景スプライト描画前処理
 		Sprite::PreDraw(cmdList);
+		{
+			cross->Draw();
+			wave->DrawUi(cmdList);
 
-		/// <summary>
-		/// ここに前景スプライトの描画処理を追加
-		/// </summary>
-
-		objMng->Draw();
-		ui->Draw(cmdList);
-
-		// デバッグテキストの描画
-		//text->DrawAll(cmdList);
-
-		// スプライト描画後処理
+			// デバッグテキストの描画
+			text->DrawAll(cmdList);
+		}
 		Sprite::PostDraw();
-	}
-}
-
-void GameScene::CreateParticles()
-{
-	for (int i = 0; i < 10; i++) {
-		// X,Y,Z全て[-5.0f,+5.0f]でランダムに分布
-		const float rnd_pos = 10.0f;
-		XMFLOAT3 pos{};
-		pos.x = (float)rand() / RAND_MAX * rnd_pos - rnd_pos / 2.0f;
-		pos.y = (float)rand() / RAND_MAX * rnd_pos - rnd_pos / 2.0f;
-		pos.z = (float)rand() / RAND_MAX * rnd_pos - rnd_pos / 2.0f;
-
-		const float rnd_vel = 0.1f;
-		XMFLOAT3 vel{};
-		vel.x = (float)rand() / RAND_MAX * rnd_vel - rnd_vel / 2.0f;
-		vel.y = (float)rand() / RAND_MAX * rnd_vel - rnd_vel / 2.0f;
-		vel.z = (float)rand() / RAND_MAX * rnd_vel - rnd_vel / 2.0f;
-
-		XMFLOAT3 acc{};
-		const float rnd_acc = 0.001f;
-		acc.y = -(float)rand() / RAND_MAX * rnd_acc;
-
-		// 追加
-		particleMan->Add(60, pos, vel, acc, 1.0f, 0.0f);
 	}
 }
