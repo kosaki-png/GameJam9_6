@@ -37,10 +37,5 @@ public:
 	void Draw() override;
 
 private:
-	Text* text = nullptr;
-	DebugCamera* camera = nullptr;
-
-	LightGroup* lightGroup = nullptr;
-	float ambientColor0[3] = { 1,1,1 };
 
 };

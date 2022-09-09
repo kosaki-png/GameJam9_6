@@ -88,7 +88,7 @@ void FlickWave::Update()
 
 		// ƒNƒŠƒAðŒ
 		{
-			
+			clearFlag = input->TriggerKey(DIK_C);
 		}
 	}
 
