@@ -7,7 +7,6 @@
 #include "Text.h"
 #include "DebugCamera.h"
 #include "LightGroup.h"
-#include"XinputControll.h"
 
 #include "BaseScene.h"
 
@@ -28,7 +27,7 @@ private: // ê√ìIÉÅÉìÉoïœêî
 	static const int texNumber = 0;
 
 public:
-	EndScene(bool clear, float time, bool damage, bool sign);
+	EndScene();
 	~EndScene();
 
 	void Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio) override;
@@ -38,32 +37,5 @@ public:
 	void Draw() override;
 
 private:
-	Text* text = nullptr;
-	DebugCamera* camera = nullptr;
 
-	LightGroup* lightGroup = nullptr;
-	float ambientColor0[3] = { 1,1,1 };
-
-	ParticleManager* particleMan = nullptr;
-
-	Xinput xinput;
-
-	float centerX = 1280 / 2;
-	float centerY = 720 / 2;
-
-	XMFLOAT2 mousePos;
-
-	bool isClear = false;
-
-	Sprite* clear = nullptr;
-	Sprite* over = nullptr;
-
-	Sprite* king = nullptr;
-	Sprite* sign = nullptr;
-
-	bool damage = false;
-
-	bool sign1 = false;
-
-	float time = 0;
 };

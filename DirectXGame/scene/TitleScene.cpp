@@ -17,7 +17,6 @@ TitleScene::TitleScene()
 
 TitleScene::~TitleScene()
 {
-	
 }
 
 void TitleScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
@@ -36,23 +35,13 @@ void TitleScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 		// 3Dオブジェクトにカメラをセット
 		Object3d::SetCamera(camera);
 
-		// デバッグテキスト用テクスチャ読み込み
-		if (!Sprite::LoadTexture(texNumber, L"Resources/font_sharp.png")) {
-			assert(0);
-			return;
-		}
 		// デバッグテキスト初期化
 		text = Text::GetInstance();
-		text->Initialize(texNumber);
 
 		// ライト生成
 		lightGroup = LightGroup::Create();
 		// 3Dオブエクトにライトをセット
 		Object3d::SetLightGroup(lightGroup);
-
-		// パーティクルマネージャ生成
-		particleMan = ParticleManager::GetInstance();
-		particleMan->SetCamera(camera);
 	}
 
 	// スプライト初期設定
@@ -76,18 +65,17 @@ void TitleScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 	{
 		// モデル読み込み
 		{
-			model = Model::CreateFromOBJ("sphere");
+			
 		}
 
 		// 3Dオブジェクト生成
 		{
-			object = Object3d::Create(model);
 			
 		}
 
 		// 3Dオブジェクト初期設定
 		{
-			object->Initialize();
+			
 		}
 	}
 
@@ -109,35 +97,15 @@ void TitleScene::Update()
 		PostQuitMessage(0);
 	}
 
-	// 当たり判定
-	{
-		// 視線のレイを取得
-		XMFLOAT3 tmp = camera->GetEye();
-		ray.start = XMVectorSet(tmp.x, tmp.y, tmp.z, 1.0f);
-		tmp = camera->GetDir();
-		ray.dir = XMVectorSet(tmp.x, tmp.y, tmp.z, 1.0f);
-
-		// 視線から当たり判定
-		//if (Collision::CheckRay2Sphere(ray, sphere))
-		//{
-		//	
-		//}
-		//else
-		//{
-		//	
-		//}
-	}
-
 	// パーティクル生成
 	//CreateParticles();
 
 	lightGroup->Update();
 	camera->Update();
-	particleMan->Update();
 
 	// 3Dオブジェクト更新
 	{
-		object->Update();
+
 	}
 
 	// フルスクリーン変更(使用禁止)
@@ -170,12 +138,9 @@ void TitleScene::Draw()
 		// 3Dオブジェクトの描画
 		Object3d::PreDraw(cmdList);
 		{
-			object->Draw();
+
 		}
 		Object3d::PostDraw();
-
-		// パーティクルの描画
-		particleMan->Draw(cmdList);
 	}
 
 	// 前景スプライト描画
@@ -184,11 +149,10 @@ void TitleScene::Draw()
 		Sprite::PreDraw(cmdList);
 		{
 
-		}
-		// デバッグテキストの描画
-		text->DrawAll(cmdList);
 
-		// スプライト描画後処理
+			// デバッグテキストの描画
+			text->DrawAll(cmdList);
+		}
 		Sprite::PostDraw();
 	}
 }

@@ -85,6 +85,10 @@ public:
 		targetNum = setNum;
 	};
 
+	bool IsTimeUp(){
+		return GetHundredPlace() < 0;
+	}
+
 	//getter
 	const float& GetOnePlace() { return onePlace; }//タイムの１の位
 	const float& GetTnePlace() { return tenPlace; }//タイムの10の位
