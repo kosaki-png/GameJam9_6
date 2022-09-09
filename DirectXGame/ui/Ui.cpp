@@ -1,9 +1,6 @@
 #include "Ui.h"
 
-int   Ui::scoreNum = 0;//スコアの値
-float Ui::rateNum  = 0;//割合の値
-float Ui::countNum = 1;//当てた数の値
-float Ui::missNum  = 0;//外した数
+int Ui::scoreNum = 0;
 
 Ui::Ui()
 {
@@ -20,6 +17,14 @@ Ui::~Ui()
 
 void Ui::Initialize()
 {
+	rateNum = 0;//割合の値
+	scoreNum = 0;//スコアの値
+	initialValue = 0;
+	hundredPlace = 1;
+	tenPlace = 0;
+	countNum = 1;//当てた数の値
+	missNum = 0;//外した数
+
 	//Ui初期化
 	Sprite::LoadTexture(1, L"Resources/ui_01.png");
 	ui = Sprite::Create(1,{ 640,0 });
@@ -49,17 +54,16 @@ void Ui::Initialize()
 	timeLimit->Initialize(3);
 	timeLimit->SetPos(900, -5);
 	timeLimit->SetSize(0.9f);
-	time = 59;
 
 	// 時間測定を開始した状態でインスタンスを作成
-	sw1 = diagnostics::Stopwatch::startNew();
+	timer = diagnostics::Stopwatch::startNew();
+	onePlace = 0;
 }
 
 void Ui::Update()
 {
-	float s = sw1->getElapsedSeconds();
-	float d = 60 -s;
-	timeLimit->Printf("0:%.0f",d);
+	TimerManage();
+	timeLimit->Printf("%d:%d%.0f",hundredPlace,tenPlace,onePlace);
 
 	Rate();
 	score->Printf("%d", scoreNum);
@@ -74,4 +78,22 @@ void Ui::Draw(ID3D12GraphicsCommandList* cmdList)
 	timeLimit->DrawAll(cmdList);
 	rate->DrawAll(cmdList);
 	parcent->DrawAll(cmdList);
+}
+
+void Ui::TimerManage()
+{
+	if (onePlace < 0)
+	{
+		SetNum(initialValue, 9);
+		timer->restart();
+		tenPlace--;
+	}
+
+	if (tenPlace < 0)
+	{
+		SetNum(tenPlace, 5);
+		hundredPlace--;
+	}
+
+	onePlace = initialValue - timer->getElapsedSeconds();
 }
