@@ -11,13 +11,15 @@ BaseTarget::~BaseTarget()
 }
 
 //‰Šú‰»
-void BaseTarget::Initialize(std::string modelName, XMFLOAT3 pos, float radius)
+void BaseTarget::Initialize(std::string modelName, XMFLOAT3 pos,XMFLOAT3 vel, float radius)
 {
 	//object3DŠÖ˜A‰Šú‰»
 	model = Model::CreateFromOBJ(modelName);
 	obj = Object3d::Create(model);
+	obj->SetPosition(pos);
 
 	position = pos;
+	velocity = vel;
 	sphere.center = DirectX::XMVectorSet(pos.x, pos.y, pos.z, 1.0f);
 	sphere.radius = radius;
 }
@@ -25,6 +27,10 @@ void BaseTarget::Initialize(std::string modelName, XMFLOAT3 pos, float radius)
 //XV
 void BaseTarget::Update()
 {
+	position.x += velocity.x;
+	position.y += velocity.y;
+	position.z += velocity.z;
+
 	sphere.center = DirectX::XMVectorSet(position.x, position.y, position.z, 0);
 
 	obj->SetPosition(position);

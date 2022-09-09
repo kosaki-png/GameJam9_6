@@ -18,7 +18,7 @@ public:
 	~BaseTarget();
 
 	//èâä˙âª
-	virtual void Initialize(std::string modelName = (" "), XMFLOAT3 pos = { 0,0,0 }, float radius = 0.5f);
+	virtual void Initialize(std::string modelName = (" "), XMFLOAT3 pos = { 0.0f,0.0f,0.0f }, XMFLOAT3 vel = { 0.0f,0.0f,0.0f }, float radius = 0.5f);
 	//çXêV
 	virtual void Update();
 	//ï`âÊ
@@ -26,6 +26,7 @@ public:
 
 	//Set
 	void SetPosition(XMFLOAT3 pos) { position = pos; }
+	void SetVelocity(XMFLOAT3 vel) { velocity = vel; }
 	void SetIsDead(bool setDead) { isDead = setDead; }
 
 	//Get
@@ -35,7 +36,7 @@ public:
 	Sphere GetSphere() { return sphere; }
 	bool GetIsDead() { return isDead; }
 
-private:
+protected:
 
 	Object3d* obj;
 	Model* model;
