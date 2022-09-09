@@ -17,14 +17,15 @@ Ui::~Ui()
 
 void Ui::Initialize()
 {
-	rateNum = 0;//割合の値
-	scoreNum = 0;//スコアの値
-	initialValue = 0;
-	hundredPlace = 1;
-	tenPlace = 0;
-	countNum = 1;//当てた数の値
-	missNum = 0;//外した数
-
+	rateNum = 0;     //割合の値
+	scoreNum = 0;    //スコアの値
+	initialValue = 0;//初期値
+	onePlace = 0;    //1の位
+	tenPlace = 0;    //10の位
+	hundredPlace = 1;//100の位
+	countNum = 1;    //当てた数の値
+	missNum = 0;     //外した数
+	
 	//Ui初期化
 	Sprite::LoadTexture(1, L"Resources/ui_01.png");
 	ui = Sprite::Create(1,{ 640,0 });
