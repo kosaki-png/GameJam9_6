@@ -118,6 +118,11 @@ void GameScene::Update()
 	// Enterで指定のシーンへ
 	if (input->TriggerKey(DIK_RETURN))
 	{
+		if (!option)
+		{
+			ShowCursor(true);
+		}
+		
 		nextScene = new EndScene();
 	}
 

@@ -85,6 +85,11 @@ void FlickWave::Update()
 		{
 			targets[i]->Update();
 		}
+
+		// クリア条件
+		{
+			
+		}
 	}
 
 	// uiの更新

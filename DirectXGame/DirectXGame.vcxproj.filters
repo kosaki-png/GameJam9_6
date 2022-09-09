@@ -48,6 +48,7 @@
     <ClCompile Include="wave\TestWave.cpp" />
     <ClCompile Include="wave\EasyWave.cpp" />
     <ClCompile Include="wave\FlickWave.cpp" />
+    <ClCompile Include="2d\SpriteData.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="2d\Sprite.h" />
@@ -90,6 +91,7 @@
     <ClInclude Include="wave\TestWave.h" />
     <ClInclude Include="wave\EasyWave.h" />
     <ClInclude Include="wave\FlickWave.h" />
+    <ClInclude Include="2d\SpriteData.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="shader\OBJShaderHeader.hlsli" />
