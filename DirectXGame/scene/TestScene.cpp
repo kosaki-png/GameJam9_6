@@ -1,6 +1,7 @@
 #include "TestScene.h"
 #include "SelectScene.h"
 #include "GameScene.h"
+#include "TitleScene.h"
 
 #include <cassert>
 #include <sstream>
@@ -118,7 +119,7 @@ void TestScene::Update()
 	// Enterで指定のシーンへ
 	if (input->TriggerKey(DIK_RETURN))
 	{
-		nextScene = new SelectScene();
+		nextScene = new TitleScene();
 	}
 
 	// Rでリスタート

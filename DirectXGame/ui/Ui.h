@@ -49,7 +49,7 @@ public:
 	/// 得点追加
 	/// </summary>
 	/// <param name="num">追加得点</param>
-	void AddScore(int num) {
+	void AddScore(int num = 10) {
 		scoreNum += num;
 	};
 
@@ -76,18 +76,38 @@ public:
 		return rateNum;
 	};
 
+	/// <summary>
+	/// セッター
+	/// </summary>
+	/// <param name="targetNum">値を変えたい対象</param>
+	/// <param name="setNum">変更する数字</param>
+	void SetNum(int& targetNum, int setNum = 0) {
+		targetNum = setNum;
+	};
+
+	//getter
+	const float& GetOnePlace() { return onePlace; }//タイムの１の位
+	const float& GetTnePlace() { return tenPlace; }//タイムの10の位
+	const float& GetHundredPlace() { return hundredPlace; }//タイムの100の位
+	const float& GetRate() { return rateNum; }
+	const int& GetScore() {return scoreNum; }
+
+	void TimerManage();
 private:
 	Sprite* ui;
 	Score* score;
 	Score* timeLimit;
 	Score* rate;
 	Score* parcent;
-	float time;
-	std::unique_ptr<diagnostics::Stopwatch> sw1;
-
-	static float countNum;//当てた数
-	static float missNum; //外した数
-	static float rateNum; //割合の値
-	static int scoreNum;//スコアの値
+	std::unique_ptr<diagnostics::Stopwatch> timer;
+	
+	float onePlace;  //1の位
+	int tenPlace;    //10の位
+	int hundredPlace;//100の位
+	int initialValue;//初期値
+	float countNum;  //当てた数
+	float missNum;   //外した数
+	float rateNum;   //割合の値
+	static int scoreNum;    //スコアの値
 };
 
