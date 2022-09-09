@@ -52,16 +52,10 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 
 	// スプライト初期設定
 	{
-		// スプライト用テクスチャ読み込み
-		{
-			//Sprite::LoadTexture(1, L"Resources/Title1.png");
-			Sprite::LoadTexture(10, L"Resources/centerDot.png");
-		}
-
 		// スプライト生成
 		{
 			//title1 = Sprite::Create(1, { 0, 0 });
-			cross = Sprite::Create(10, { centerX, centerY });
+			cross = Sprite::Create(CROSS, { centerX, centerY });
 			cross->SetAnchorPoint({ 0.5f, 0.5f });
 			cross->SetSize({ 16, 16 });
 		}

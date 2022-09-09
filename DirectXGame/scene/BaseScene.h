@@ -6,6 +6,8 @@
 #include "Camera.h"
 #include "Text.h"
 #include "LightGroup.h"
+#include "SpriteData.h"
+#include "SafeDelete.h"
 
 struct SceneButton
 {

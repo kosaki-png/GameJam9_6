@@ -1,12 +1,6 @@
 ﻿#pragma once
 #include <array>
 #include "ParticleManager.h"
-#include "Text.h"
-#include "DebugCamera.h"
-#include "LightGroup.h"
-#include "XinputControll.h"
-#include "Sprite.h"
-#include "Object3d.h"
 #include "CollisionPrimitive.h"
 
 #include "BaseScene.h"

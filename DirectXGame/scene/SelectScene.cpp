@@ -2,6 +2,8 @@
 #include "SelectScene.h"
 #include "GameScene.h"
 
+#include "DebugCamera.h"
+
 #include <cassert>
 #include <sstream>
 #include <iomanip>

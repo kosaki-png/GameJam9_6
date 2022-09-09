@@ -68,9 +68,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	ParticleManager::GetInstance()->Initialize(dxCommon->GetDevice());
 
 	// デバッグテキスト用テクスチャ読み込み
-	Sprite::LoadTexture(0, L"Resources/font_sharp.png");
+	SpriteData::LoadTexture();
 	// デバッグテキスト初期化
-	Text::GetInstance()->Initialize(0);
+	Text::GetInstance()->Initialize(TEXT_FONT);
 
 #pragma endregion
 

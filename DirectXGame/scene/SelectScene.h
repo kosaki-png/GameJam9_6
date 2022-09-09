@@ -1,12 +1,5 @@
 #pragma once
-#include "SafeDelete.h"
-#include <DirectXMath.h>
-#include "Sprite.h"
-#include "Object3d.h"
 #include "ParticleManager.h"
-#include "Text.h"
-#include "DebugCamera.h"
-#include "LightGroup.h"
 
 #include "BaseScene.h"
 #include "XinputControll.h"
