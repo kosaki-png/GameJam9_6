@@ -11,6 +11,7 @@ BaseScene::~BaseScene()
 {
 	delete lightGroup;
 	delete camera;
+	delete tmpSprite;
 }
 
 void BaseScene::Initialize(DirectXCommon * dxCommon, Input * input, Audio* audio)

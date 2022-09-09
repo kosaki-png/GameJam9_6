@@ -31,8 +31,6 @@ void TestScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 	// nullptrチェック
 	BaseScene::Initialize(dxCommon, input, audio);
 
-	audio->Stop();
-
 	// 汎用的初期化
 	{
 		// カメラ生成
@@ -49,6 +47,8 @@ void TestScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 		lightGroup = LightGroup::Create();
 		// 3Dオブエクトにライトをセット
 		Object3d::SetLightGroup(lightGroup);
+
+		audio->Stop();
 	}
 
 	// スプライト初期設定
@@ -97,7 +97,6 @@ void TestScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 
 	// カーソルを消す
 	ShowCursor(false);
-
 }
 
 void TestScene::Update()

@@ -24,8 +24,6 @@ void TitleScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 	// nullptrチェック
 	BaseScene::Initialize(dxCommon, input, audio);
 
-	audio->Stop();
-
 	// 汎用的初期化
 	{
 		// カメラ生成
@@ -42,18 +40,15 @@ void TitleScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 		lightGroup = LightGroup::Create();
 		// 3Dオブエクトにライトをセット
 		Object3d::SetLightGroup(lightGroup);
+
+		audio->Stop();
 	}
 
 	// スプライト初期設定
 	{
-		// スプライト用テクスチャ読み込み
-		{
-			//Sprite::LoadTexture(1, L"Resources/Title1.png");
-		}
-
 		// スプライト生成
 		{
-			//title1 = Sprite::Create(1, { 0, 0 });
+			tmpSprite = Sprite::Create(TITLE, { 0,0 });
 		}
 
 		// スプライト初期設定
@@ -97,21 +92,15 @@ void TitleScene::Update()
 		PostQuitMessage(0);
 	}
 
-	// パーティクル生成
-	//CreateParticles();
-
-	lightGroup->Update();
-	camera->Update();
-
 	// 3Dオブジェクト更新
 	{
 
 	}
 
-	// フルスクリーン変更(使用禁止)
-	if (input->TriggerKey(DIK_F1))
+	// 各クラス更新
 	{
-		dxCommon->ChengeFullScreen();
+		lightGroup->Update();
+		camera->Update();
 	}
 }
 
@@ -125,7 +114,7 @@ void TitleScene::Draw()
 		// 背景スプライト
 		Sprite::PreDraw(cmdList);
 		{
-
+			tmpSprite->Draw();
 		}
 		Sprite::PostDraw();
 
