@@ -58,7 +58,6 @@ void Ui::Initialize()
 
 	// 時間測定を開始した状態でインスタンスを作成
 	timer = diagnostics::Stopwatch::startNew();
-	onePlace = 0;
 }
 
 void Ui::Update()
@@ -85,8 +84,9 @@ void Ui::TimerManage()
 {
 	if (onePlace < 0)
 	{
-		SetNum(initialValue, 9);
-		timer->restart();
+		//SetNum(initialValue, 9);
+		onePlace = 9;
+		//timer->restart();
 		tenPlace--;
 	}
 
@@ -96,5 +96,7 @@ void Ui::TimerManage()
 		hundredPlace--;
 	}
 
-	onePlace = initialValue - timer->getElapsedSeconds();
+	//onePlace = initialValue - timer->getElapsedSeconds();
+	//onePlace = initialValue;
+	onePlace -= 0.016f;
 }
