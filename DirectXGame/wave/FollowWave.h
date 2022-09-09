@@ -1,9 +1,13 @@
 #pragma once
 #include "BaseWave.h"
+#include "MoveTarget.h"
 class FollowWave :
     public BaseWave
 {
 public:
+    FollowWave();
+    ~FollowWave();
+
     void Initialize(Input* input, Camera* camera) override;
     void Update() override;
 
@@ -12,10 +16,9 @@ public:
     void DrawUi(ID3D12GraphicsCommandList* cmdList) override;
 
 public:
-    BaseTarget* target = nullptr;
+    MoveTarget* target = nullptr;
 
     bool isStart = false;
 
-    XMFLOAT4 position = { 0.0f,0.0f,0.0f,0.0f };
 };
 
