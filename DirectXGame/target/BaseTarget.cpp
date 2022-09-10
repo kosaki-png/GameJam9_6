@@ -14,7 +14,7 @@ BaseTarget::~BaseTarget()
 void BaseTarget::Initialize(std::string modelName, XMFLOAT3 pos,XMFLOAT3 vel, float radius)
 {
 	//object3DŠÖ˜A‰Šú‰»
-	model = Model::CreateFromOBJ(modelName);
+	model = Model::CreateFromOBJ(modelName, true);
 	obj = Object3d::Create(model);
 	obj->SetPosition(pos);
 
