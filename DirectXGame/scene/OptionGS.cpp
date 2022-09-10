@@ -47,25 +47,22 @@ void OptionGS::Update()
 	// マウスの座標取得
 	mousePos = input->GetClientMousePos();
 
-	if (isOption)
+	// 割合変更
+	if (input->PushMouseLeft())
 	{
-		// 割合変更
-		if (input->PushMouseLeft())
+		// それぞれのメーターで当たり判定
+		for (int i = 0; i < 3; i++)
 		{
-			// それぞれのメーターで当たり判定
-			for (int i = 0; i < 3; i++)
+			XMFLOAT2 tmpPos = { 800.0f, 350.0f + i * 150.0f - 25 };
+			XMFLOAT2 tmpSize = { 800.0f, 40 };
+			// 当たっているならその位置でメーターセット
+			if (Collision::CheckPoint2Box(mousePos, tmpPos, tmpSize))
 			{
-				XMFLOAT2 tmpPos = { 800.0f, 350.0f + i * 150.0f - 25 };
-				XMFLOAT2 tmpSize = { 800.0f, 40 };
-				// 当たっているならその位置でメーターセット
-				if (Collision::CheckPoint2Box(mousePos, tmpPos, tmpSize))
-				{
-					float tmpLen = mousePos.x - 800.0f;
-					option_bar[i]->SetSize({ tmpLen, 10 });
+				float tmpLen = mousePos.x - 800.0f;
+				option_bar[i]->SetSize({ tmpLen, 10 });
 
-					// 割合セット
-					bar_ratio[i] = tmpLen / 800.0f;
-				}
+				// 割合セット
+				bar_ratio[i] = tmpLen / 800.0f;
 			}
 		}
 	}
@@ -81,6 +78,18 @@ void OptionGS::Update()
 		camera->SetFov(fov);
 
 		// SE音量セット
+
+	}
+
+	// 値を表示
+	{
+		// マウス感度	中心約(600 * 400)
+		sensi;
+
+		// 視野角		中心約(600 * 550)
+		fov;
+
+		// SE音量		中心約(600 * 700)
 
 	}
 }
