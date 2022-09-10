@@ -19,6 +19,9 @@ void SpriteData::LoadTexture()
 	Sprite::LoadTexture(UI_FONT_2,	L"Resources/Texture/font_cursive.png");
 	Sprite::LoadTexture(OPTION_BASE, L"Resources/Texture/option_base.png");
 	Sprite::LoadTexture(OPTION_BAR, L"Resources/Texture/option_bar.png");
+	Sprite::LoadTexture(COUNT_BASE,	L"Resources/Texture/count_base.png");
+	Sprite::LoadTexture(CLICK,		L"Resources/Texture/count_click.png");
+	Sprite::LoadTexture(START,		 L"Resources/Texture/count_start.png");
 
 	// ÉGÉìÉhì«Ç›çûÇ›
 	Sprite::LoadTexture(END,		L"Resources/Texture/end.png");

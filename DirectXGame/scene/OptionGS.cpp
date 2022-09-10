@@ -39,6 +39,12 @@ void OptionGS::Initialize()
 
 		// SE‰¹—Êæ“¾
 		bar_ratio[2];
+
+		// ‰Šú‚Ì’·‚³“K—p
+		for (int i = 0; i < 3; i++)
+		{
+			option_bar[i]->SetSize({ bar_ratio[i] * 800, 10 });
+		}
 	}
 }
 

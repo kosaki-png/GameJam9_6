@@ -18,6 +18,9 @@ static const int UI_FONT_1 = 24;
 static const int UI_FONT_2 = 25;
 static const int OPTION_BASE = 26;
 static const int OPTION_BAR = 27;
+static const int COUNT_BASE = 28;
+static const int CLICK = 29;
+static const int START = 30;
 
 // ƒGƒ“ƒh—p
 static const int END = 41;

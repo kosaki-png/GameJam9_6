@@ -33,6 +33,22 @@ public:
 	virtual void DrawUi(ID3D12GraphicsCommandList* cmdList);
 	
 	/// <summary>
+	/// カウントダウンの更新
+	/// </summary>
+	void CountDown();
+
+	/// <summary>
+	/// カウントダウン用描画
+	/// </summary>
+	void CountDownDraw();
+
+	/// <summary>
+	/// カウントダウン中か
+	/// </summary>
+	/// <returns></returns>
+	bool GetIsCount() { return isCount; }
+
+	/// <summary>
 	/// クリアしたか
 	/// </summary>
 	/// <returns></returns>
@@ -51,5 +67,16 @@ protected:
 
 	// UI、スコア管轄
 	Ui* ui = nullptr;
+
+	// カウントダウン用
+	Sprite* base = nullptr;
+	Sprite* click = nullptr;
+	Sprite* start = nullptr;
+	Text* text = nullptr;
+
+	bool isCount = true;	// カウントダウンをしているか
+	bool isStart = false;	// スタートしているか
+
+	float time = 5.0f;		// 開始までの時間
 };
 

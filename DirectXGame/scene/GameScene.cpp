@@ -153,33 +153,15 @@ void GameScene::Update()
 
 	if (!option->GetIsOption())
 	{
-		// カーソルを中心固定
-		SetCursorPos(centerX, centerY);
-
-		// カメラ感度切り替え
+		// カウントダウン開始
+		if (wave->GetIsCount())
 		{
-			if (input->TriggerKey(DIK_UP))
-			{
-				sensi += 0.01f;
-				camera->SetSensi(sensi);
-			}
-			if (input->TriggerKey(DIK_DOWN))
-			{
-				sensi -= 0.01f;
-				camera->SetSensi(sensi);
-			}
-			if (input->TriggerKey(DIK_RIGHT))
-			{
-				sensi += 0.1f;
-				camera->SetSensi(sensi);
-			}
-			if (input->TriggerKey(DIK_LEFT))
-			{
-				sensi -= 0.1f;
-				camera->SetSensi(sensi);
-			}
-			// 感度を表示
-			text->Printf("%d", (int)(sensi * 1000));
+			wave->CountDown();
+		}
+		else
+		{
+			// ウェーブの更新
+			wave->Update();
 		}
 
 		// 3Dオブジェクト更新
@@ -192,10 +174,10 @@ void GameScene::Update()
 		{
 			lightGroup->Update();
 			camera->Update();
-
-			// ウェーブの更新
-			wave->Update();
 		}
+
+		// カーソルを中心固定
+		SetCursorPos(centerX, centerY);
 	}
 	else
 	{
@@ -241,6 +223,7 @@ void GameScene::Draw()
 		{
 			cross->Draw();
 			wave->DrawUi(cmdList);
+			wave->CountDownDraw();
 
 			// オプション画面
 			option->Draw();
