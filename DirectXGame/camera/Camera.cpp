@@ -126,7 +126,7 @@ void Camera::UpdateProjectionMatrix()
 {
 	// 透視投影による射影行列の生成
 	matProjection = XMMatrixPerspectiveFovLH(
-		XMConvertToRadians(90.0f),
+		XMConvertToRadians(60.0f),
 		aspectRatio,
 		0.1f, 2000.0f
 	);
