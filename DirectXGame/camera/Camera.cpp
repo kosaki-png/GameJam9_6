@@ -126,7 +126,7 @@ void Camera::UpdateProjectionMatrix()
 {
 	// 透視投影による射影行列の生成
 	matProjection = XMMatrixPerspectiveFovLH(
-		XMConvertToRadians(60.0f),
+		XMConvertToRadians(fov),
 		aspectRatio,
 		0.1f, 2000.0f
 	);
@@ -196,6 +196,12 @@ XMFLOAT3 Camera::GetDir()
 {
 	XMFLOAT3 result = { (target.x - eye.x) / distance, (target.y - eye.y) / distance, (target.z - eye.z) / distance };
 	return result;
+}
+
+void Camera::SetFov(float fov)
+{
+	this->fov = fov;
+	projectionDirty = true;
 }
 
 void Camera::CalcRotation(XMFLOAT3 target, XMFLOAT3 eye)

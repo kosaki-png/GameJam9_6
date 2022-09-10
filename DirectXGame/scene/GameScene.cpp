@@ -25,6 +25,7 @@ GameScene::~GameScene()
 	delete modelSky;
 	delete objSky;
 	delete wave;
+	delete option;
 }
 
 void GameScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
@@ -98,11 +99,14 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 		// ウェーブの初期化
 		wave = new FlickWave();
 		wave->Initialize(input, camera);
+
+		// オプションの初期化
+		option = new OptionGS(input, camera, audio);
+		option->Initialize();
 	}
 
 	// カーソルを消す
 	ShowCursor(false);
-	option = false;
 }
 
 void GameScene::Update()
@@ -110,7 +114,7 @@ void GameScene::Update()
 	// Enterで指定のシーンへ
 	if (input->TriggerKey(DIK_RETURN))
 	{
-		if (!option)
+		if (!option->GetIsOption())
 		{
 			ShowCursor(true);
 		}
@@ -127,7 +131,7 @@ void GameScene::Update()
 	// クリアフラグでゲームクリア
 	if (wave->GetClearFlag())
 	{
-		if (!option)
+		if (!option->GetIsOption())
 		{
 			ShowCursor(true);
 		}
@@ -138,8 +142,7 @@ void GameScene::Update()
 	// ESCAPEでゲーム終了
 	if (input->TriggerKey(DIK_ESCAPE))
 	{
-		option = !option;
-		ShowCursor(option);
+		option->ChangeIsOption();
 	}
 
 	// フルスクリーン用（使用禁止）
@@ -148,7 +151,7 @@ void GameScene::Update()
 		dxCommon->ChengeFullScreen();
 	}
 
-	if (!option)
+	if (!option->GetIsOption())
 	{
 		// カーソルを中心固定
 		SetCursorPos(centerX, centerY);
@@ -157,22 +160,22 @@ void GameScene::Update()
 		{
 			if (input->TriggerKey(DIK_UP))
 			{
-				sensi += 0.001f;
+				sensi += 0.01f;
 				camera->SetSensi(sensi);
 			}
 			if (input->TriggerKey(DIK_DOWN))
 			{
-				sensi -= 0.001f;
+				sensi -= 0.01f;
 				camera->SetSensi(sensi);
 			}
 			if (input->TriggerKey(DIK_RIGHT))
 			{
-				sensi += 0.01f;
+				sensi += 0.1f;
 				camera->SetSensi(sensi);
 			}
 			if (input->TriggerKey(DIK_LEFT))
 			{
-				sensi -= 0.01f;
+				sensi -= 0.1f;
 				camera->SetSensi(sensi);
 			}
 			// 感度を表示
@@ -193,6 +196,10 @@ void GameScene::Update()
 			// ウェーブの更新
 			wave->Update();
 		}
+	}
+	else
+	{
+		option->Update();
 	}
 }
 
@@ -234,6 +241,9 @@ void GameScene::Draw()
 		{
 			cross->Draw();
 			wave->DrawUi(cmdList);
+
+			// オプション画面
+			option->Draw();
 
 			// デバッグテキストの描画
 			text->DrawAll(cmdList);

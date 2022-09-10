@@ -9,12 +9,6 @@
 #include "SpriteData.h"
 #include "SafeDelete.h"
 
-struct SceneButton
-{
-	DirectX::XMFLOAT2 position = { 0,0 };
-	DirectX::XMFLOAT2 scale = { 0,0 };
-};
-
 class BaseScene
 {
 private: // エイリアス

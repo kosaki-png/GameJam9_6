@@ -56,7 +56,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	// パーティクルマネージャ初期化
 	ParticleManager::GetInstance()->Initialize(dxCommon->GetDevice());
 
-	// デバッグテキスト用テクスチャ読み込み
+	// テクスチャ読み込み
 	SpriteData::LoadTexture();
 	// デバッグテキスト初期化
 	Text::GetInstance()->Initialize(TEXT_FONT);

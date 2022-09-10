@@ -12,6 +12,7 @@ Input * Input::GetInstance()
 
 bool Input::Initialize(HINSTANCE hInstance, HWND hwnd)
 {
+	this->hwnd = hwnd;
 	HRESULT result = S_FALSE;
 
 	assert(!dinput);
@@ -184,5 +185,22 @@ Input::MouseMove Input::GetMouseMove()
 	tmp.lY = mouseState.lY;
 	tmp.lZ = mouseState.lZ;
 	return tmp;
+}
+
+DirectX::XMFLOAT2 Input::GetScreenMousePos()
+{
+	POINT tmp;
+	GetCursorPos(&tmp);
+
+	return { (float)tmp.x, (float)tmp.y };
+}
+
+DirectX::XMFLOAT2 Input::GetClientMousePos()
+{
+	POINT tmp;
+	GetCursorPos(&tmp);
+	ScreenToClient(hwnd, &tmp);
+
+	return { (float)tmp.x, (float)tmp.y };
 }
 

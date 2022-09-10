@@ -29,9 +29,9 @@ void SceneManager::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audi
 	this->audio = audio;
 
 	// ç≈èâÇÃÉVÅ[Éì
-	nowScene = new TitleScene();
+	//nowScene = new TitleScene();
 	//nowScene = new SelectScene();
-	//nowScene = new GameScene();
+	nowScene = new GameScene();
 	//nowScene = new EndScene();
 	//nowScene = new TestScene();
 

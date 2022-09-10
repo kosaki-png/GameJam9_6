@@ -6,6 +6,8 @@
 #include "BaseScene.h"
 #include "BaseWave.h"
 
+#include "OptionGS.h"
+
 class GameScene :
 	public BaseScene
 {
@@ -20,8 +22,6 @@ public:
 	void Draw() override;
 
 private:
-	bool option = false;
-
 	// 地面
 	Object3d* objGround = nullptr;
 	Model* modelGround = nullptr;
@@ -33,6 +33,9 @@ private:
 	// クロスヘア
 	Sprite* cross = nullptr;
 	float sensi = 0;
+
+	// オプション用
+	OptionGS* option = nullptr;
 
 	// ウェーブ
 	BaseWave* wave = nullptr;

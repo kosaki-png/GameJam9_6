@@ -116,4 +116,6 @@ public:
 	///</summary>
 	///<param name="Rect">短形</param>
 	static bool IsCollidingDistance(Rect rect_a, Rect rect_b);
+
+	static bool CheckPoint2Box(XMFLOAT2 pointPos, XMFLOAT2 boxPos, XMFLOAT2 size);
 };

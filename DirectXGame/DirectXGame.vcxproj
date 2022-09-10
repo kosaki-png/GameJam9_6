@@ -94,6 +94,7 @@
     <ClCompile Include="3d\ParticleManager.cpp" />
     <ClCompile Include="audio\Audio.cpp" />
     <ClCompile Include="manager\SceneManager.cpp" />
+    <ClCompile Include="scene\OptionGS.cpp" />
     <ClCompile Include="target\MoveTarget.cpp" />
     <ClCompile Include="wave\FollowWave.cpp" />
     <ClCompile Include="scene\TestScene.cpp" />
@@ -209,6 +210,7 @@
     <ClInclude Include="3d\ParticleManager.h" />
     <ClInclude Include="audio\Audio.h" />
     <ClInclude Include="manager\SceneManager.h" />
+    <ClInclude Include="scene\OptionGS.h" />
     <ClInclude Include="target\MoveTarget.h" />
     <ClInclude Include="wave\FollowWave.h" />
     <ClInclude Include="scene\TestScene.h" />

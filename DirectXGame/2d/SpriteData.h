@@ -16,9 +16,11 @@ static const int CROSS = 22;
 static const int UI_SCORE = 23;
 static const int UI_FONT_1 = 24;
 static const int UI_FONT_2 = 25;
+static const int OPTION_BASE = 26;
+static const int OPTION_BAR = 27;
 
 // ƒGƒ“ƒh—p
-static const int END = 31;
+static const int END = 41;
 
 class SpriteData
 {

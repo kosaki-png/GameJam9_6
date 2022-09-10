@@ -17,6 +17,8 @@ void SpriteData::LoadTexture()
 	Sprite::LoadTexture(UI_SCORE,	L"Resources/Texture/ui_01.png");
 	Sprite::LoadTexture(UI_FONT_1,	L"Resources/Texture/font_sharp.png");
 	Sprite::LoadTexture(UI_FONT_2,	L"Resources/Texture/font_cursive.png");
+	Sprite::LoadTexture(OPTION_BASE, L"Resources/Texture/option_base.png");
+	Sprite::LoadTexture(OPTION_BAR, L"Resources/Texture/option_bar.png");
 
 	// ÉGÉìÉhì«Ç›çûÇ›
 	Sprite::LoadTexture(END,		L"Resources/Texture/end.png");

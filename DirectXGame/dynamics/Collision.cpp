@@ -344,3 +344,14 @@ bool Collision::IsCollidingDistance(Rect rect_a, Rect rect_b)
 
 	return false;
 }
+
+bool Collision::CheckPoint2Box(XMFLOAT2 pointPos, XMFLOAT2 boxPos, XMFLOAT2 size)
+{
+	if (pointPos.x > boxPos.x && pointPos.x < boxPos.x + size.x &&
+		pointPos.y > boxPos.y && pointPos.y < boxPos.y + size.y)
+	{
+		return true;
+	}
+
+	return false;
+}
