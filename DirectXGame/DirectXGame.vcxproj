@@ -46,11 +46,11 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <LibraryPath>$(LibraryPath)</LibraryPath>
-    <IncludePath>$(ProjectDir);$(ProjectDir)3d\;$(ProjectDir)2d\;$(ProjectDir)camera\;$(ProjectDir)base\;$(ProjectDir)input\;$(ProjectDir)audio\;$(ProjectDir)scene\;$(ProjectDir)dynamics\;$(ProjectDir)xinput\;$(ProjectDir)player\;$(ProjectDir)shader\;$(ProjectDir)target;$(ProjectDir)ui;$(ProjectDir)wave;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir);$(ProjectDir)3d\;$(ProjectDir)2d\;$(ProjectDir)camera\;$(ProjectDir)base\;$(ProjectDir)input\;$(ProjectDir)audio\;$(ProjectDir)scene\;$(ProjectDir)dynamics\;$(ProjectDir)xinput\;$(ProjectDir)player\;$(ProjectDir)shader\;$(ProjectDir)target;$(ProjectDir)ui;$(ProjectDir)wave;$(ProjectDir)manager;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir);$(ProjectDir)3d\;$(ProjectDir)2d\;$(ProjectDir)camera\;$(ProjectDir)base\;$(ProjectDir)input\;$(ProjectDir)audio\;$(ProjectDir)scene\;$(ProjectDir)dynamics\;$(ProjectDir)xinput\;$(ProjectDir)player\;$(ProjectDir)shader\;$(ProjectDir)target;$(ProjectDir)ui;$(ProjectDir)wave;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir);$(ProjectDir)3d\;$(ProjectDir)2d\;$(ProjectDir)camera\;$(ProjectDir)base\;$(ProjectDir)input\;$(ProjectDir)audio\;$(ProjectDir)scene\;$(ProjectDir)dynamics\;$(ProjectDir)xinput\;$(ProjectDir)player\;$(ProjectDir)shader\;$(ProjectDir)target;$(ProjectDir)ui;$(ProjectDir)wave;$(ProjectDir)manager;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -93,6 +93,7 @@
     <ClCompile Include="3d\Object3d.cpp" />
     <ClCompile Include="3d\ParticleManager.cpp" />
     <ClCompile Include="audio\Audio.cpp" />
+    <ClCompile Include="manager\SceneManager.cpp" />
     <ClCompile Include="target\MoveTarget.cpp" />
     <ClCompile Include="wave\FollowWave.cpp" />
     <ClCompile Include="scene\TestScene.cpp" />
@@ -109,7 +110,6 @@
     <ClCompile Include="dynamics\CollisionPrimitive.cpp" />
     <ClCompile Include="scene\EndScene.cpp" />
     <ClCompile Include="base\FlameRate.cpp" />
-    <ClCompile Include="3d\ObjManager.cpp" />
     <ClCompile Include="scene\GameScene.cpp" />
     <ClCompile Include="input\Input.cpp" />
     <ClCompile Include="main.cpp" />
@@ -208,6 +208,7 @@
     <ClInclude Include="3d\Object3d.h" />
     <ClInclude Include="3d\ParticleManager.h" />
     <ClInclude Include="audio\Audio.h" />
+    <ClInclude Include="manager\SceneManager.h" />
     <ClInclude Include="target\MoveTarget.h" />
     <ClInclude Include="wave\FollowWave.h" />
     <ClInclude Include="scene\TestScene.h" />
@@ -225,7 +226,6 @@
     <ClInclude Include="dynamics\CollisionPrimitive.h" />
     <ClInclude Include="scene\EndScene.h" />
     <ClInclude Include="base\FlameRate.h" />
-    <ClInclude Include="3d\ObjManager.h" />
     <ClInclude Include="scene\GameScene.h" />
     <ClInclude Include="input\Input.h" />
     <ClInclude Include="base\WinApp.h" />

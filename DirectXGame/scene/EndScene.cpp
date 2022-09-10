@@ -1,7 +1,9 @@
 #include "EndScene.h"
 #include "TitleScene.h"
-#include"SelectScene.h"
+#include "SelectScene.h"
 #include "GameScene.h"
+
+#include "DebugCamera.h"
 
 #include <cassert>
 #include <sstream>
@@ -41,28 +43,31 @@ void EndScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 		Object3d::SetLightGroup(lightGroup);
 	}
 
-	// スプライト用テクスチャ読み込み
-	{
-	}
-
-	// スプライト生成
-	{
-	}
-
 	// スプライト初期設定
 	{
+		// スプライト生成
+		{
+			tmpSprite = Sprite::Create(END, { 0,0 });
+		}
+
+		// スプライト初期設定
+		{
+		}
 	}
 
-	// モデル読み込み
+	// 3Dオブジェクト初期設定
 	{
-	}
+		// モデル読み込み
+		{
+		}
 
-	// 3Dオブジェクト生成
-	{
-	}
+		// 3Dオブジェクト生成
+		{
+		}
 
-	// 3Dオブジェクト初期位置設定
-	{
+		// 3Dオブジェクト初期設定
+		{
+		}
 	}
 
 	// カメラ注視点をセット
@@ -76,7 +81,7 @@ void EndScene::Update()
 	if (input->TriggerKey(DIK_RETURN))
 	{
 		// タイトルシーンへ
-		nextScene = new GameScene();
+		nextScene = new TitleScene();
 	}
 
 	// ESCAPEでゲーム終了
@@ -106,7 +111,7 @@ void EndScene::Draw()
 		// 背景スプライト描画前処理
 		Sprite::PreDraw(cmdList);
 		{
-
+			tmpSprite->Draw();
 		}
 		Sprite::PostDraw();
 

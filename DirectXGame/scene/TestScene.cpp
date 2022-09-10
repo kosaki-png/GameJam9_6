@@ -31,8 +31,6 @@ void TestScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 	// nullptrチェック
 	BaseScene::Initialize(dxCommon, input, audio);
 
-	audio->Stop();
-
 	// 汎用的初期化
 	{
 		// カメラ生成
@@ -49,20 +47,16 @@ void TestScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 		lightGroup = LightGroup::Create();
 		// 3Dオブエクトにライトをセット
 		Object3d::SetLightGroup(lightGroup);
+
+		audio->Stop();
 	}
 
 	// スプライト初期設定
 	{
-		// スプライト用テクスチャ読み込み
-		{
-			//Sprite::LoadTexture(1, L"Resources/Title1.png");
-			Sprite::LoadTexture(10, L"Resources/centerDot.png");
-		}
-
 		// スプライト生成
 		{
 			//title1 = Sprite::Create(1, { 0, 0 });
-			cross = Sprite::Create(10, { centerX, centerY });
+			cross = Sprite::Create(CROSS, { centerX, centerY });
 			cross->SetAnchorPoint({ 0.5f, 0.5f });
 			cross->SetSize({ 16, 16 });
 		}
@@ -103,7 +97,6 @@ void TestScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 
 	// カーソルを消す
 	ShowCursor(false);
-
 }
 
 void TestScene::Update()

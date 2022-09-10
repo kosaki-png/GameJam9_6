@@ -31,7 +31,6 @@
     <ClCompile Include="dynamics\CollisionPrimitive.cpp" />
     <ClCompile Include="scene\EndScene.cpp" />
     <ClCompile Include="base\FlameRate.cpp" />
-    <ClCompile Include="3d\ObjManager.cpp" />
     <ClCompile Include="scene\GameScene.cpp" />
     <ClCompile Include="input\Input.cpp" />
     <ClCompile Include="main.cpp" />
@@ -51,6 +50,7 @@
     <ClCompile Include="wave\FollowWave.cpp" />
     <ClCompile Include="target\MoveTarget.cpp" />
     <ClCompile Include="2d\SpriteData.cpp" />
+    <ClCompile Include="manager\SceneManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="2d\Sprite.h" />
@@ -77,7 +77,6 @@
     <ClInclude Include="dynamics\CollisionPrimitive.h" />
     <ClInclude Include="scene\EndScene.h" />
     <ClInclude Include="base\FlameRate.h" />
-    <ClInclude Include="3d\ObjManager.h" />
     <ClInclude Include="scene\GameScene.h" />
     <ClInclude Include="input\Input.h" />
     <ClInclude Include="base\WinApp.h" />
@@ -96,6 +95,7 @@
     <ClInclude Include="wave\FollowWave.h" />
     <ClInclude Include="target\MoveTarget.h" />
     <ClInclude Include="2d\SpriteData.h" />
+    <ClInclude Include="manager\SceneManager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="shader\OBJShaderHeader.hlsli" />

@@ -2,6 +2,8 @@
 #include "SelectScene.h"
 #include "GameScene.h"
 
+#include "DebugCamera.h"
+
 #include <cassert>
 #include <sstream>
 #include <iomanip>
@@ -40,12 +42,9 @@ void SelectScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio
 
 	// スプライト初期設定
 	{
-		// スプライト用テクスチャ読み込み
-		{
-		}
-
 		// スプライト生成
 		{
+			tmpSprite = Sprite::Create(SELECT, { 0,0 });
 		}
 
 		// スプライトのサイズ変更
@@ -68,7 +67,6 @@ void SelectScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio
 
 void SelectScene::Update()
 {
-	// シーン移行
 	// Enterで指定のシーンへ
 	if (input->TriggerKey(DIK_RETURN))
 	{	
@@ -76,13 +74,13 @@ void SelectScene::Update()
 		nextScene = new GameScene();
 	}
 
-	lightGroup->Update();
-	camera->Update();
-
 	// 3Dオブジェクト更新
 	{}
 	// 各クラスの更新
-	{}
+	{
+		lightGroup->Update();
+		camera->Update();
+	}
 }
 
 void SelectScene::Draw()
@@ -95,7 +93,7 @@ void SelectScene::Draw()
 		// 背景スプライト描画前処理
 		Sprite::PreDraw(cmdList);
 		{
-
+			tmpSprite->Draw();
 		}
 		Sprite::PostDraw();
 		// 深度バッファクリア
