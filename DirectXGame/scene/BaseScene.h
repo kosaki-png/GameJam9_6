@@ -52,6 +52,8 @@ protected:
 
 	LightGroup* lightGroup = nullptr;
 	float ambientColor0[3] = { 1,1,1 };
+	float ambientColor1[3] = { 1,1,1 };
+	float ambientColor2[3] = { 1,1,1 };
 
 	float centerX = 1920 / 2;
 	float centerY = 1080 / 2;

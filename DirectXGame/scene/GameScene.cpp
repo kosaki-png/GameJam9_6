@@ -69,18 +69,22 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 	{
 		// モデル読み込み
 		{
-			modelGround = Model::CreateFromOBJ("ground");
+			modelGround = Model::CreateFromOBJ("field");
+			modelSky = Model::CreateFromOBJ("skydome", true);
 		}
 
 		// 3Dオブジェクト生成
 		{
 			objGround = Object3d::Create(modelGround);
+			objSky = Object3d::Create(modelSky);
 		}
 
 		// 3Dオブジェクト初期設定
 		{
 			objGround->Initialize();
 			objGround->SetPosition({ 0,-5, 0 });
+
+			objSky->SetScale({ 2,2,2 });
 		}
 	}
 
@@ -176,6 +180,7 @@ void GameScene::Update()
 		// 3Dオブジェクト更新
 		{
 			objGround->Update();
+			objSky->Update();
 		}
 
 		// 各クラス更新
@@ -213,6 +218,7 @@ void GameScene::Draw()
 		Object3d::PreDraw(cmdList);
 		{
 			objGround->Draw();
+			objSky->Draw();
 
 			wave->Draw();
 		}
