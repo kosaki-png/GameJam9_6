@@ -1,6 +1,7 @@
 #pragma once
 #include "ParticleManager.h"
 #include "CollisionPrimitive.h"
+#include "object3d.h"
 
 #include "BaseScene.h"
 
@@ -18,5 +19,11 @@ public:
 	void Draw() override;
 
 private:
-	
+	// ’n–Ê
+	Object3d* objGround = nullptr;
+	Model* modelGround = nullptr;
+	// “V‹…
+	Object3d* objSky = nullptr;
+	Model* modelSky = nullptr;
+	DirectX::XMFLOAT3 rot = { 0,0,0 };
 };

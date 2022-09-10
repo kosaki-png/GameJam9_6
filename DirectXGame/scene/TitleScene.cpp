@@ -17,6 +17,10 @@ TitleScene::TitleScene()
 
 TitleScene::~TitleScene()
 {
+	delete objGround;
+	delete objSky;
+	delete modelGround;
+	delete modelSky;
 }
 
 void TitleScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
@@ -28,7 +32,7 @@ void TitleScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 	{
 		// カメラ生成
 		camera = new FreeCamera(WinApp::window_width, WinApp::window_height);
-		camera->SetInput(input);
+		//camera->SetInput(input);
 
 		// 3Dオブジェクトにカメラをセット
 		Object3d::SetCamera(camera);
@@ -60,17 +64,21 @@ void TitleScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 	{
 		// モデル読み込み
 		{
-			
+			modelGround = Model::CreateFromOBJ("field");
+			modelSky = Model::CreateFromOBJ("skydome", true);
 		}
 
 		// 3Dオブジェクト生成
 		{
-			
+			objGround = Object3d::Create(modelGround);
+			objSky = Object3d::Create(modelSky);
 		}
 
 		// 3Dオブジェクト初期設定
 		{
-			
+			objGround->Initialize();
+			objGround->SetPosition({ 0,-5, 0 });
+			objSky->SetScale({ 2,2,2 });
 		}
 	}
 
@@ -94,12 +102,20 @@ void TitleScene::Update()
 
 	// 3Dオブジェクト更新
 	{
-
+		objGround->Update();
+		objSky->Update();
 	}
 
 	// 各クラス更新
 	{
 		lightGroup->Update();
+		//static float alpha;
+		//static float sinAlpha;
+		//alpha += 0.01f;
+		//sinAlpha = sinf(alpha);
+		//tmpSprite->SetAlpha(sinAlpha);
+		rot.x += 0.1f;
+		camera->SetRotation(rot);
 		camera->Update();
 	}
 }
@@ -114,7 +130,7 @@ void TitleScene::Draw()
 		// 背景スプライト
 		Sprite::PreDraw(cmdList);
 		{
-			tmpSprite->Draw();
+		
 		}
 		Sprite::PostDraw();
 
@@ -127,7 +143,8 @@ void TitleScene::Draw()
 		// 3Dオブジェクトの描画
 		Object3d::PreDraw(cmdList);
 		{
-
+			objGround->Draw();
+			objSky->Draw();
 		}
 		Object3d::PostDraw();
 	}
@@ -137,7 +154,7 @@ void TitleScene::Draw()
 		// 前景スプライト描画前処理
 		Sprite::PreDraw(cmdList);
 		{
-
+			tmpSprite->Draw();
 
 			// デバッグテキストの描画
 			text->DrawAll(cmdList);

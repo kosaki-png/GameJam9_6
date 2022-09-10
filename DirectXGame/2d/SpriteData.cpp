@@ -6,7 +6,7 @@ void SpriteData::LoadTexture()
 	Sprite::LoadTexture(TEXT_FONT,	L"Resources/Texture/font_sharp.png");
 
 	// タイトル読み込み
-	Sprite::LoadTexture(TITLE,		L"Resources/Texture/title.png");
+	Sprite::LoadTexture(TITLE,		L"Resources/Texture/title_01.png");
 
 	// セレクト読み込み
 	Sprite::LoadTexture(SELECT,		L"Resources/Texture/select.png");
