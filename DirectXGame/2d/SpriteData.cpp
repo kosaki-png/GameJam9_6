@@ -22,4 +22,7 @@ void SpriteData::LoadTexture()
 
 	// エンド読み込み
 	Sprite::LoadTexture(END,		L"Resources/Texture/end.png");
+
+	// トランジション読み込み
+	Sprite::LoadTexture(BLACK,		L"Resources/Texture/black_64x64.png");
 }

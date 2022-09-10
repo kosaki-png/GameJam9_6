@@ -1,5 +1,6 @@
 #pragma once
 #include "BaseScene.h"
+#include "BaseTransition.h"
 
 class SceneManager
 {
@@ -29,4 +30,6 @@ private:
 	DirectXCommon* dxCommon = nullptr;
 	Input* input = nullptr;
 	Audio* audio = nullptr;
+
+	BaseTransition* transition = nullptr;
 };

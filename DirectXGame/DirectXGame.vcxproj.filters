@@ -52,6 +52,8 @@
     <ClCompile Include="2d\SpriteData.cpp" />
     <ClCompile Include="manager\SceneManager.cpp" />
     <ClCompile Include="scene\OptionGS.cpp" />
+    <ClCompile Include="transition\BaseTransition.cpp" />
+    <ClCompile Include="transition\BlackOut.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="2d\Sprite.h" />
@@ -98,6 +100,8 @@
     <ClInclude Include="2d\SpriteData.h" />
     <ClInclude Include="manager\SceneManager.h" />
     <ClInclude Include="scene\OptionGS.h" />
+    <ClInclude Include="transition\BaseTransition.h" />
+    <ClInclude Include="transition\BlackOut.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="shader\OBJShaderHeader.hlsli" />

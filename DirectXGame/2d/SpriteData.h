@@ -22,6 +22,9 @@ static const int OPTION_BAR = 27;
 // エンド用
 static const int END = 41;
 
+// トランジション用
+static const int BLACK = 51;
+
 class SpriteData
 {
 public:
