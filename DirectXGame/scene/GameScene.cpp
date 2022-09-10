@@ -22,6 +22,8 @@ GameScene::~GameScene()
 	delete cross;
 	delete modelGround;
 	delete objGround;
+	delete modelSky;
+	delete objSky;
 	delete wave;
 }
 
