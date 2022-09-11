@@ -109,11 +109,6 @@ void TitleScene::Update()
 	// 各クラス更新
 	{
 		lightGroup->Update();
-		//static float alpha;
-		//static float sinAlpha;
-		//alpha += 0.01f;
-		//sinAlpha = sinf(alpha);
-		//tmpSprite->SetAlpha(sinAlpha);
 		rot.x += 0.1f;
 		camera->SetRotation(rot);
 		camera->Update();

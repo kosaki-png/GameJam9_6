@@ -226,7 +226,7 @@ void GameScene::Draw()
 			wave->CountDownDraw();
 
 			// オプション画面
-			option->Draw();
+			option->Draw(cmdList);
 
 			// デバッグテキストの描画
 			text->DrawAll(cmdList);

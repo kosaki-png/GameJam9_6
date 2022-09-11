@@ -12,6 +12,9 @@ OptionGS::OptionGS(Input* input, Camera* camera, Audio* audio)
 OptionGS::~OptionGS()
 {
 	delete option_base;
+	delete fovTex;
+	delete sensiTex;
+
 	for (int i = 0; i < 3; i++)
 	{
 		delete option_bar[i];
@@ -28,6 +31,16 @@ void OptionGS::Initialize()
 			option_bar[i] = Sprite::Create(OPTION_BAR, { 0,0 });
 			option_bar[i]->SetPosition({800.0f, 350.0f + i * 150.0f - 5});
 		}
+
+		fovTex = new Score();
+		fovTex->Initialize(UI_FONT_1);
+		fovTex->SetPos(600,450);
+		fovTex->SetSize(0.8f);
+
+		sensiTex = new Score();
+		sensiTex->Initialize(UI_FONT_1);
+		sensiTex->SetPos(600,300);
+		fovTex->SetSize(0.8f);
 
 		// 感度取得
 		sensi = camera->GetSensi();
@@ -91,16 +104,16 @@ void OptionGS::Update()
 	{
 		// マウス感度	中心約(600 * 400)
 		sensi;
-
+		sensiTex->Printf("%.2f", sensi);
 		// 視野角		中心約(600 * 550)
 		fov;
-
+		fovTex->Printf("%.1f", fov);
 		// SE音量		中心約(600 * 700)
 
 	}
 }
 
-void OptionGS::Draw()
+void OptionGS::Draw(ID3D12GraphicsCommandList* cmdList)
 {
 	if (isOption)
 	{
@@ -111,6 +124,9 @@ void OptionGS::Draw()
 			option_bar[i]->Draw();
 		}
 	}
+
+	fovTex->DrawAll(cmdList);
+	sensiTex->DrawAll(cmdList);
 }
 
 void OptionGS::ChangeIsOption()

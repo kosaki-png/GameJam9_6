@@ -3,6 +3,7 @@
 #include "Input.h"
 #include "Audio.h"
 #include "Sprite.h"
+#include "Score.h"
 #include <array>
 
 class OptionGS
@@ -13,7 +14,7 @@ public:
 
 	void Initialize();
 	void Update();
-	void Draw();
+	void Draw(ID3D12GraphicsCommandList* cmdList);
 
 	void ChangeIsOption();
 	bool GetIsOption() { return isOption; }
@@ -35,8 +36,10 @@ private:
 	float fov = 0;
 	float sensi = 0;
 
+	Score* fovTex;
+	Score* sensiTex;
+
 	// Žw’è—p
 	DirectX::XMFLOAT2 mousePos;
 
 };
-

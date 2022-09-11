@@ -48,6 +48,11 @@ void FlickWave::Update()
 			ray.dir = XMVectorSet(tmp.x, tmp.y, tmp.z, 1.0f);
 		}
 
+		if (input->TriggerMouseLeft())
+		{
+			ui->AddTargets();
+		}
+
 		// ‘S‚Ä‚Ì“I‚É“–‚½‚Á‚Ä‚¢‚é‚©
 		bool allColl = false;
 		// “I‚²‚Æ‚É“–‚½‚è”»’è
