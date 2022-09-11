@@ -24,4 +24,10 @@ void BaseScene::Initialize(DirectXCommon * dxCommon, Input * input, Audio* audio
 	this->dxCommon = dxCommon;
 	this->input = input;
 	this->audio = audio;
+
+	// ƒ‚ƒfƒ‹ˆê——Š“¾
+	modelMng = ModelManager::GetInstance();
+
+	int a = 0;
+	a++;
 }

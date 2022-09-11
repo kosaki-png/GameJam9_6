@@ -5,7 +5,7 @@ class EasyWave :
     public BaseWave
 {
 public:
-    EasyWave();
+    EasyWave(Level level);
     ~EasyWave();
 
     void Initialize(Input* input, Camera* camera) override;

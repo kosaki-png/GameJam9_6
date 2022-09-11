@@ -24,7 +24,6 @@ private:
 
 	// 地面
 	Object3d* objGround = nullptr;
-	Model* modelGround = nullptr;
 
 	// クロスヘア
 	Sprite* cross = nullptr;

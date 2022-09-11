@@ -1,4 +1,5 @@
 #include "BaseTarget.h"
+#include "ModelManager.h"
 
 BaseTarget::BaseTarget()
 {
@@ -7,15 +8,13 @@ BaseTarget::BaseTarget()
 BaseTarget::~BaseTarget()
 {
 	safe_delete(obj);
-	safe_delete(model);
 }
 
 //‰Šú‰»
 void BaseTarget::Initialize(std::string modelName, XMFLOAT3 pos,XMFLOAT3 vel, float radius)
 {
 	//object3DŠÖ˜A‰Šú‰»
-	model = Model::CreateFromOBJ(modelName, true);
-	obj = Object3d::Create(model);
+	obj = Object3d::Create(ModelManager::GetInstance()->GetModel(SPHERE));
 	obj->SetPosition(pos);
 
 	position = pos;
@@ -34,7 +33,9 @@ void BaseTarget::Update()
 	sphere.center = DirectX::XMVectorSet(position.x, position.y, position.z, 0);
 
 	obj->SetPosition(position);
-	//obj->SetRotation(rotation);
+	obj->SetScale(scale);
+
+	sphere.radius = scale.x / 2;
 	
 	//Object3DXV
 	obj->Update();

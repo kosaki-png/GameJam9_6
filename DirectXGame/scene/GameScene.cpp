@@ -20,9 +20,7 @@ GameScene::GameScene()
 GameScene::~GameScene()
 {
 	delete cross;
-	delete modelGround;
 	delete objGround;
-	delete modelSky;
 	delete objSky;
 	delete wave;
 	delete option;
@@ -39,7 +37,7 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 	{
 		// カメラ生成
 		camera = new FreeCamera(WinApp::window_width, WinApp::window_height);
-		camera->SetInput(input);
+		//camera->SetInput(input);
 
 		// 3Dオブジェクトにカメラをセット
 		Object3d::SetCamera(camera);
@@ -70,21 +68,15 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 
 	// 3Dオブジェクト初期設定
 	{
-		// モデル読み込み
-		{
-			modelGround = Model::CreateFromOBJ("field");
-			modelSky = Model::CreateFromOBJ("skydome", true);
-		}
-
 		// 3Dオブジェクト生成
 		{
-			objGround = Object3d::Create(modelGround);
-			objSky = Object3d::Create(modelSky);
+			objGround = Object3d::Create(modelMng->GetModel(FIELD));
+			objSky = Object3d::Create(modelMng->GetModel(SKYDOME));
 		}
 
 		// 3Dオブジェクト初期設定
 		{
-			objGround->Initialize();
+			//objGround->Initialize();
 			objGround->SetPosition({ 0,-5, 0 });
 
 			objSky->SetScale({ 2,2,2 });
@@ -97,7 +89,8 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 		sensi = camera->GetSensi();
 
 		// ウェーブの初期化
-		wave = new FlickWave();
+		Level level = normal;
+		wave = new FlickWave(level);
 		wave->Initialize(input, camera);
 
 		// オプションの初期化

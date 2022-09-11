@@ -3,12 +3,16 @@
 
 using namespace DirectX;
 
-BaseWave::BaseWave()
+BaseWave::BaseWave(Level level)
+	: level(level)
 {
 }
 
 BaseWave::~BaseWave()
 {
+	delete base;
+	delete click;
+	delete start;
 }
 
 void BaseWave::Initialize(Input* input, Camera* camera)

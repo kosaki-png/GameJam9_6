@@ -2,7 +2,8 @@
 
 using namespace DirectX;
 
-FlickWave::FlickWave()
+FlickWave::FlickWave(Level level)
+	: BaseWave::BaseWave(level)
 {
 }
 
@@ -25,12 +26,19 @@ void FlickWave::Initialize(Input* input, Camera* camera)
 	{
 		for (int i = 0; i < TARGET_AMOUNT; i++)
 		{
+			// ターゲット生成
 			targets[i] = new BaseTarget();
 			targets[i]->Initialize("sphere");
+
+			// 難易度に応じて大きさ変更
+			float scale = 1.0f - 0.3f * level;
+			targets[i]->SetScale({ scale, scale , scale });
 		}
 
+		// 全て生成してから位置リセット
 		for (int i = 0; i < TARGET_AMOUNT; i++)
 		{
+			// 初期位置セット
 			targets[i]->SetPosition(ResetPos());
 		}
 	}

@@ -218,6 +218,6 @@ protected: // メンバ変数
 	const float PI = 3.141592653589;
 
 	float sensi = 1.0f;
-	float fov = 60.0f;
+	float fov = 90.0f;
 };
 

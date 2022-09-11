@@ -11,6 +11,14 @@
 #include <array>
 #include "BaseTarget.h"
 
+enum Level
+{
+	easy	= 0,
+	normal	= 1,
+	hard	= 2,
+	hell	= 3
+};
+
 class BaseWave
 {
 public:
@@ -24,7 +32,7 @@ public:
 	using XMMATRIX = DirectX::XMMATRIX;
 
 public:
-	BaseWave();
+	BaseWave(Level level);
 	virtual ~BaseWave();
 
 	virtual void Initialize(Input* input, Camera* camera);
@@ -55,6 +63,9 @@ public:
 	bool GetClearFlag() { return clearFlag; }
 
 protected:
+	// 現在のレベル
+	Level level;
+
 	// キー入力
 	Input* input;
 
@@ -77,6 +88,6 @@ protected:
 	bool isCount = true;	// カウントダウンをしているか
 	bool isStart = false;	// スタートしているか
 
-	float time = 5.0f;		// 開始までの時間
+	float time = 4.0f;		// 開始までの時間
 };
 

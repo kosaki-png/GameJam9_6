@@ -7,6 +7,7 @@
 #include "3d/Object3d.h"
 
 #include "SceneManager.h"
+#include "ModelManager.h"
 
 // Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
@@ -61,6 +62,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	// デバッグテキスト初期化
 	Text::GetInstance()->Initialize(TEXT_FONT);
 
+	// モデル読み込み
+	ModelManager::GetInstance()->LoadModel();
+
 #pragma endregion
 
 	// シーンの初期化
@@ -93,6 +97,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
 	// 各種解放
 	sceneMng->Destroy();
+	ModelManager::GetInstance()->Destroy();
 	safe_delete(audio);
 	safe_delete(dxCommon);
 	safe_delete(flamerate);
