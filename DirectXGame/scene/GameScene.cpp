@@ -97,7 +97,8 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 		sensi = camera->GetSensi();
 
 		// ウェーブの初期化
-		wave = new FlickWave();
+		Level level = hell;
+		wave = new FlickWave(level);
 		wave->Initialize(input, camera);
 
 		// オプションの初期化

@@ -34,7 +34,9 @@ void BaseTarget::Update()
 	sphere.center = DirectX::XMVectorSet(position.x, position.y, position.z, 0);
 
 	obj->SetPosition(position);
-	//obj->SetRotation(rotation);
+	obj->SetScale(scale);
+
+	sphere.radius = scale.x;
 	
 	//Object3DXV
 	obj->Update();

@@ -44,7 +44,7 @@ void BlackOut::Update()
 			if (alpha < 1.0f)
 			{
 				// ‚¾‚ñ‚¾‚ñ”Z‚­
-				alpha += 0.01f;
+				alpha += 0.03f;
 			}
 			else
 			{
@@ -58,7 +58,7 @@ void BlackOut::Update()
 			if (alpha > 0.0f)
 			{
 				// ‚¾‚ñ‚¾‚ñ”–‚­
-				alpha -= 0.01f;
+				alpha -= 0.03f;
 			}
 			else
 			{

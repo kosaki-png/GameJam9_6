@@ -11,6 +11,14 @@
 #include <array>
 #include "BaseTarget.h"
 
+enum Level
+{
+	easy	= 0,
+	normal	= 1,
+	hard	= 2,
+	hell	= 3
+};
+
 class BaseWave
 {
 public:
@@ -24,7 +32,7 @@ public:
 	using XMMATRIX = DirectX::XMMATRIX;
 
 public:
-	BaseWave();
+	BaseWave(Level level);
 	virtual ~BaseWave();
 
 	virtual void Initialize(Input* input, Camera* camera);
@@ -55,6 +63,9 @@ public:
 	bool GetClearFlag() { return clearFlag; }
 
 protected:
+	// Œ»İ‚ÌƒŒƒxƒ‹
+	Level level;
+
 	// ƒL[“ü—Í
 	Input* input;
 

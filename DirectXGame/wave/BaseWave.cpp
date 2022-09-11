@@ -3,7 +3,8 @@
 
 using namespace DirectX;
 
-BaseWave::BaseWave()
+BaseWave::BaseWave(Level level)
+	: level(level)
 {
 }
 

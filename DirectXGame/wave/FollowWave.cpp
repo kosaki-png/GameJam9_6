@@ -2,7 +2,8 @@
 
 using namespace DirectX;
 
-FollowWave::FollowWave()
+FollowWave::FollowWave(Level level)
+	: BaseWave::BaseWave(level)
 {
 }
 
