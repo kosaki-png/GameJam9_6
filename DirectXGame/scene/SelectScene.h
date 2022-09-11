@@ -18,6 +18,6 @@ public:
 	void Draw() override;
 
 private:
-	Object3d* modeField = nullptr;
-
+	Object3d* objField = nullptr;
+	Object3d* objSky = nullptr;
 };

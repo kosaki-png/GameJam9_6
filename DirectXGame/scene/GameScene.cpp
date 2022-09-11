@@ -76,7 +76,7 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 
 		// 3Dオブジェクト初期設定
 		{
-			objGround->Initialize();
+			//objGround->Initialize();
 			objGround->SetPosition({ 0,-5, 0 });
 
 			objSky->SetScale({ 2,2,2 });

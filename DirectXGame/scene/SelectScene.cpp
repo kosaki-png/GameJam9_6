@@ -2,7 +2,7 @@
 #include "SelectScene.h"
 #include "GameScene.h"
 
-#include "DebugCamera.h"
+#include "FreeCamera.h"
 
 #include <cassert>
 #include <sstream>
@@ -16,6 +16,8 @@ SelectScene::SelectScene()
 
 SelectScene::~SelectScene()
 {
+	delete objField;
+	delete objSky;
 }
 
 void SelectScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
@@ -26,7 +28,8 @@ void SelectScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio
 	// 汎用的初期化
 	{
 		// カメラ生成
-		camera = new DebugCamera(WinApp::window_width, WinApp::window_height, input);
+		camera = new FreeCamera(WinApp::window_width, WinApp::window_height);
+		camera->SetInput(input);
 
 		// 3Dオブジェクトにカメラをセット
 		Object3d::SetCamera(camera);
@@ -47,13 +50,23 @@ void SelectScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio
 			tmpSprite = Sprite::Create(SELECT, { 0,0 });
 		}
 
-		// スプライトのサイズ変更
+		// スプライトの初期設定
 		{
 		}
 	}
 
 	// 3Dオブジェクト初期設定
 	{
+		// オブジェクト生成
+		{
+			objField = Object3d::Create(modelMng->GetModel(FIELD));
+			objSky = Object3d::Create(modelMng->GetModel(SKYDOME));
+		}
+		// オブジェクト初期設定
+		{
+			objField->SetPosition({ 0, -5, 0 });
+			objSky->SetScale({ 2,2,2 });
+		}
 	}
 
 	// カメラ注視点をセット
@@ -75,7 +88,10 @@ void SelectScene::Update()
 	}
 
 	// 3Dオブジェクト更新
-	{}
+	{
+		objField->Update();
+		objSky->Update();
+	}
 	// 各クラスの更新
 	{
 		lightGroup->Update();
@@ -93,7 +109,7 @@ void SelectScene::Draw()
 		// 背景スプライト描画前処理
 		Sprite::PreDraw(cmdList);
 		{
-			tmpSprite->Draw();
+			//tmpSprite->Draw();
 		}
 		Sprite::PostDraw();
 		// 深度バッファクリア
@@ -105,7 +121,8 @@ void SelectScene::Draw()
 		// 3Dオブジェクトの描画
 		Object3d::PreDraw(cmdList);
 		{
-
+			objField->Draw();
+			objSky->Draw();
 		}
 		Object3d::PostDraw();
 	}

@@ -88,6 +88,6 @@ protected:
 	bool isCount = true;	// カウントダウンをしているか
 	bool isStart = false;	// スタートしているか
 
-	float time = 5.0f;		// 開始までの時間
+	float time = 4.0f;		// 開始までの時間
 };
 

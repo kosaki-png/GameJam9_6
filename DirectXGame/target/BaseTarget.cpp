@@ -35,7 +35,7 @@ void BaseTarget::Update()
 	obj->SetPosition(position);
 	obj->SetScale(scale);
 
-	sphere.radius = scale.x;
+	sphere.radius = scale.x / 2;
 	
 	//Object3DXV
 	obj->Update();
