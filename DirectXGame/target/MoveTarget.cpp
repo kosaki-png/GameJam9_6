@@ -12,7 +12,18 @@ void MoveTarget::Initialize(std::string modelName, XMFLOAT3 pos, XMFLOAT3 vel, f
 
 void MoveTarget::Update()
 {
+	float movetime;
+
+
 	static XMFLOAT3 ease;
+
+	if (ease.x > amplitude.x * 2 + sphere.radius/2)
+	{
+		float num = 1+rand() % 6;
+		velocity.x = num / 100;
+		ease.x = 0;
+	}
+
 	ease.x += velocity.x;
 	ease.y += velocity.y;
 	ease.z += velocity.z;
