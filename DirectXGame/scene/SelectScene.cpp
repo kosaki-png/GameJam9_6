@@ -2,7 +2,7 @@
 #include "SelectScene.h"
 #include "GameScene.h"
 
-#include "FreeCamera.h"
+#include "OrbitCamera.h"
 
 #include <cassert>
 #include <sstream>
@@ -28,7 +28,7 @@ void SelectScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio
 	// 汎用的初期化
 	{
 		// カメラ生成
-		camera = new FreeCamera(WinApp::window_width, WinApp::window_height);
+		camera = new OrbitCamera(WinApp::window_width, WinApp::window_height, {75, 50}, 0.002f);
 		camera->SetInput(input);
 
 		// 3Dオブジェクトにカメラをセット

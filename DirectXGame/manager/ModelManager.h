@@ -5,7 +5,7 @@
 // モデル指定用変数
 static const int FIELD		= 0;	// フィールド
 static const int SPHERE		= 1;	// 球
-static const int SKYDOME	= 10;	// 天球
+static const int SKYDOME	= 2;	// 天球
 
 class ModelManager
 {

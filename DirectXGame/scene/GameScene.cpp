@@ -37,7 +37,7 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 	{
 		// カメラ生成
 		camera = new FreeCamera(WinApp::window_width, WinApp::window_height);
-		camera->SetInput(input);
+		//camera->SetInput(input);
 
 		// 3Dオブジェクトにカメラをセット
 		Object3d::SetCamera(camera);
@@ -89,7 +89,7 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 		sensi = camera->GetSensi();
 
 		// ウェーブの初期化
-		Level level = easy;
+		Level level = normal;
 		wave = new FlickWave(level);
 		wave->Initialize(input, camera);
 

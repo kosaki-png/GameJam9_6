@@ -94,6 +94,7 @@
     <ClCompile Include="3d\Object3d.cpp" />
     <ClCompile Include="3d\ParticleManager.cpp" />
     <ClCompile Include="audio\Audio.cpp" />
+    <ClCompile Include="camera\OrbitCamera.cpp" />
     <ClCompile Include="manager\ModelManager.cpp" />
     <ClCompile Include="base\JsonFileManager.cpp" />
     <ClCompile Include="manager\SceneManager.cpp" />
@@ -214,6 +215,7 @@
     <ClInclude Include="3d\Object3d.h" />
     <ClInclude Include="3d\ParticleManager.h" />
     <ClInclude Include="audio\Audio.h" />
+    <ClInclude Include="camera\OrbitCamera.h" />
     <ClInclude Include="manager\ModelManager.h" />
     <ClInclude Include="base\JsonFileManager.h" />
     <ClInclude Include="base\picojson.h" />
