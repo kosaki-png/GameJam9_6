@@ -8,6 +8,7 @@
 #include "LightGroup.h"
 #include "SpriteData.h"
 #include "SafeDelete.h"
+#include "ModelManager.h"
 
 class BaseScene
 {
@@ -39,6 +40,8 @@ protected:
 	Audio* audio = nullptr;
 
 	BaseScene* nextScene = nullptr;
+
+	ModelManager* modelMng = nullptr;
 
 	Camera* camera = nullptr;
 

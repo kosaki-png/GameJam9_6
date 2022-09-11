@@ -21,7 +21,6 @@ TestScene::TestScene()
 TestScene::~TestScene()
 {
 	delete cross;
-	delete modelGround;
 	delete objGround;
 	delete wave;
 }
@@ -68,14 +67,9 @@ void TestScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 
 	// 3Dオブジェクト初期設定
 	{
-		// モデル読み込み
-		{
-			modelGround = Model::CreateFromOBJ("ground");
-		}
-
 		// 3Dオブジェクト生成
 		{
-			objGround = Object3d::Create(modelGround);
+			objGround = Object3d::Create(modelMng->GetModel(FIELD));
 		}
 
 		// 3Dオブジェクト初期設定

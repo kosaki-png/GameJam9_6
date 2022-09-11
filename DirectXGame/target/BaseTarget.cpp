@@ -1,4 +1,5 @@
 #include "BaseTarget.h"
+#include "ModelManager.h"
 
 BaseTarget::BaseTarget()
 {
@@ -7,15 +8,13 @@ BaseTarget::BaseTarget()
 BaseTarget::~BaseTarget()
 {
 	safe_delete(obj);
-	safe_delete(model);
 }
 
 //‰Šú‰»
 void BaseTarget::Initialize(std::string modelName, XMFLOAT3 pos,XMFLOAT3 vel, float radius)
 {
 	//object3DŠÖ˜A‰Šú‰»
-	model = Model::CreateFromOBJ(modelName, true);
-	obj = Object3d::Create(model);
+	obj = Object3d::Create(ModelManager::GetInstance()->GetModel(SPHERE));
 	obj->SetPosition(pos);
 
 	position = pos;

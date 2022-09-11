@@ -18,5 +18,6 @@ public:
 	void Draw() override;
 
 private:
+	Object3d* modeField = nullptr;
 
 };

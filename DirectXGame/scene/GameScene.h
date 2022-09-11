@@ -24,11 +24,9 @@ public:
 private:
 	// 地面
 	Object3d* objGround = nullptr;
-	Model* modelGround = nullptr;
 
 	// 天球
 	Object3d* objSky = nullptr;
-	Model* modelSky = nullptr;
 
 	// クロスヘア
 	Sprite* cross = nullptr;

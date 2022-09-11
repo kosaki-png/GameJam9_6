@@ -41,7 +41,6 @@ public:
 protected:
 
 	Object3d* obj;
-	Model* model;
 
 	Sphere sphere;
 	XMFLOAT3 position = { 0,0,0 };
