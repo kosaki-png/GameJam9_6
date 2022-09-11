@@ -9,6 +9,9 @@ BaseWave::BaseWave()
 
 BaseWave::~BaseWave()
 {
+	delete base;
+	delete click;
+	delete start;
 }
 
 void BaseWave::Initialize(Input* input, Camera* camera)
