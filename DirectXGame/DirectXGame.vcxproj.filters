@@ -50,6 +50,7 @@
     <ClCompile Include="wave\EasyWave.cpp" />
     <ClCompile Include="wave\FollowWave.cpp" />
     <ClCompile Include="target\MoveTarget.cpp" />
+    <ClCompile Include="2d\SpriteData.cpp" />
     <ClCompile Include="base\JsonFileManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -95,8 +96,6 @@
     <ClInclude Include="wave\EasyWave.h" />
     <ClInclude Include="wave\FollowWave.h" />
     <ClInclude Include="target\MoveTarget.h" />
-    <ClInclude Include="base\JsonFileManager.h" />
-    <ClInclude Include="base\picojson.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="shader\OBJShaderHeader.hlsli" />

@@ -39,10 +39,7 @@ public:
 	void Draw() override;
 
 private:
-	Text* text;
 	bool option = false;
-	LightGroup* lightGroup = nullptr;
-	float ambientColor0[3] = { 1,1,1 };
 
 	// ’n–Ê
 	Object3d* objGround = nullptr;

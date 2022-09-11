@@ -42,21 +42,5 @@ public:
 	void Draw() override;
 
 private:
-	Text* text;
 
-	LightGroup* lightGroup = nullptr;
-	float ambientColor0[3] = { 1,1,1 };
-
-	ParticleManager* particleMan = nullptr;
-
-	float centerX = 1280 / 2;
-	float centerY = 720 / 2;
-
-	XMFLOAT2 mousePos;
-
-	Object3d* object = nullptr;
-	Model* model = nullptr;
-
-	Ray ray;
-	Sphere sphere;
 };

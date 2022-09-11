@@ -4,6 +4,8 @@
 #include "Audio.h"
 #include <DirectXMath.h>
 #include "Camera.h"
+#include "Text.h"
+#include "LightGroup.h"
 
 struct SceneButton
 {
@@ -33,6 +35,11 @@ protected:
 	BaseScene* nextScene = nullptr;
 
 	Camera* camera = nullptr;
+
+	Text* text = nullptr;
+
+	LightGroup* lightGroup = nullptr;
+	float ambientColor0[3] = { 1,1,1 };
 
 	float centerX = 1920 / 2;
 	float centerY = 1080 / 2;

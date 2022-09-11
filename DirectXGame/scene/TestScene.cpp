@@ -23,9 +23,7 @@ TestScene::~TestScene()
 	delete cross;
 	delete modelGround;
 	delete objGround;
-	delete camera;
 	delete wave;
-	delete lightGroup;
 }
 
 void TestScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
@@ -44,14 +42,8 @@ void TestScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 		// 3Dオブジェクトにカメラをセット
 		Object3d::SetCamera(camera);
 
-		// デバッグテキスト用テクスチャ読み込み
-		if (!Sprite::LoadTexture(texNumber, L"Resources/font_sharp.png")) {
-			assert(0);
-			return;
-		}
-		// デバッグテキスト初期化
+		// テキストの初期化
 		text = Text::GetInstance();
-		text->Initialize(texNumber);
 
 		// ライト生成
 		lightGroup = LightGroup::Create();
@@ -120,6 +112,12 @@ void TestScene::Update()
 	if (input->TriggerKey(DIK_RETURN))
 	{
 		nextScene = new TitleScene();
+	}
+
+	// Rでリスタート
+	if (input->TriggerKey(DIK_R))
+	{
+		nextScene = new TestScene();
 	}
 
 	// ESCAPEでゲーム終了
