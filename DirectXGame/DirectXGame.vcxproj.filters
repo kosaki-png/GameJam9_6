@@ -50,6 +50,7 @@
     <ClCompile Include="wave\FollowWave.cpp" />
     <ClCompile Include="target\MoveTarget.cpp" />
     <ClCompile Include="2d\SpriteData.cpp" />
+    <ClCompile Include="base\JsonFileManager.cpp" />
     <ClCompile Include="manager\SceneManager.cpp" />
     <ClCompile Include="scene\OptionGS.cpp" />
     <ClCompile Include="transition\BaseTransition.cpp" />

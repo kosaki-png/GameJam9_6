@@ -59,6 +59,7 @@
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>false</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)DirectXTex;$(SolutionDir)imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -93,6 +94,7 @@
     <ClCompile Include="3d\Object3d.cpp" />
     <ClCompile Include="3d\ParticleManager.cpp" />
     <ClCompile Include="audio\Audio.cpp" />
+    <ClCompile Include="base\JsonFileManager.cpp" />
     <ClCompile Include="manager\SceneManager.cpp" />
     <ClCompile Include="scene\OptionGS.cpp" />
     <ClCompile Include="target\MoveTarget.cpp" />
@@ -211,6 +213,8 @@
     <ClInclude Include="3d\Object3d.h" />
     <ClInclude Include="3d\ParticleManager.h" />
     <ClInclude Include="audio\Audio.h" />
+    <ClInclude Include="base\JsonFileManager.h" />
+    <ClInclude Include="base\picojson.h" />
     <ClInclude Include="manager\SceneManager.h" />
     <ClInclude Include="scene\OptionGS.h" />
     <ClInclude Include="target\MoveTarget.h" />
