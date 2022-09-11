@@ -24,7 +24,7 @@ void SpriteData::LoadTexture()
 	Sprite::LoadTexture(START,		 L"Resources/Texture/count_start.png");
 
 	// エンド読み込み
-	Sprite::LoadTexture(END,		L"Resources/Texture/end.png");
+	Sprite::LoadTexture(END,		L"Resources/Texture/result_01.png");
 
 	// トランジション読み込み
 	Sprite::LoadTexture(BLACK,		L"Resources/Texture/black_64x64.png");

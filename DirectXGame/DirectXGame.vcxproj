@@ -102,6 +102,7 @@
     <ClCompile Include="target\MoveTarget.cpp" />
     <ClCompile Include="transition\BaseTransition.cpp" />
     <ClCompile Include="transition\BlackOut.cpp" />
+    <ClCompile Include="ui\ResultUi.cpp" />
     <ClCompile Include="wave\FollowWave.cpp" />
     <ClCompile Include="scene\TestScene.cpp" />
     <ClCompile Include="player\Player.cpp" />
@@ -224,6 +225,7 @@
     <ClInclude Include="target\MoveTarget.h" />
     <ClInclude Include="transition\BaseTransition.h" />
     <ClInclude Include="transition\BlackOut.h" />
+    <ClInclude Include="ui\ResultUi.h" />
     <ClInclude Include="wave\FollowWave.h" />
     <ClInclude Include="scene\TestScene.h" />
     <ClInclude Include="player\Player.h" />

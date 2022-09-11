@@ -55,6 +55,7 @@
     <ClCompile Include="scene\OptionGS.cpp" />
     <ClCompile Include="transition\BaseTransition.cpp" />
     <ClCompile Include="transition\BlackOut.cpp" />
+    <ClCompile Include="ui\ResultUi.cpp" />
     <ClCompile Include="manager\ModelManager.cpp" />
     <ClCompile Include="camera\OrbitCamera.cpp" />
   </ItemGroup>
@@ -105,6 +106,7 @@
     <ClInclude Include="scene\OptionGS.h" />
     <ClInclude Include="transition\BaseTransition.h" />
     <ClInclude Include="transition\BlackOut.h" />
+    <ClInclude Include="ui\ResultUi.h" />
     <ClInclude Include="manager\ModelManager.h" />
     <ClInclude Include="base\JsonFileManager.h" />
     <ClInclude Include="base\picojson.h" />

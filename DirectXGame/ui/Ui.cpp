@@ -2,6 +2,11 @@
 #include "SpriteData.h"
 
 int Ui::scoreNum = 0;
+float Ui::countNum = 1;
+float Ui::missNum = 0;
+float Ui::rateNum = 0;
+float Ui::targetsNum = 0;
+float Ui::timeToKill = 0; //キル速
 
 Ui::Ui()
 {
@@ -18,7 +23,7 @@ Ui::~Ui()
 
 void Ui::Initialize()
 {
-	rateNum = 0;     //割合の値
+	rateNum = 100;     //割合の値
 	scoreNum = 0;    //スコアの値
 	initialValue = 0;//初期値
 	onePlace = 0;    //1の位
@@ -26,7 +31,9 @@ void Ui::Initialize()
 	hundredPlace = 1;//100の位
 	countNum = 1;    //当てた数の値
 	missNum = 0;     //外した数
-	
+	targetsNum = 0;  //撃った数
+	timeToKill = 0;  //キル速
+
 	//Ui初期化
 	ui = Sprite::Create(UI_SCORE,{ 640,0 });
 
@@ -60,7 +67,11 @@ void Ui::Initialize()
 
 void Ui::Update()
 {
-	TimerManage();
+	if (!IsTimeUp())
+	{
+		TimerManage();
+	}
+
 	timeLimit->Printf("%d:%d%.0f",hundredPlace,tenPlace,onePlace);
 
 	Rate();
@@ -91,7 +102,11 @@ void Ui::TimerManage()
 	if (tenPlace < 0)
 	{
 		SetNum(tenPlace, 5);
-		hundredPlace--;
+
+		if (!IsTimeUp())
+		{
+			hundredPlace--;
+		}
 	}
 
 	//onePlace = initialValue - timer->getElapsedSeconds();

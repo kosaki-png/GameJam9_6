@@ -68,13 +68,31 @@ public:
 	}
 
 	/// <summary>
+	/// 撃った数追加
+	/// </summary>
+	void AddTargets() {
+		targetsNum++;
+	};
+
+	/// <summary>
 	/// 割合計算
 	/// </summary>
 	/// <returns>割合の値</returns>
 	int Rate() {
-		rateNum = countNum / (countNum + missNum) * 100;
+		rateNum = GetCount() / (GetCount() + GetMiss()) * 100;
 		return rateNum;
 	};
+
+	/// <summary>
+	/// キルタイム計算
+	/// </summary>
+	/// <returns></returns>
+	float KillTime()
+	{
+		timeToKill = GetCount() - 1;
+		timeToKill = timeToKill / 60;
+		return timeToKill;
+	}
 
 	/// <summary>
 	/// セッター
@@ -85,6 +103,10 @@ public:
 		targetNum = setNum;
 	};
 
+	/// <summary>
+	/// タイムアップなら
+	/// </summary>
+	/// <returns></returns>
 	bool IsTimeUp(){
 		return GetHundredPlace() < 0;
 	}
@@ -94,7 +116,12 @@ public:
 	const float& GetTnePlace() { return tenPlace; }//タイムの10の位
 	const float& GetHundredPlace() { return hundredPlace; }//タイムの100の位
 	const float& GetRate() { return rateNum; }
+	const float& GetMiss() { return missNum; }
+	const float& GetCount() { 	return countNum;}
+	const float& GetKillTime() { return timeToKill; }
 	const int& GetScore() {return scoreNum; }
+	const int& GetTargetCount() { return targetsNum; }
+
 
 	void TimerManage();
 private:
@@ -109,9 +136,11 @@ private:
 	int tenPlace;    //10の位
 	int hundredPlace;//100の位
 	int initialValue;//初期値
-	float countNum;  //当てた数
-	float missNum;   //外した数
-	float rateNum;   //割合の値
+	static float targetsNum;
+	static float countNum;  //当てた数
+	static float missNum;   //外した数
+	static float rateNum;   //割合の値
 	static int scoreNum;    //スコアの値
+	static float timeToKill; //キル速
 };
 
