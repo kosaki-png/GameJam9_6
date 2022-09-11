@@ -7,6 +7,13 @@ ResultUi::ResultUi()
 
 ResultUi::~ResultUi()
 {
+	delete score;
+	delete accuracy;
+	delete timeToKill;
+	delete targets;
+	delete hits;
+	delete misses;
+	delete parcent;
 }
 
 void ResultUi::Initialize()

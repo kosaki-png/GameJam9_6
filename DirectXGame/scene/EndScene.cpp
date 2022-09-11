@@ -20,8 +20,7 @@ EndScene::~EndScene()
 {
 	delete objGround;
 	delete objSky;
-	delete modelGround;
-	delete modelSky;
+	delete resultUi;
 }
 
 void EndScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
@@ -64,16 +63,10 @@ void EndScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 
 	// 3Dオブジェクト初期設定
 	{
-		// モデル読み込み
-		{
-			modelGround = Model::CreateFromOBJ("field");
-			modelSky = Model::CreateFromOBJ("skydome", true);
-		}
-
 		// 3Dオブジェクト生成
 		{
-			objGround = Object3d::Create(modelGround);
-			objSky = Object3d::Create(modelSky);
+			objGround = Object3d::Create(modelMng->GetModel(FIELD));
+			objSky = Object3d::Create(modelMng->GetModel(SKYDOME));
 		}
 
 		// 3Dオブジェクト初期設定
@@ -104,8 +97,6 @@ void EndScene::Update()
 		PostQuitMessage(0);
 	}
 
-	// パーティクル生成
-	//CreateParticles();
 	rot.x += 0.1f;
 	lightGroup->Update();
 	camera->Update();
