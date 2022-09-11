@@ -1,5 +1,5 @@
 #include "JsonFileManager.h"
-inline std::string JsonFileManager::readTxt(std::string const& filePath)
+inline std::string JsonFileManager::ReadTxt(std::string const& filePath)
 {
 	//ÉtÉ@ÉCÉãì«Ç›çûÇ›
 	std::ifstream ifs(filePath);
@@ -12,7 +12,7 @@ inline std::string JsonFileManager::readTxt(std::string const& filePath)
 	else return str;
 }
 
-void JsonFileManager::readJson(const std::string& filePath)
+void JsonFileManager::ReadJson(const std::string& filePath)
 {
 	std::ifstream ifs(filePath);
 	if (!ifs)
@@ -20,7 +20,7 @@ void JsonFileManager::readJson(const std::string& filePath)
 		throw std::exception("File cannot be opened.");
 	}
 
-	std::string json = readTxt(filePath);
+	std::string json = ReadTxt(filePath);
 	picojson::value val;
 	std::string err;
 	picojson::parse(val, json.c_str(), json.c_str() + strlen(json.c_str()), &err);
@@ -32,27 +32,27 @@ void JsonFileManager::readJson(const std::string& filePath)
 
 	obj = val.get<picojson::object>();
 }
-const void JsonFileManager::singleWriteJson(std::vector<float> nodeData, const std::string& key,const std::string& filePath)
+const void JsonFileManager::SingleWriteJson(std::vector<float> nodeData, const std::string& key,const std::string& filePath)
 {
 	picojson::object obj;
-	obj = nodeAdd(obj, nodeData, key);
+	obj = NodeAdd(obj, nodeData, key);
 	std::ofstream ofs(filePath);
 
 	ofs << picojson::value(obj).serialize(true) << std::endl;
 
 }
-const void JsonFileManager::multipleWriteJson(std::vector<std::vector<float>> data, const std::vector<std::string> key, const std::string& filePath)
+const void JsonFileManager::MultipleWriteJson(std::vector<std::vector<float>> data, const std::vector<std::string> key, const std::string& filePath)
 {
 	picojson::object obj;
 	for (int i = 0; i<key.size(); i++)
 	{
-		obj = nodeAdd(obj, data[i], key[i]);
+		obj = NodeAdd(obj, data[i], key[i]);
 	}
 	std::ofstream ofs(filePath);
 
 	ofs << picojson::value(obj).serialize(true) << std::endl;
 }
-const picojson::object JsonFileManager::nodeAdd(picojson::object obj, std::vector<float> data, const std::string& key)
+const picojson::object JsonFileManager::NodeAdd(picojson::object obj, std::vector<float> data, const std::string& key)
 {
 	picojson::array arr;
 	for (int i = 0; i<data.size(); i++)
@@ -62,6 +62,7 @@ const picojson::object JsonFileManager::nodeAdd(picojson::object obj, std::vecto
 	obj[key] = picojson::value(arr);
 	return obj;
 }
+
 JsonFileManager::JsonFileManager()
 {
 }
