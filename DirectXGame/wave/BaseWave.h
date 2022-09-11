@@ -11,6 +11,14 @@
 #include <array>
 #include "BaseTarget.h"
 
+enum Level
+{
+	easy	= 0,
+	normal	= 1,
+	hard	= 2,
+	hell	= 3
+};
+
 class BaseWave
 {
 public:
@@ -24,7 +32,7 @@ public:
 	using XMMATRIX = DirectX::XMMATRIX;
 
 public:
-	BaseWave();
+	BaseWave(Level level);
 	virtual ~BaseWave();
 
 	virtual void Initialize(Input* input, Camera* camera);
@@ -33,12 +41,31 @@ public:
 	virtual void DrawUi(ID3D12GraphicsCommandList* cmdList);
 	
 	/// <summary>
+	/// カウントダウンの更新
+	/// </summary>
+	void CountDown();
+
+	/// <summary>
+	/// カウントダウン用描画
+	/// </summary>
+	void CountDownDraw();
+
+	/// <summary>
+	/// カウントダウン中か
+	/// </summary>
+	/// <returns></returns>
+	bool GetIsCount() { return isCount; }
+
+	/// <summary>
 	/// クリアしたか
 	/// </summary>
 	/// <returns></returns>
 	bool GetClearFlag() { return clearFlag; }
 
 protected:
+	// 現在のレベル
+	Level level;
+
 	// キー入力
 	Input* input;
 
@@ -51,5 +78,16 @@ protected:
 
 	// UI、スコア管轄
 	Ui* ui = nullptr;
+
+	// カウントダウン用
+	Sprite* base = nullptr;
+	Sprite* click = nullptr;
+	Sprite* start = nullptr;
+	Text* text = nullptr;
+
+	bool isCount = true;	// カウントダウンをしているか
+	bool isStart = false;	// スタートしているか
+
+	float time = 5.0f;		// 開始までの時間
 };
 

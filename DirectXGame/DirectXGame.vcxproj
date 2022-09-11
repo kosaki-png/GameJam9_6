@@ -46,11 +46,11 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <LibraryPath>$(LibraryPath)</LibraryPath>
-    <IncludePath>$(ProjectDir);$(ProjectDir)3d\;$(ProjectDir)2d\;$(ProjectDir)camera\;$(ProjectDir)base\;$(ProjectDir)input\;$(ProjectDir)audio\;$(ProjectDir)scene\;$(ProjectDir)dynamics\;$(ProjectDir)xinput\;$(ProjectDir)player\;$(ProjectDir)shader\;$(ProjectDir)target;$(ProjectDir)ui;$(ProjectDir)wave;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir);$(ProjectDir)3d\;$(ProjectDir)2d\;$(ProjectDir)camera\;$(ProjectDir)base\;$(ProjectDir)input\;$(ProjectDir)audio\;$(ProjectDir)scene\;$(ProjectDir)dynamics\;$(ProjectDir)xinput\;$(ProjectDir)player\;$(ProjectDir)shader\;$(ProjectDir)target;$(ProjectDir)ui;$(ProjectDir)wave;$(ProjectDir)manager;$(ProjectDir)transition;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir);$(ProjectDir)3d\;$(ProjectDir)2d\;$(ProjectDir)camera\;$(ProjectDir)base\;$(ProjectDir)input\;$(ProjectDir)audio\;$(ProjectDir)scene\;$(ProjectDir)dynamics\;$(ProjectDir)xinput\;$(ProjectDir)player\;$(ProjectDir)shader\;$(ProjectDir)target;$(ProjectDir)ui;$(ProjectDir)wave;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir);$(ProjectDir)3d\;$(ProjectDir)2d\;$(ProjectDir)camera\;$(ProjectDir)base\;$(ProjectDir)input\;$(ProjectDir)audio\;$(ProjectDir)scene\;$(ProjectDir)dynamics\;$(ProjectDir)xinput\;$(ProjectDir)player\;$(ProjectDir)shader\;$(ProjectDir)target;$(ProjectDir)ui;$(ProjectDir)wave;$(ProjectDir)manager;$(ProjectDir)transition;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -95,7 +95,11 @@
     <ClCompile Include="3d\ParticleManager.cpp" />
     <ClCompile Include="audio\Audio.cpp" />
     <ClCompile Include="base\JsonFileManager.cpp" />
+    <ClCompile Include="manager\SceneManager.cpp" />
+    <ClCompile Include="scene\OptionGS.cpp" />
     <ClCompile Include="target\MoveTarget.cpp" />
+    <ClCompile Include="transition\BaseTransition.cpp" />
+    <ClCompile Include="transition\BlackOut.cpp" />
     <ClCompile Include="wave\FollowWave.cpp" />
     <ClCompile Include="scene\TestScene.cpp" />
     <ClCompile Include="player\Player.cpp" />
@@ -111,7 +115,6 @@
     <ClCompile Include="dynamics\CollisionPrimitive.cpp" />
     <ClCompile Include="scene\EndScene.cpp" />
     <ClCompile Include="base\FlameRate.cpp" />
-    <ClCompile Include="3d\ObjManager.cpp" />
     <ClCompile Include="scene\GameScene.cpp" />
     <ClCompile Include="input\Input.cpp" />
     <ClCompile Include="main.cpp" />
@@ -129,25 +132,25 @@
     <ClCompile Include="xinput\XinputControll.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="shader\OBJPixelShader.hlsl">
+    <FxCompile Include="Resources\shader\OBJPixelShader.hlsl">
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
     </FxCompile>
-    <FxCompile Include="shader\OBJVertexShader.hlsl">
+    <FxCompile Include="Resources\shader\OBJVertexShader.hlsl">
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
     </FxCompile>
-    <FxCompile Include="shader\ParticleGS.hlsl">
+    <FxCompile Include="Resources\shader\ParticleGS.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Geometry</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Geometry</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
     </FxCompile>
-    <FxCompile Include="shader\ParticlePS.hlsl">
+    <FxCompile Include="Resources\shader\ParticlePS.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
@@ -155,7 +158,7 @@
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">main</EntryPointName>
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">main</EntryPointName>
     </FxCompile>
-    <FxCompile Include="shader\ParticleVS.hlsl">
+    <FxCompile Include="Resources\shader\ParticleVS.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
@@ -163,7 +166,7 @@
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">main</EntryPointName>
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">main</EntryPointName>
     </FxCompile>
-    <FxCompile Include="shader\SpritePixelShader.hlsl">
+    <FxCompile Include="Resources\shader\SpritePixelShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
@@ -171,15 +174,15 @@
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">main</EntryPointName>
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">main</EntryPointName>
     </FxCompile>
-    <None Include="shader\OBJShaderHeader.hlsli" />
-    <None Include="shader\SpriteShaderHeader.hlsli">
+    <None Include="Resources\shader\OBJShaderHeader.hlsli" />
+    <None Include="Resources\shader\SpriteShaderHeader.hlsli">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Geometry</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4.0</ShaderModel>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Geometry</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4.0</ShaderModel>
       <FileType>Document</FileType>
     </None>
-    <FxCompile Include="shader\SpriteVertexShader.hlsl">
+    <FxCompile Include="Resources\shader\SpriteVertexShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
@@ -189,7 +192,7 @@
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="shader\Particle.hlsli" />
+    <None Include="Resources\shader\Particle.hlsli" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DirectXTex\DirectXTex_Desktop_2017_Win10.vcxproj">
@@ -212,7 +215,11 @@
     <ClInclude Include="audio\Audio.h" />
     <ClInclude Include="base\JsonFileManager.h" />
     <ClInclude Include="base\picojson.h" />
+    <ClInclude Include="manager\SceneManager.h" />
+    <ClInclude Include="scene\OptionGS.h" />
     <ClInclude Include="target\MoveTarget.h" />
+    <ClInclude Include="transition\BaseTransition.h" />
+    <ClInclude Include="transition\BlackOut.h" />
     <ClInclude Include="wave\FollowWave.h" />
     <ClInclude Include="scene\TestScene.h" />
     <ClInclude Include="player\Player.h" />
@@ -229,7 +236,6 @@
     <ClInclude Include="dynamics\CollisionPrimitive.h" />
     <ClInclude Include="scene\EndScene.h" />
     <ClInclude Include="base\FlameRate.h" />
-    <ClInclude Include="3d\ObjManager.h" />
     <ClInclude Include="scene\GameScene.h" />
     <ClInclude Include="input\Input.h" />
     <ClInclude Include="base\WinApp.h" />

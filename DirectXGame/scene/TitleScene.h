@@ -1,36 +1,13 @@
 #pragma once
-
-#include "SafeDelete.h"
-#include <DirectXMath.h>
-#include "Sprite.h"
-#include "Object3d.h"
 #include "ParticleManager.h"
-#include "Text.h"
-#include "DebugCamera.h"
-#include "LightGroup.h"
-#include "XinputControll.h"
-
 #include "CollisionPrimitive.h"
+#include "object3d.h"
 
 #include "BaseScene.h"
-
 
 class TitleScene :
 	public BaseScene
 {
-private: // エイリアス
-	// Microsoft::WRL::を省略
-	template <class T> using ComPtr = Microsoft::WRL::ComPtr<T>;
-	// DirectX::を省略
-	using XMFLOAT2 = DirectX::XMFLOAT2;
-	using XMFLOAT3 = DirectX::XMFLOAT3;
-	using XMFLOAT4 = DirectX::XMFLOAT4;
-	using XMVECTOR = DirectX::XMVECTOR;
-	using XMMATRIX = DirectX::XMMATRIX;
-
-private: // 静的メンバ変数
-	static const int texNumber = 0;
-
 public:
 	TitleScene();
 	~TitleScene();
@@ -42,5 +19,11 @@ public:
 	void Draw() override;
 
 private:
-
+	// 地面
+	Object3d* objGround = nullptr;
+	Model* modelGround = nullptr;
+	// 天球
+	Object3d* objSky = nullptr;
+	Model* modelSky = nullptr;
+	DirectX::XMFLOAT3 rot = { 0,0,0 };
 };

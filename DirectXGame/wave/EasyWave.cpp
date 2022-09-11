@@ -1,6 +1,7 @@
 #include "EasyWave.h"
 
-EasyWave::EasyWave()
+EasyWave::EasyWave(Level level)
+	: BaseWave::BaseWave(level)
 {
 }
 

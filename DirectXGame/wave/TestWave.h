@@ -18,7 +18,7 @@ class TestWave :
     public BaseWave
 {
 public:
-    TestWave();
+    TestWave(Level level);
     ~TestWave();
 
     void Initialize(Input* input, Camera* camera) override;

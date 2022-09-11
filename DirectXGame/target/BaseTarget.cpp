@@ -14,7 +14,7 @@ BaseTarget::~BaseTarget()
 void BaseTarget::Initialize(std::string modelName, XMFLOAT3 pos,XMFLOAT3 vel, float radius)
 {
 	//object3DŠÖ˜A‰Šú‰»
-	model = Model::CreateFromOBJ(modelName);
+	model = Model::CreateFromOBJ(modelName, true);
 	obj = Object3d::Create(model);
 	obj->SetPosition(pos);
 
@@ -34,7 +34,9 @@ void BaseTarget::Update()
 	sphere.center = DirectX::XMVectorSet(position.x, position.y, position.z, 0);
 
 	obj->SetPosition(position);
-	//obj->SetRotation(rotation);
+	obj->SetScale(scale);
+
+	sphere.radius = scale.x;
 	
 	//Object3DXV
 	obj->Update();

@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <FxCompile Include="shader\OBJPixelShader.hlsl" />
-    <FxCompile Include="shader\OBJVertexShader.hlsl" />
-    <FxCompile Include="shader\ParticleGS.hlsl" />
-    <FxCompile Include="shader\ParticlePS.hlsl" />
-    <FxCompile Include="shader\ParticleVS.hlsl" />
-    <FxCompile Include="shader\SpritePixelShader.hlsl" />
-    <FxCompile Include="shader\SpriteVertexShader.hlsl" />
+    <FxCompile Include="Resources\shader\OBJPixelShader.hlsl" />
+    <FxCompile Include="Resources\shader\OBJVertexShader.hlsl" />
+    <FxCompile Include="Resources\shader\ParticleGS.hlsl" />
+    <FxCompile Include="Resources\shader\ParticlePS.hlsl" />
+    <FxCompile Include="Resources\shader\ParticleVS.hlsl" />
+    <FxCompile Include="Resources\shader\SpritePixelShader.hlsl" />
+    <FxCompile Include="Resources\shader\SpriteVertexShader.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="2d\Sprite.cpp" />
@@ -31,7 +31,6 @@
     <ClCompile Include="dynamics\CollisionPrimitive.cpp" />
     <ClCompile Include="scene\EndScene.cpp" />
     <ClCompile Include="base\FlameRate.cpp" />
-    <ClCompile Include="3d\ObjManager.cpp" />
     <ClCompile Include="scene\GameScene.cpp" />
     <ClCompile Include="input\Input.cpp" />
     <ClCompile Include="main.cpp" />
@@ -52,6 +51,10 @@
     <ClCompile Include="target\MoveTarget.cpp" />
     <ClCompile Include="2d\SpriteData.cpp" />
     <ClCompile Include="base\JsonFileManager.cpp" />
+    <ClCompile Include="manager\SceneManager.cpp" />
+    <ClCompile Include="scene\OptionGS.cpp" />
+    <ClCompile Include="transition\BaseTransition.cpp" />
+    <ClCompile Include="transition\BlackOut.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="2d\Sprite.h" />
@@ -78,7 +81,6 @@
     <ClInclude Include="dynamics\CollisionPrimitive.h" />
     <ClInclude Include="scene\EndScene.h" />
     <ClInclude Include="base\FlameRate.h" />
-    <ClInclude Include="3d\ObjManager.h" />
     <ClInclude Include="scene\GameScene.h" />
     <ClInclude Include="input\Input.h" />
     <ClInclude Include="base\WinApp.h" />
@@ -96,10 +98,15 @@
     <ClInclude Include="wave\EasyWave.h" />
     <ClInclude Include="wave\FollowWave.h" />
     <ClInclude Include="target\MoveTarget.h" />
+    <ClInclude Include="2d\SpriteData.h" />
+    <ClInclude Include="manager\SceneManager.h" />
+    <ClInclude Include="scene\OptionGS.h" />
+    <ClInclude Include="transition\BaseTransition.h" />
+    <ClInclude Include="transition\BlackOut.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="shader\OBJShaderHeader.hlsli" />
-    <None Include="shader\SpriteShaderHeader.hlsli" />
-    <None Include="shader\Particle.hlsli" />
+    <None Include="Resources\shader\OBJShaderHeader.hlsli" />
+    <None Include="Resources\shader\SpriteShaderHeader.hlsli" />
+    <None Include="Resources\shader\Particle.hlsli" />
   </ItemGroup>
 </Project>

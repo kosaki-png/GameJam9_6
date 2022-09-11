@@ -1,17 +1,12 @@
 ﻿#include "WinApp.h"
 #include "DirectXCommon.h"
 #include "Audio.h"
-
-#include "BaseScene.h"
-#include "TitleScene.h"
-#include "SelectScene.h"
-#include "GameScene.h"
-#include "EndScene.h"
-#include "TestScene.h"
-
 #include "LightGroup.h"
 #include "ParticleManager.h"
 #include "FlameRate.h"
+#include "3d/Object3d.h"
+
+#include "SceneManager.h"
 
 // Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
@@ -22,26 +17,20 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	Input* input = nullptr;
 	Audio* audio = nullptr;
 	FlameRate* flamerate = nullptr;
-	//GameScene* gameScene = nullptr;
-	BaseScene* scene = nullptr;
+	SceneManager* sceneMng = nullptr;
 
 	// ゲームウィンドウの作成
 	win = new WinApp();
 	win->CreateGameWindow();
-	 
+
+#pragma region 汎用機能初期化
+
 	//フレームレート固定の初期化
 	flamerate = new FlameRate();
-
-	// 追加
-	//WinApp* window2 = nullptr;
-	//window2 = new WinApp();
-	//window2->CreateGameWindow();
 
 	//DirectX初期化処理
 	dxCommon = new DirectXCommon();
 	dxCommon->Initialize(win);
-
-#pragma region 汎用機能初期化
 
 	// 入力の初期化
 	input = Input::GetInstance();
@@ -67,23 +56,17 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	// パーティクルマネージャ初期化
 	ParticleManager::GetInstance()->Initialize(dxCommon->GetDevice());
 
-	// デバッグテキスト用テクスチャ読み込み
-	Sprite::LoadTexture(0, L"Resources/font_sharp.png");
+	// テクスチャ読み込み
+	SpriteData::LoadTexture();
 	// デバッグテキスト初期化
-	Text::GetInstance()->Initialize(0);
+	Text::GetInstance()->Initialize(TEXT_FONT);
 
 #pragma endregion
 
-	// 最初のシーン
-	scene = new GameScene();
-	//scene = new SelectScene();
-	//scene = new GameScene();
-	//scene = new EndScene();
+	// シーンの初期化
+	sceneMng = SceneManager::GetInstance();
+	sceneMng->Initialize(dxCommon, input, audio);
 
-	// 最初のシーンの初期化
-	scene->Initialize(dxCommon, input, audio);
-
-	//ShowCursor(FALSE);
 	// メインループ
 	while (true)
 	{
@@ -92,36 +75,16 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		// メッセージ処理
 		if (win->ProcessMessage()) { break; }
 
-		// 追加
-		//if (window2->ProcessMessage()) { break; }
-
 		// 入力関連の毎フレーム処理
 		input->Update();
 
-		// シーン切り替え
-		{
-			// シーンクラスで指定した次のシーンを受け取る
-			BaseScene* nextScene = scene->GetNextScene();
-
-			if (nextScene)	// nextSceneがnullでないとき
-			{
-				// 元のシーンを削除
-				delete scene;
-
-				// 次に指定したシーンを初期化
-				nextScene->Initialize(dxCommon, input, audio);
-
-				// 現在のシーンに適用
-				scene = nextScene;
-			}
-		}
-
-		scene->Update();
+		// シーンの更新
+		sceneMng->Update();
 
 		// 描画開始
 		dxCommon->PreDraw();
-		// ゲームシーンの描画
-		scene->Draw();
+		// シーンの描画
+		sceneMng->Draw();
 		// 描画終了
 		dxCommon->PostDraw();
         //フレームレート待機処理
@@ -129,17 +92,13 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	}
 
 	// 各種解放
-	safe_delete(scene);
+	sceneMng->Destroy();
 	safe_delete(audio);
 	safe_delete(dxCommon);
 	safe_delete(flamerate);
 	// ゲームウィンドウの破棄
 	win->TerminateGameWindow();
 	safe_delete(win);
-
-	// 追加
-	//window2->TerminateGameWindow();
-	//safe_delete(window2);
 
 	return 0;
 }

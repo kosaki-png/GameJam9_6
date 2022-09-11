@@ -5,6 +5,7 @@
 
 #define DIRECTINPUT_VERSION     0x0800          // DirectInputのバージョン指定
 #include <dinput.h>
+#include <DirectXMath.h>
 
 /// <summary>
 /// 入力
@@ -88,6 +89,9 @@ public: // メンバ関数
 	/// <returns>マウス移動量</returns>
 	MouseMove GetMouseMove();
 
+	DirectX::XMFLOAT2 GetScreenMousePos();
+	DirectX::XMFLOAT2 GetClientMousePos();
+
 private: // メンバ関数
 	Input() = default;
 	Input(const Input&) = delete;
@@ -102,5 +106,7 @@ private: // メンバ変数
 	ComPtr<IDirectInputDevice8> devMouse;
 	DIMOUSESTATE2 mouseState = {};
 	DIMOUSESTATE2 mouseStatePre = {};
+
+	HWND hwnd;
 };
 

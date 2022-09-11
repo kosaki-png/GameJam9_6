@@ -1,15 +1,10 @@
 #pragma once
-#include "SafeDelete.h"
 #include <DirectXMath.h>
 #include "Sprite.h"
-#include "Object3d.h"
-#include "ParticleManager.h"
-#include "Text.h"
 #include "Input.h"
-#include <vector>
+#include "DirectXCommon.h"
 
-#include "Define.h"
-class ObjManager
+class BaseTransition
 {
 private: // エイリアス
 	// Microsoft::WRL::を省略
@@ -21,17 +16,24 @@ private: // エイリアス
 	using XMVECTOR = DirectX::XMVECTOR;
 	using XMMATRIX = DirectX::XMMATRIX;
 
-private: // 静的メンバ変数
-	static const int texNumber = 0;
+public:
+	BaseTransition();
+	virtual ~BaseTransition();
 
-public: // メンバ関数
+	virtual void Initialize(DirectXCommon* dxCommon, Input* input);
+	virtual void Start();
+	virtual void Update();
+	virtual void Draw();
 
-	ObjManager();
-	~ObjManager();
+	bool GetCanChange() { return canChange; }
+	bool GetIsMove() { return isMove; }
 
-	void Initialize(Input* input);
-	void Update();
-	void Draw();
-private:	// メンバ変数
+protected:
+	DirectXCommon* dxCommon = nullptr;
 	Input* input = nullptr;
+
+	bool canChange = false;
+	bool isMove = false;
+
 };
+

@@ -6,15 +6,21 @@
 #include "Camera.h"
 #include "Text.h"
 #include "LightGroup.h"
-
-struct SceneButton
-{
-	DirectX::XMFLOAT2 position = { 0,0 };
-	DirectX::XMFLOAT2 scale = { 0,0 };
-};
+#include "SpriteData.h"
+#include "SafeDelete.h"
 
 class BaseScene
 {
+private: // エイリアス
+	// Microsoft::WRL::を省略
+	template <class T> using ComPtr = Microsoft::WRL::ComPtr<T>;
+	// DirectX::を省略
+	using XMFLOAT2 = DirectX::XMFLOAT2;
+	using XMFLOAT3 = DirectX::XMFLOAT3;
+	using XMFLOAT4 = DirectX::XMFLOAT4;
+	using XMVECTOR = DirectX::XMVECTOR;
+	using XMMATRIX = DirectX::XMMATRIX;
+
 public:
 	BaseScene();
 	virtual ~BaseScene();
@@ -40,7 +46,11 @@ protected:
 
 	LightGroup* lightGroup = nullptr;
 	float ambientColor0[3] = { 1,1,1 };
+	float ambientColor1[3] = { 1,1,1 };
+	float ambientColor2[3] = { 1,1,1 };
 
 	float centerX = 1920 / 2;
 	float centerY = 1080 / 2;
+
+	Sprite* tmpSprite = nullptr;
 };
