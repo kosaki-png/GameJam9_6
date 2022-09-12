@@ -37,6 +37,14 @@ void Ranking::setScore(std::string key, float data)
 
 	//余計な末尾にデータを削除
 	nog.erase(nog.end() - 1);
+
+	picojson::array arr;
+	for (int i = 0; i < nog.size(); i++)
+	{
+		arr.emplace_back(picojson::value(nog[i]));
+	}
+	json.obj[key] = picojson::value(arr);
+
 }
 
 void Ranking::WriteJson()
