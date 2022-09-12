@@ -4,7 +4,7 @@
 #include "Score.h"
 #include "Ui.h"
 #include <ui/Ranking.h>
-
+#include<base/JsonFileManager.h>
 class SelectUi
 {
 public:
