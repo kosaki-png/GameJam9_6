@@ -58,6 +58,7 @@
     <ClCompile Include="ui\ResultUi.cpp" />
     <ClCompile Include="manager\ModelManager.cpp" />
     <ClCompile Include="camera\OrbitCamera.cpp" />
+    <ClCompile Include="manager\WaveManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="2d\Sprite.h" />
@@ -111,6 +112,7 @@
     <ClInclude Include="base\JsonFileManager.h" />
     <ClInclude Include="base\picojson.h" />
     <ClInclude Include="camera\OrbitCamera.h" />
+    <ClInclude Include="manager\WaveManager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\shader\OBJShaderHeader.hlsli" />

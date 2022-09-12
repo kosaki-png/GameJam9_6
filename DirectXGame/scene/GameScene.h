@@ -7,6 +7,7 @@
 #include "BaseWave.h"
 
 #include "OptionGS.h"
+#include "WaveManager.h"
 
 class GameScene :
 	public BaseScene
@@ -34,8 +35,5 @@ private:
 
 	// オプション用
 	OptionGS* option = nullptr;
-
-	// ウェーブ
-	BaseWave* wave = nullptr;
 };
 

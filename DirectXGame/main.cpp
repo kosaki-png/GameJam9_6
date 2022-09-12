@@ -8,6 +8,7 @@
 
 #include "SceneManager.h"
 #include "ModelManager.h"
+#include "WaveManager.h"
 
 // Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
@@ -98,6 +99,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	// 各種解放
 	sceneMng->Destroy();
 	ModelManager::GetInstance()->Destroy();
+	WaveManager::GetInstance()->Destroy();
 	safe_delete(audio);
 	safe_delete(dxCommon);
 	safe_delete(flamerate);

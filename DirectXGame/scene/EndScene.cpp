@@ -89,12 +89,16 @@ void EndScene::Update()
 	// Enterで指定のシーンへ
 	if (input->TriggerKey(DIK_RETURN))
 	{
+		// ウェーブを削除
+		WaveManager::GetInstance()->DestroyWave();
 		// タイトルシーンへ
 		nextScene = new TitleScene();
 	}
 	// Enterで指定のシーンへ
 	if (input->TriggerMouseLeft())
 	{
+		// ウェーブを削除
+		WaveManager::GetInstance()->DestroyWave();
 		// タイトルシーンへ
 		nextScene = new TitleScene();
 	}

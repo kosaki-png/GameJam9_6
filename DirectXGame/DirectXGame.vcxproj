@@ -98,6 +98,7 @@
     <ClCompile Include="manager\ModelManager.cpp" />
     <ClCompile Include="base\JsonFileManager.cpp" />
     <ClCompile Include="manager\SceneManager.cpp" />
+    <ClCompile Include="manager\WaveManager.cpp" />
     <ClCompile Include="scene\OptionGS.cpp" />
     <ClCompile Include="target\MoveTarget.cpp" />
     <ClCompile Include="transition\BaseTransition.cpp" />
@@ -221,6 +222,7 @@
     <ClInclude Include="base\JsonFileManager.h" />
     <ClInclude Include="base\picojson.h" />
     <ClInclude Include="manager\SceneManager.h" />
+    <ClInclude Include="manager\WaveManager.h" />
     <ClInclude Include="scene\OptionGS.h" />
     <ClInclude Include="target\MoveTarget.h" />
     <ClInclude Include="transition\BaseTransition.h" />
