@@ -138,7 +138,7 @@ void SelectScene::Update()
 		if (Collision::CheckPoint2Box(mousePos, startButton.position, startButton.size))
 		{
 			// ウェーブモードセット
-			WaveManager::GetInstance()->SetWaveMode(selectMode);
+			WaveManager::GetInstance()->SetWaveMode(mode);
 			//ゲームシーンへ
 			nextScene = new GameScene();
 		}
@@ -151,8 +151,6 @@ void SelectScene::Update()
 		{
 			// 現在のマウス座標を取得
 			DirectX::XMFLOAT2 mousePos = input->GetClientMousePos();
-			BaseWave* tmpWave = WaveManager::GetInstance()->GetWave();
-			selectUi->Update(tmpWave->GetCurrentKey(), ranking->json.obj);
 			// マウス座標とボタンとの当たり判定
 			for (int i = 0; i < modeButton.size(); i++)
 			{
@@ -179,6 +177,8 @@ void SelectScene::Update()
 	}
 	// 各クラスの更新
 	{
+		BaseWave* tmpWave = WaveManager::GetInstance()->GetWave();
+		selectUi->Update(selectMode, ranking->json.obj);
 		lightGroup->Update();
 		camera->Update();
 	}
@@ -237,39 +237,49 @@ void SelectScene::Draw()
 	}
 }
 
-void SelectScene::SetSelectMode(int mode)
+void SelectScene::SetSelectMode(int a)
 {
-	switch (mode)
+	switch (a)
 	{
 	case 0:
-		selectMode = WaveMode::test;
+		selectMode = "test";
+		mode = WaveMode::test;
 		break;
 	case 1:
-		selectMode = WaveMode::easy;
+		selectMode = "easy";
+		mode = WaveMode::easy;
 		break;
 	case 2:
-		selectMode = WaveMode::flick_easy;
+		selectMode = "flick_easy";
+		mode = WaveMode::flick_easy;
 		break;
 	case 3:
-		selectMode = WaveMode::filck_normal;
+		selectMode = "filck_normal";
+		mode = WaveMode::filck_normal;
 		break;
 	case 4:
-		selectMode = WaveMode::flick_hard;
+		selectMode = "flick_hard";
+		mode = WaveMode::flick_hard;
 		break;
 	case 5:
-		selectMode = WaveMode::flick_hell;
+		selectMode = "flick_hell";
+		mode = WaveMode::flick_hell;
 		break;
 	case 6:
-		selectMode = WaveMode::follow;
+		selectMode = "follow";
+		mode = WaveMode::follow;
 		break;
 	case 7:
-		selectMode = WaveMode::test;
+		selectMode = "test";
+		mode = WaveMode::test;
 		break;
 	case 8:
-		selectMode = WaveMode::test;
+		selectMode = "test";
+		mode = WaveMode::test;
 		break;
 	case 9:
-		selectMode = WaveMode::test;
+		selectMode = "test";
+		mode = WaveMode::test;
 		break;
 	}
 }

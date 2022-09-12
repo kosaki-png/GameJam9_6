@@ -141,7 +141,7 @@ private:
 	static float countNum;  //当てた数
 	static float missNum;   //外した数
 	static float rateNum;   //割合の値
-	static int scoreNum;    //スコアの値
+	int scoreNum = 0;    //スコアの値
 	static float timeToKill; //キル速
 };
 

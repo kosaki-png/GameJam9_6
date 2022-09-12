@@ -149,6 +149,11 @@ void TestWave::Update()
 		{
 			target[i]->Update();
 		}
+
+		// クリア条件
+		{
+			clearFlag = ui->IsTimeUp();
+		}
 	}
 
 	// uiの更新
