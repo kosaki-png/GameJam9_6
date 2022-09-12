@@ -42,7 +42,10 @@ void SelectScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio
 		// デバッグテキスト初期化
 		text = Text::GetInstance();
 		//ランキング初期化
-		ranking.Initialize();
+		ranking = new Ranking();
+		ranking->Initialize();
+		waveMng = WaveManager::GetInstance();
+		waveMng->Initialize(input,camera);
 		// ライト生成
 		lightGroup = LightGroup::Create();
 		// 3Dオブエクトにライトをセット
@@ -135,7 +138,7 @@ void SelectScene::Update()
 		if (Collision::CheckPoint2Box(mousePos, startButton.position, startButton.size))
 		{
 			// ウェーブモードセット
-			WaveManager::GetInstance()->SetWaveMode(selectMode);
+			WaveManager::GetInstance()->SetWaveMode(mode);
 			//ゲームシーンへ
 			nextScene = new GameScene();
 		}
@@ -174,6 +177,8 @@ void SelectScene::Update()
 	}
 	// 各クラスの更新
 	{
+		BaseWave* tmpWave = WaveManager::GetInstance()->GetWave();
+		selectUi->Update(selectMode, ranking->json.obj);
 		lightGroup->Update();
 		camera->Update();
 	}
@@ -232,46 +237,49 @@ void SelectScene::Draw()
 	}
 }
 
-void SelectScene::SetSelectMode(int mode)
+void SelectScene::SetSelectMode(int a)
 {
-	switch (mode)
+	switch (a)
 	{
 	case 0:
-		selectMode = WaveMode::test;
-		selectUi->Update("test",ranking.json.obj);
+		selectMode = "test";
+		mode = WaveMode::test;
 		break;
 	case 1:
-		selectMode = WaveMode::easy;
-		selectUi->Update("easy", ranking.json.obj);
+		selectMode = "easy";
+		mode = WaveMode::easy;
 		break;
 	case 2:
-		selectMode = WaveMode::flick_easy;
-		selectUi->Update("flick_easy", ranking.json.obj);
+		selectMode = "flick_easy";
+		mode = WaveMode::flick_easy;
 		break;
 	case 3:
-		selectMode = WaveMode::filck_normal;
-		selectUi->Update("filck_normal", ranking.json.obj);
+		selectMode = "filck_normal";
+		mode = WaveMode::filck_normal;
 		break;
 	case 4:
-		selectMode = WaveMode::flick_hard;
-		selectUi->Update("flick_hard", ranking.json.obj);
+		selectMode = "flick_hard";
+		mode = WaveMode::flick_hard;
 		break;
 	case 5:
-		selectMode = WaveMode::flick_hell;
-		selectUi->Update("flick_hell", ranking.json.obj);
+		selectMode = "flick_hell";
+		mode = WaveMode::flick_hell;
 		break;
 	case 6:
-		selectMode = WaveMode::follow;
-		selectUi->Update("follow", ranking.json.obj);
+		selectMode = "follow";
+		mode = WaveMode::follow;
 		break;
 	case 7:
-		selectMode = WaveMode::test;
+		selectMode = "test";
+		mode = WaveMode::test;
 		break;
 	case 8:
-		selectMode = WaveMode::test;
+		selectMode = "test";
+		mode = WaveMode::test;
 		break;
 	case 9:
-		selectMode = WaveMode::test;
+		selectMode = "test";
+		mode = WaveMode::test;
 		break;
 	}
 }

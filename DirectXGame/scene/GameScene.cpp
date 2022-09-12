@@ -115,6 +115,10 @@ void GameScene::Update()
 			ShowCursor(true);
 		}
 		
+		BaseWave* tmpWave = WaveManager::GetInstance()->GetWave();
+		ranking->setScore(tmpWave->GetCurrentKey(), (float)tmpWave->GetScore());
+		ranking->WriteJson();
+
 		nextScene = new EndScene();
 	}
 
@@ -132,6 +136,7 @@ void GameScene::Update()
 			ShowCursor(true);
 			BaseWave* tmpWave = WaveManager::GetInstance()->GetWave();
 			ranking->setScore(tmpWave->GetCurrentKey(), (float)tmpWave->GetScore());
+			ranking->WriteJson();
 		}
 
 		nextScene = new EndScene();

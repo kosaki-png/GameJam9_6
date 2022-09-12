@@ -32,7 +32,7 @@ void SelectUi::Update(std::string key, picojson::object obj)
 
 	for (int j = 0; j < 3; j++)
 	{
-		score[j]->Printf("%d", nog[j].get<double>());
+		score[j]->Printf("%lf", nog[j].get<double>());
 	}
 }
 

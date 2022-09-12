@@ -38,6 +38,7 @@ private:
 	std::array<Button, 9> modeButton;
 	Button startButton;
 
-	WaveMode selectMode = WaveMode::test;
-	Ranking ranking;
+	std::string selectMode = "test";
+	WaveMode mode = WaveMode::test;
+	Ranking* ranking;
 };

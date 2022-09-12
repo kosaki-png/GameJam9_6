@@ -55,7 +55,9 @@ public:
 	/// クリアしたか
 	/// </summary>
 	/// <returns></returns>
-	bool GetClearFlag() { return clearFlag; }
+	bool GetClearFlag() { 
+		return clearFlag; 
+	}
 
 	/// <summary>
 	/// ゲッター

@@ -1,7 +1,6 @@
 #include "Ui.h"
 #include "SpriteData.h"
 
-int Ui::scoreNum = 0;
 float Ui::countNum = 1;
 float Ui::missNum = 0;
 float Ui::rateNum = 0;
