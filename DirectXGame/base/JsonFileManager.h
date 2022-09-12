@@ -20,7 +20,6 @@ public:
 	void WriteJson(const std::string& filePath);
 	//ÉmÅ[Éhí«â¡
 	static const picojson::object NodeAdd(picojson::object, std::vector<float> data, const std::string& key);
-protected:
 	JsonFileManager();
 	~JsonFileManager();
 

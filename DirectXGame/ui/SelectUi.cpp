@@ -7,49 +7,39 @@ SelectUi::SelectUi()
 
 SelectUi::~SelectUi()
 {
-	for (int i = 0; i < 9; i++)
+	for (int j = 0; j < 3; j++)
 	{
-		for (int j = 0; j < 3; j++)
-		{
-			safe_delete(score[i][j]);
-		}
+		safe_delete(score[j]);
 	}
 }
 
 void SelectUi::Initialize()
 {
-	//1位スコア
-	ui = new Ui();
+	ranking.Initialize();
 
-	for (int i = 0; i < 9; i++)
+	for (int j = 0; j < 3; j++)
 	{
-		for (int j = 0; j < 3; j++)
-		{
-			score[i][j] = new Score();
-			score[i][j]->Initialize(UI_FONT_1);
-			score[i][j]->SetPos(300,400 + (j * 180));
-		}
+		score[j] = new Score();
+		score[j]->Initialize(UI_FONT_1);
+		score[j]->SetPos(300,400 + (j * 180));
 	}
 }
 
-void SelectUi::Update()
+void SelectUi::Update(std::string key, picojson::object obj)
 {
-	for (int i = 0; i < 9; i++)
+	//jsonデータ呼び出し
+	auto nog = obj.at(key).get<picojson::array>();
+
+	for (int j = 0; j < 3; j++)
 	{
-		for (int j = 0; j < 3; j++)
-		{
-			score[i][j]->Printf("%d", ui->GetScore());
-		}
+		score[j]->Printf("%d", nog[j].get<float>());
 	}
 }
 
 void SelectUi::Draw(ID3D12GraphicsCommandList* cmdList)
 {
-	for (int i = 0; i < 9; i++)
+	for (int j = 0; j < 3; j++)
 	{
-		for (int j = 0; j < 3; j++)
-		{
-			score[i][j]->DrawAll(cmdList);
-		}
+		score[j]->DrawAll(cmdList);
 	}
 }

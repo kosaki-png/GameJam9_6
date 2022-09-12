@@ -5,6 +5,7 @@
 #include "input/Input.h"
 #include "SafeDelete.h"
 #include "Stopwatch.h"
+#include "base/JsonFileManager.h"
 
 class Ui 
 {

@@ -12,13 +12,7 @@
 #include "BaseTarget.h"
 #include <ui/Ranking.h>
 
-enum Level
-{
-	easy	= 0,
-	normal	= 1,
-	hard	= 2,
-	hell	= 3
-};
+
 
 class BaseWave
 {
@@ -33,7 +27,7 @@ public:
 	using XMMATRIX = DirectX::XMMATRIX;
 
 public:
-	BaseWave(Level level);
+	BaseWave(std::string key);
 	virtual ~BaseWave();
 
 	virtual void Initialize(Input* input, Camera* camera);
@@ -63,12 +57,24 @@ public:
 	/// <returns></returns>
 	bool GetClearFlag() { return clearFlag; }
 
-protected:
-	// 現在のレベル
-	Level level;
+	/// <summary>
+	/// ゲッター
+	/// </summary>
+	/// <returns>現在のキー</returns>
+	std::string GetCurrentKey() {return currentKey;}
 
+	/// <summary>
+	/// スコア取得
+	/// </summary>
+	/// <returns></returns>
+	int GetScore() { return ui->GetScore(); }
+
+protected:
 	// キー入力
 	Input* input;
+
+	//現在のキー
+	std::string currentKey;
 
 	// 視線レイ用
 	Camera* camera = nullptr;
@@ -90,7 +96,5 @@ protected:
 	bool isStart = false;	// スタートしているか
 
 	float time = 4.0f;		// 開始までの時間
-
-	Ranking ranking;
 };
 

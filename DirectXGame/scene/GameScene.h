@@ -35,5 +35,7 @@ private:
 
 	// オプション用
 	OptionGS* option = nullptr;
+
+	Ranking* ranking = nullptr;
 };
 

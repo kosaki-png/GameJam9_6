@@ -52,8 +52,8 @@ void TestWave::DrawUi(ID3D12GraphicsCommandList* cmdList)
 
 using namespace DirectX;
 
-TestWave::TestWave(Level level)
-	: BaseWave::BaseWave(level)
+TestWave::TestWave(std::string key)
+	: BaseWave::BaseWave(key)
 {
 }
 

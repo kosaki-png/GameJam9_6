@@ -1,5 +1,13 @@
 #include "Ranking.h"
 
+Ranking::Ranking()
+{
+}
+
+Ranking::~Ranking()
+{
+}
+
 void Ranking::Initialize()
 {
 	std::string key;
@@ -26,7 +34,6 @@ void Ranking::setScore(std::string key, float data)
 			}
 		}
 	}
-
 
 	//余計な末尾にデータを削除
 	nog.erase(nog.end() - 1);

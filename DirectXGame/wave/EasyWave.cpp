@@ -1,7 +1,7 @@
 #include "EasyWave.h"
 
-EasyWave::EasyWave(Level level)
-	: BaseWave::BaseWave(level)
+EasyWave::EasyWave(std::string key)
+	: BaseWave::BaseWave(key)
 {
 }
 
