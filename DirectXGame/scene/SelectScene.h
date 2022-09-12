@@ -20,4 +20,9 @@ public:
 private:
 	Object3d* objField = nullptr;
 	Object3d* objSky = nullptr;
+
+	Sprite* menu = nullptr;
+	Sprite* score = nullptr;
+
+	bool select = false;
 };

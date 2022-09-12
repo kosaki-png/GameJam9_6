@@ -18,6 +18,8 @@ SelectScene::~SelectScene()
 {
 	delete objField;
 	delete objSky;
+	delete menu;
+	delete score;
 }
 
 void SelectScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
@@ -48,6 +50,8 @@ void SelectScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio
 		// スプライト生成
 		{
 			tmpSprite = Sprite::Create(SELECT, { 0,0 });
+			menu = Sprite::Create(MENU, { 0,0 });
+			score = Sprite::Create(SCORE, { 0,0 });
 		}
 
 		// スプライトの初期設定
@@ -85,6 +89,22 @@ void SelectScene::Update()
 	{	
 		//ゲームシーンへ
 		nextScene = new GameScene();
+	}
+
+	// モードを選び、クリックしたとき
+	if (select && input->TriggerMouseLeft())
+	{
+		//ゲームシーンへ
+		nextScene = new GameScene();
+	}
+
+	if (input->TriggerMouseLeft())
+	{
+		select = true;
+	}
+	if (input->TriggerMouseRight())
+	{
+		select = false;
 	}
 
 	// 3Dオブジェクト更新
@@ -132,7 +152,14 @@ void SelectScene::Draw()
 		// 前景スプライト描画前処理
 		Sprite::PreDraw(cmdList);
 		{
-
+			if (!select)
+			{
+				menu->Draw();
+			}
+			else
+			{
+				score->Draw();
+			}
 
 			// デバッグテキストの描画
 			text->DrawAll(cmdList);
