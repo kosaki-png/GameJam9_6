@@ -5,6 +5,7 @@
 #include "input/Input.h"
 #include "SafeDelete.h"
 #include "Stopwatch.h"
+#include "base/JsonFileManager.h"
 
 class Ui 
 {
@@ -38,7 +39,7 @@ public:
 	/// <summary>
 	/// XV
 	/// </summary>
-	void Update();
+	void Update(std::string key,picojson::object obj);
 
 	/// <summary>
 	/// •`‰æ

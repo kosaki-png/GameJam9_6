@@ -27,7 +27,6 @@ void Ranking::setScore(std::string key, float data)
 		}
 	}
 
-
 	//余計な末尾にデータを削除
 	nog.erase(nog.end() - 1);
 }

@@ -3,6 +3,7 @@
 #include "Text.h"
 #include "Score.h"
 #include "Ui.h"
+#include <ui/Ranking.h>
 
 class SelectUi
 {
@@ -25,7 +26,7 @@ public:
 	/// <summary>
 	/// çXêV
 	/// </summary>
-	void Update();
+	void Update(std::string key, picojson::object obj);
 
 	/// <summary>
 	/// ï`âÊ
@@ -37,13 +38,13 @@ public:
 	}
 
 private:
-	Ui* ui;
-	Score* score[9][3];
+	Score* score[3];
 
 	//Score* firstScore;
 	//Score* secondScore;
 	//Score* thirdScore;
 
 	int scoreNum;
+	Ranking ranking;
 };
 
