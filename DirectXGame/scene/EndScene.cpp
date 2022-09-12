@@ -20,56 +20,58 @@ EndScene::~EndScene()
 {
 	delete objGround;
 	delete objSky;
-	delete resultUi;
+	delete modelGround;
+	delete modelSky;
+	safe_delete(resultUi);
 }
 
 void EndScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 {
-	// nullptrƒ`ƒFƒbƒN
+	// nullptrãƒã‚§ãƒƒã‚¯
 	BaseScene::Initialize(dxCommon, input, audio);
 
 	audio->Stop();
 
-	// ”Ä—p“I‰Šú‰»
+	// æ±Žç”¨çš„åˆæœŸåŒ–
 	{
-		// ƒJƒƒ‰¶¬
+		// ã‚«ãƒ¡ãƒ©ç”Ÿæˆ
 		camera = new FreeCamera(WinApp::window_width, WinApp::window_height);
 
-		// 3DƒIƒuƒWƒFƒNƒg‚ÉƒJƒƒ‰‚ðƒZƒbƒg
+		// 3Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ã‚«ãƒ¡ãƒ©ã‚’ã‚»ãƒƒãƒˆ
 		Object3d::SetCamera(camera);
 
-		// ƒfƒoƒbƒOƒeƒLƒXƒg‰Šú‰»
+		// ãƒ‡ãƒãƒƒã‚°ãƒ†ã‚­ã‚¹ãƒˆåˆæœŸåŒ–
 		text = Text::GetInstance();
 
-		// ƒ‰ƒCƒg¶¬
+		// ãƒ©ã‚¤ãƒˆç”Ÿæˆ
 		lightGroup = LightGroup::Create();
-		// 3DƒIƒuƒGƒNƒg‚Éƒ‰ƒCƒg‚ðƒZƒbƒg
+		// 3Dã‚ªãƒ–ã‚¨ã‚¯ãƒˆã«ãƒ©ã‚¤ãƒˆã‚’ã‚»ãƒƒãƒˆ
 		Object3d::SetLightGroup(lightGroup);
 	}
 
-	// ƒXƒvƒ‰ƒCƒg‰ŠúÝ’è
+	// ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆåˆæœŸè¨­å®š
 	{
-		// ƒXƒvƒ‰ƒCƒg¶¬
+		// ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆç”Ÿæˆ
 		{
 			tmpSprite = Sprite::Create(END, { 0,0 });
 			resultUi = new ResultUi();
 			resultUi->Initialize();
 		}
 
-		// ƒXƒvƒ‰ƒCƒg‰ŠúÝ’è
+		// ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆåˆæœŸè¨­å®š
 		{
 		}
 	}
 
-	// 3DƒIƒuƒWƒFƒNƒg‰ŠúÝ’è
+	// 3Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆåˆæœŸè¨­å®š
 	{
-		// 3DƒIƒuƒWƒFƒNƒg¶¬
+		// 3Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”Ÿæˆ
 		{
 			objGround = Object3d::Create(modelMng->GetModel(FIELD));
 			objSky = Object3d::Create(modelMng->GetModel(SKYDOME));
 		}
 
-		// 3DƒIƒuƒWƒFƒNƒg‰ŠúÝ’è
+		// 3Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆåˆæœŸè¨­å®š
 		{
 			objGround->Initialize();
 			objGround->SetPosition({ 0,-5, 0 });
@@ -77,21 +79,21 @@ void EndScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 		}
 	}
 
-	// ƒJƒƒ‰’Ž‹“_‚ðƒZƒbƒg
+	// ã‚«ãƒ¡ãƒ©æ³¨è¦–ç‚¹ã‚’ã‚»ãƒƒãƒˆ
 	camera->SetTarget({ 0, 1, 0 });
 	camera->SetDistance(300.0f);
 }
 
 void EndScene::Update()
 {
-	// Enter‚ÅŽw’è‚ÌƒV[ƒ“‚Ö
+	// Enterã§æŒ‡å®šã®ã‚·ãƒ¼ãƒ³ã¸
 	if (input->TriggerKey(DIK_RETURN))
 	{
-		// ƒ^ƒCƒgƒ‹ƒV[ƒ“‚Ö
+		// ã‚¿ã‚¤ãƒˆãƒ«ã‚·ãƒ¼ãƒ³ã¸
 		nextScene = new TitleScene();
 	}
 
-	// ESCAPE‚ÅƒQ[ƒ€I—¹
+	// ESCAPEã§ã‚²ãƒ¼ãƒ çµ‚äº†
 	if (input->PushKey(DIK_ESCAPE))
 	{
 		PostQuitMessage(0);
@@ -102,7 +104,7 @@ void EndScene::Update()
 	camera->Update();
 	camera->SetRotation(rot);
 	resultUi->Update();
-	// 3DƒIƒuƒWƒFƒNƒgXV
+	// 3Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ›´æ–°
 	{
 		objGround->Update();
 		objSky->Update();
@@ -112,25 +114,25 @@ void EndScene::Update()
 
 void EndScene::Draw()
 {
-	// ƒRƒ}ƒ“ƒhƒŠƒXƒg‚ÌŽæ“¾
+	// ã‚³ãƒžãƒ³ãƒ‰ãƒªã‚¹ãƒˆã®å–å¾—
 	ID3D12GraphicsCommandList* cmdList = dxCommon->GetCommandList();
 
-	// ”wŒiƒXƒvƒ‰ƒCƒg•`‰æ
+	// èƒŒæ™¯ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæç”»
 	{
-		// ”wŒiƒXƒvƒ‰ƒCƒg•`‰æ‘Oˆ—
+		// èƒŒæ™¯ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæç”»å‰å‡¦ç†
 		Sprite::PreDraw(cmdList);
 		{
 			
 		}
 		Sprite::PostDraw();
 
-		// [“xƒoƒbƒtƒ@ƒNƒŠƒA
+		// æ·±åº¦ãƒãƒƒãƒ•ã‚¡ã‚¯ãƒªã‚¢
 		dxCommon->ClearDepthBuffer();
 	}
 
-	// 3D•`‰æ
+	// 3Dæç”»
 	{
-		// 3DƒIƒuƒWƒFƒNƒg‚Ì•`‰æ
+		// 3Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æç”»
 		Object3d::PreDraw(cmdList);
 		{
 			objGround->Draw();
@@ -139,14 +141,14 @@ void EndScene::Draw()
 		Object3d::PostDraw();
 	}
 
-	// ‘OŒiƒXƒvƒ‰ƒCƒg•`‰æ
+	// å‰æ™¯ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæç”»
 	{
-		// ‘OŒiƒXƒvƒ‰ƒCƒg•`‰æ‘Oˆ—
+		// å‰æ™¯ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæç”»å‰å‡¦ç†
 		Sprite::PreDraw(cmdList);
 		{
 			tmpSprite->Draw();
 			resultUi->Draw(cmdList);
-			// ƒfƒoƒbƒOƒeƒLƒXƒg‚Ì•`‰æ
+			// ãƒ‡ãƒãƒƒã‚°ãƒ†ã‚­ã‚¹ãƒˆã®æç”»
 			text->DrawAll(cmdList);
 		}
 		Sprite::PostDraw();
