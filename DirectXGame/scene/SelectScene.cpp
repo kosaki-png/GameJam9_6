@@ -98,9 +98,23 @@ void SelectScene::Update()
 		nextScene = new GameScene();
 	}
 
-	if (input->TriggerMouseLeft())
+	// ƒ‚[ƒh‘I‘ð
+	/*if (input->TriggerMouseLeft())
 	{
 		select = true;
+	}*/
+	if (!select)
+	{
+		if (input->TriggerKey(DIK_1))
+		{
+			WaveManager::GetInstance()->SetWaveMode(WaveMode::flick_easy);
+			select = true;
+		}
+		if (input->TriggerKey(DIK_2))
+		{
+			WaveManager::GetInstance()->SetWaveMode(WaveMode::flick_hard);
+			select = true;
+		}
 	}
 	if (input->TriggerMouseRight())
 	{

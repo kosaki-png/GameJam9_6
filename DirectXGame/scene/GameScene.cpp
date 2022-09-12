@@ -89,7 +89,7 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 
 		// ウェーブの初期化
 		waveMng = WaveManager::GetInstance();
-		waveMng->SetWaveMode(WaveMode::flick_easy);
+		//waveMng->SetWaveMode(WaveMode::flick_easy);
 		waveMng->Initialize(input, camera);
 
 		// オプションの初期化
