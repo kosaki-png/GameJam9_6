@@ -39,7 +39,7 @@ public:
 	/// <summary>
 	/// XV
 	/// </summary>
-	void Update(std::string key,picojson::object obj);
+	void Update();
 
 	/// <summary>
 	/// •`‰æ

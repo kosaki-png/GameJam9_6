@@ -66,7 +66,7 @@ void Ui::Initialize()
 	timer = diagnostics::Stopwatch::startNew();
 }
 
-void Ui::Update(std::string key,picojson::object obj)
+void Ui::Update()
 {
 	if (!IsTimeUp())
 	{

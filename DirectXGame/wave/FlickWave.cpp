@@ -2,8 +2,8 @@
 
 using namespace DirectX;
 
-FlickWave::FlickWave(Level level)
-	: BaseWave::BaseWave(level)
+FlickWave::FlickWave(std::string key)
+	: BaseWave::BaseWave(key)
 {
 }
 
@@ -31,7 +31,7 @@ void FlickWave::Initialize(Input* input, Camera* camera)
 			targets[i]->Initialize("sphere");
 
 			// “ïˆÕ“x‚É‰ž‚¶‚Ä‘å‚«‚³•ÏX
-			float scale = 1.0f - 0.3f * level;
+			float scale = 1.0f - 0.3f * 1;//Œã‚Å’¼‚·
 			targets[i]->SetScale({ scale, scale , scale });
 		}
 

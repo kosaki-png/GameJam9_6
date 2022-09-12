@@ -5,7 +5,7 @@ class EasyWave :
     public BaseWave
 {
 public:
-    EasyWave(Level level);
+    EasyWave(std::string key);
     ~EasyWave();
 
     void Initialize(Input* input, Camera* camera) override;

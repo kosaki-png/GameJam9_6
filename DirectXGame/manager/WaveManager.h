@@ -34,6 +34,8 @@ public:
 	void DestroyWave();
 	void Destroy();
 
+	BaseWave* GetWave() { return wave; }
+
 private:
 	WaveManager() = default;
 	~WaveManager() = default;;

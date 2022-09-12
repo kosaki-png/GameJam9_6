@@ -16,35 +16,35 @@ void WaveManager::Initialize(Input* input, Camera* camera)
     switch (mode)
     {
     case WaveMode::test:
-        wave = new TestWave(easy);
+        wave = new TestWave("test");
         break;
 
     case WaveMode::easy:
-        wave = new EasyWave(easy);
+        wave = new EasyWave("easy");
         break;
 
     case WaveMode::flick_easy:
-        wave = new FlickWave(easy);
+        wave = new FlickWave("flick_easy");
         break;
 
     case WaveMode::filck_normal:
-        wave = new FlickWave(normal);
+        wave = new FlickWave("filck_normal");
         break;
 
     case WaveMode::flick_hard:
-        wave = new FlickWave(hard);
+        wave = new FlickWave("flick_hard");
         break;
 
     case WaveMode::flick_hell:
-        wave = new FlickWave(hell);
+        wave = new FlickWave("flick_hell");
         break;
 
     case WaveMode::follow:
-        wave = new FollowWave(easy);
+        wave = new FollowWave("follow");
         break;
 
     default:
-        wave = new TestWave(easy);
+        wave = new TestWave("test");
         break;
     }
 

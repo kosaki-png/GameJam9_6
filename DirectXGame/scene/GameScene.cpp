@@ -23,6 +23,7 @@ GameScene::~GameScene()
 	delete objGround;
 	delete objSky;
 	delete option;
+	safe_delete(ranking);
 }
 
 void GameScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
@@ -84,6 +85,9 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 
 	// 各クラスの初期化
 	{
+        //ランキング初期化
+		ranking = new Ranking();
+		ranking->Initialize();
 		// 感度設定
 		sensi = camera->GetSensi();
 
@@ -126,6 +130,8 @@ void GameScene::Update()
 		if (!option->GetIsOption())
 		{
 			ShowCursor(true);
+			BaseWave* tmpWave = WaveManager::GetInstance()->GetWave();
+			ranking->setScore(tmpWave->GetCurrentKey(), (float)tmpWave->GetScore());
 		}
 
 		nextScene = new EndScene();

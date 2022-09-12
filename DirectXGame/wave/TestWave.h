@@ -18,7 +18,7 @@ class TestWave :
     public BaseWave
 {
 public:
-    TestWave(Level level);
+    TestWave(std::string key);
     ~TestWave();
 
     void Initialize(Input* input, Camera* camera) override;

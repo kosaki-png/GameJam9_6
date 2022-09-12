@@ -4,7 +4,7 @@ class FlickWave :
     public BaseWave
 {
 public:
-    FlickWave(Level level);
+    FlickWave(std::string key);
     ~FlickWave();
 
     void Initialize(Input* input, Camera* camera) override;

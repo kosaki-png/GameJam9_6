@@ -5,6 +5,7 @@
 #include "SelectUi.h"
 #include "XinputControll.h"
 #include <array>
+#include <ui/Ranking.h>
 
 class SelectScene :
 	public BaseScene
@@ -38,4 +39,5 @@ private:
 	Button startButton;
 
 	WaveMode selectMode = WaveMode::test;
+	Ranking ranking;
 };

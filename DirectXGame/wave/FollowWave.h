@@ -5,7 +5,7 @@ class FollowWave :
     public BaseWave
 {
 public:
-    FollowWave(Level level);
+    FollowWave(std::string key);
     ~FollowWave();
 
     void Initialize(Input* input, Camera* camera) override;
