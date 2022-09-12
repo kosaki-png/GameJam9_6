@@ -129,15 +129,16 @@ void GameScene::Update()
 	}
 
 	// クリアフラグでゲームクリア
-	if (waveMng->GetClearFlag())
+	if (waveMng->GetClearFlag() && nextScene == nullptr)
 	{
 		if (!option->GetIsOption())
 		{
 			ShowCursor(true);
-			BaseWave* tmpWave = WaveManager::GetInstance()->GetWave();
-			ranking->setScore(tmpWave->GetCurrentKey(), (float)tmpWave->GetScore());
-			ranking->WriteJson();
 		}
+
+		BaseWave* tmpWave = WaveManager::GetInstance()->GetWave();
+		ranking->setScore(tmpWave->GetCurrentKey(), (float)tmpWave->GetScore());
+		ranking->WriteJson();
 
 		nextScene = new EndScene();
 	}
@@ -158,7 +159,7 @@ void GameScene::Update()
 	{
 		// ウェーブの更新
 		waveMng->Update();
-
+		
 		// 3Dオブジェクト更新
 		{
 			objGround->Update();
