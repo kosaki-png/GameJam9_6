@@ -58,6 +58,7 @@
     <ClCompile Include="ui\ResultUi.cpp" />
     <ClCompile Include="manager\ModelManager.cpp" />
     <ClCompile Include="camera\OrbitCamera.cpp" />
+    <ClCompile Include="manager\WaveManager.cpp" />
     <ClCompile Include="ui\Ranking.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -113,6 +114,7 @@
     <ClInclude Include="base\picojson.h" />
     <ClInclude Include="camera\OrbitCamera.h" />
     <ClInclude Include="ui\Ranking.h" />
+    <ClInclude Include="manager\WaveManager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\shader\OBJShaderHeader.hlsli" />

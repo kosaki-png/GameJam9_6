@@ -20,7 +20,9 @@ EndScene::~EndScene()
 {
 	delete objGround;
 	delete objSky;
-	delete resultUi;
+	delete modelGround;
+	delete modelSky;
+	safe_delete(resultUi);
 }
 
 void EndScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
@@ -41,9 +43,9 @@ void EndScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 		// デバッグテキスト初期化
 		text = Text::GetInstance();
 
-		// ライト生成
+		//ライト生成
 		lightGroup = LightGroup::Create();
-		// 3Dオブエクトにライトをセット
+		// 3Dオブジェクトにライトを生成
 		Object3d::SetLightGroup(lightGroup);
 	}
 
@@ -77,7 +79,7 @@ void EndScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 		}
 	}
 
-	// カメラ注視点をセット
+	// カメラ中視点をセット
 	camera->SetTarget({ 0, 1, 0 });
 	camera->SetDistance(300.0f);
 }
@@ -87,6 +89,16 @@ void EndScene::Update()
 	// Enterで指定のシーンへ
 	if (input->TriggerKey(DIK_RETURN))
 	{
+		// ウェーブを削除
+		WaveManager::GetInstance()->DestroyWave();
+		// タイトルシーンへ
+		nextScene = new TitleScene();
+	}
+	// Enterで指定のシーンへ
+	if (input->TriggerMouseLeft())
+	{
+		// ウェーブを削除
+		WaveManager::GetInstance()->DestroyWave();
 		// タイトルシーンへ
 		nextScene = new TitleScene();
 	}
@@ -102,7 +114,7 @@ void EndScene::Update()
 	camera->Update();
 	camera->SetRotation(rot);
 	resultUi->Update();
-	// 3Dオブジェクト更新
+	// 3Dオブジェクトの更新
 	{
 		objGround->Update();
 		objSky->Update();
@@ -112,12 +124,12 @@ void EndScene::Update()
 
 void EndScene::Draw()
 {
-	// コマンドリストの取得
+	//コマンドリストの取得
 	ID3D12GraphicsCommandList* cmdList = dxCommon->GetCommandList();
 
-	// 背景スプライト描画
+	// 背景スプライトの描画
 	{
-		// 背景スプライト描画前処理
+		// 背景スプライトの描画前処理
 		Sprite::PreDraw(cmdList);
 		{
 			
@@ -141,7 +153,7 @@ void EndScene::Draw()
 
 	// 前景スプライト描画
 	{
-		// 前景スプライト描画前処理
+		//  前景スプライト描画前処理
 		Sprite::PreDraw(cmdList);
 		{
 			tmpSprite->Draw();

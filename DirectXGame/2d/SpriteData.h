@@ -9,6 +9,8 @@ static const int TITLE = 1;
 
 // セレクト用
 static const int SELECT = 11;
+static const int SCORE = 12;
+static const int MENU = 13;
 
 // ゲーム用
 static const int GAME = 21;

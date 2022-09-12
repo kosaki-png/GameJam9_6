@@ -22,6 +22,8 @@ private:
 	Object3d* objGround = nullptr;
 	// “V‹…
 	Object3d* objSky = nullptr;
+	Model* modelGround = nullptr;
+	Model* modelSky = nullptr;
 	DirectX::XMFLOAT3 rot = { 0,0,0 };
 	ResultUi* resultUi = nullptr;
 };

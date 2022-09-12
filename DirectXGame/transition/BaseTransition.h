@@ -34,6 +34,6 @@ protected:
 
 	bool canChange = false;
 	bool isMove = false;
-
+	bool isHalf = false;
 };
 

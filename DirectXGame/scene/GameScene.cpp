@@ -22,7 +22,6 @@ GameScene::~GameScene()
 	delete cross;
 	delete objGround;
 	delete objSky;
-	delete wave;
 	delete option;
 }
 
@@ -37,7 +36,7 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 	{
 		// カメラ生成
 		camera = new FreeCamera(WinApp::window_width, WinApp::window_height);
-		//camera->SetInput(input);
+		camera->SetInput(input);
 
 		// 3Dオブジェクトにカメラをセット
 		Object3d::SetCamera(camera);
@@ -89,9 +88,9 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 		sensi = camera->GetSensi();
 
 		// ウェーブの初期化
-		Level level = normal;
-		wave = new FlickWave(level);
-		wave->Initialize(input, camera);
+		waveMng = WaveManager::GetInstance();
+		//waveMng->SetWaveMode(WaveMode::flick_easy);
+		waveMng->Initialize(input, camera);
 
 		// オプションの初期化
 		option = new OptionGS(input, camera, audio);
@@ -122,7 +121,7 @@ void GameScene::Update()
 	}
 
 	// クリアフラグでゲームクリア
-	if (wave->GetClearFlag())
+	if (waveMng->GetClearFlag())
 	{
 		if (!option->GetIsOption())
 		{
@@ -146,16 +145,8 @@ void GameScene::Update()
 
 	if (!option->GetIsOption())
 	{
-		// カウントダウン開始
-		if (wave->GetIsCount())
-		{
-			wave->CountDown();
-		}
-		else
-		{
-			// ウェーブの更新
-			wave->Update();
-		}
+		// ウェーブの更新
+		waveMng->Update();
 
 		// 3Dオブジェクト更新
 		{
@@ -204,7 +195,8 @@ void GameScene::Draw()
 			objGround->Draw();
 			objSky->Draw();
 
-			wave->Draw();
+			// ウェーブの描画
+			waveMng->Draw();
 		}
 		Object3d::PostDraw();
 	}
@@ -215,8 +207,8 @@ void GameScene::Draw()
 		Sprite::PreDraw(cmdList);
 		{
 			cross->Draw();
-			wave->DrawUi(cmdList);
-			wave->CountDownDraw();
+			// ウェーブUIの描画
+			waveMng->DrawUi(cmdList);
 
 			// オプション画面
 			option->Draw(cmdList);

@@ -9,6 +9,7 @@
 #include "SpriteData.h"
 #include "SafeDelete.h"
 #include "ModelManager.h"
+#include "WaveManager.h"
 
 class BaseScene
 {
@@ -21,6 +22,13 @@ private: // エイリアス
 	using XMFLOAT4 = DirectX::XMFLOAT4;
 	using XMVECTOR = DirectX::XMVECTOR;
 	using XMMATRIX = DirectX::XMMATRIX;
+
+public:
+	struct Button
+	{
+		XMFLOAT2 position = { 0,0 };
+		XMFLOAT2 size = { 1,1 };
+	};
 
 public:
 	BaseScene();
@@ -42,6 +50,7 @@ protected:
 	BaseScene* nextScene = nullptr;
 
 	ModelManager* modelMng = nullptr;
+	WaveManager* waveMng = nullptr;
 
 	Camera* camera = nullptr;
 

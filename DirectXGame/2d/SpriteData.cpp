@@ -9,7 +9,10 @@ void SpriteData::LoadTexture()
 	Sprite::LoadTexture(TITLE,		L"Resources/Texture/title_01.png");
 
 	// セレクト読み込み
-	Sprite::LoadTexture(SELECT,		L"Resources/Texture/select.png");
+	Sprite::LoadTexture(SELECT,		L"Resources/Texture/select_base.png");
+	Sprite::LoadTexture(SCORE,		L"Resources/Texture/menu_score.png");
+	Sprite::LoadTexture(MENU,		L"Resources/Texture/select_menu.png");
+
 
 	// ゲーム読み込み
 	Sprite::LoadTexture(GAME,		L"Resources/Texture/game.png");
