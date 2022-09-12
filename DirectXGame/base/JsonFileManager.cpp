@@ -52,6 +52,13 @@ const void JsonFileManager::MultipleWriteJson(std::vector<std::vector<float>> da
 
 	ofs << picojson::value(obj).serialize(true) << std::endl;
 }
+void JsonFileManager::WriteJson(const std::string& filePath)
+{
+	std::ofstream ofs(filePath);
+
+	ofs << picojson::value(obj).serialize(true) << std::endl;
+	
+}
 const picojson::object JsonFileManager::NodeAdd(picojson::object obj, std::vector<float> data, const std::string& key)
 {
 	picojson::array arr;
