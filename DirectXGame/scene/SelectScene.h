@@ -2,6 +2,7 @@
 #include "ParticleManager.h"
 
 #include "BaseScene.h"
+#include "SelectUi.h"
 #include "XinputControll.h"
 #include <array>
 
@@ -27,6 +28,8 @@ private:
 
 	Sprite* menu = nullptr;
 	Sprite* score = nullptr;
+
+	SelectUi* selectUi = nullptr;
 
 	bool select = false;
 
