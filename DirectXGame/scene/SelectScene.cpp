@@ -215,6 +215,9 @@ void SelectScene::Draw()
 			else
 			{
 				score->Draw();
+
+				// スコア描画
+
 			}
 
 			// デバッグテキストの描画
