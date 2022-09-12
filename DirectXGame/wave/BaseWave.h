@@ -10,6 +10,7 @@
 
 #include <array>
 #include "BaseTarget.h"
+#include <ui/Ranking.h>
 
 enum Level
 {
@@ -89,5 +90,7 @@ protected:
 	bool isStart = false;	// スタートしているか
 
 	float time = 4.0f;		// 開始までの時間
+
+	Ranking ranking;
 };
 

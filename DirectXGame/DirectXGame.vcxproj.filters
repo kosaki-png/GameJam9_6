@@ -60,6 +60,7 @@
     <ClCompile Include="camera\OrbitCamera.cpp" />
     <ClCompile Include="manager\WaveManager.cpp" />
     <ClCompile Include="ui\SelectUi.cpp" />
+    <ClCompile Include="ui\Ranking.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="2d\Sprite.h" />
@@ -113,6 +114,7 @@
     <ClInclude Include="base\JsonFileManager.h" />
     <ClInclude Include="base\picojson.h" />
     <ClInclude Include="camera\OrbitCamera.h" />
+    <ClInclude Include="ui\Ranking.h" />
     <ClInclude Include="manager\WaveManager.h" />
     <ClInclude Include="ui\SelectUi.h" />
   </ItemGroup>

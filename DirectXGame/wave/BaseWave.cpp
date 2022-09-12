@@ -10,6 +10,7 @@ BaseWave::BaseWave(Level level)
 
 BaseWave::~BaseWave()
 {
+	ranking.WriteJson();
 	delete base;
 	delete click;
 	delete start;
@@ -35,6 +36,8 @@ void BaseWave::Initialize(Input* input, Camera* camera)
 	start = Sprite::Create(START, { 0,0 });
 
 	text = Text::GetInstance();
+
+	ranking.Initialize();
 }
 
 void BaseWave::Update()
