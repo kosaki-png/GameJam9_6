@@ -22,6 +22,7 @@ SelectScene::~SelectScene()
 	delete objSky;
 	delete menu;
 	delete score;
+	safe_delete(selectUi);
 }
 
 void SelectScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
@@ -54,6 +55,9 @@ void SelectScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio
 			tmpSprite = Sprite::Create(SELECT, { 0,0 });
 			menu = Sprite::Create(MENU, { 0,0 });
 			score = Sprite::Create(SCORE, { 0,0 });
+		
+			selectUi = new SelectUi();
+			selectUi->Initialize();
 		}
 
 		// スプライトの初期設定
@@ -143,7 +147,6 @@ void SelectScene::Update()
 		{
 			// 現在のマウス座標を取得
 			DirectX::XMFLOAT2 mousePos = input->GetClientMousePos();
-
 			// マウス座標とボタンとの当たり判定
 			for (int i = 0; i < modeButton.size(); i++)
 			{
@@ -170,6 +173,7 @@ void SelectScene::Update()
 	}
 	// 各クラスの更新
 	{
+		selectUi->Update();
 		lightGroup->Update();
 		camera->Update();
 	}
@@ -217,7 +221,7 @@ void SelectScene::Draw()
 				score->Draw();
 
 				// スコア描画
-
+				selectUi->Draw(cmdList);
 			}
 
 			// デバッグテキストの描画
