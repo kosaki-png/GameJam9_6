@@ -29,6 +29,7 @@ void BlackOut::Start()
 
 	// シーンを変更不可に
 	canChange = false;
+	isHalf = false;
 
 	// 演出開始
 	isMove = true;
@@ -36,10 +37,13 @@ void BlackOut::Start()
 
 void BlackOut::Update()
 {
+	// 常にfalse
+	canChange = false;
+
 	if (isMove)
 	{
 		// 遷移前
-		if (!canChange)
+		if (!isHalf)
 		{
 			if (alpha < 1.0f)
 			{
@@ -50,6 +54,7 @@ void BlackOut::Update()
 			{
 				// シーンを変更可能に
 				canChange = true;
+				isHalf = true;
 			}
 		}
 		// 遷移後

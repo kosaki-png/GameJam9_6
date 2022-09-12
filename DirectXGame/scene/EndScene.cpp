@@ -90,6 +90,12 @@ void EndScene::Update()
 		// タイトルシーンへ
 		nextScene = new TitleScene();
 	}
+	// Enterで指定のシーンへ
+	if (input->TriggerMouseLeft())
+	{
+		// タイトルシーンへ
+		nextScene = new TitleScene();
+	}
 
 	// ESCAPEでゲーム終了
 	if (input->PushKey(DIK_ESCAPE))
