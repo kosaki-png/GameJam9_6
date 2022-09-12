@@ -7,6 +7,13 @@ ResultUi::ResultUi()
 
 ResultUi::~ResultUi()
 {
+	safe_delete(score);
+	safe_delete(accuracy);
+	safe_delete(timeToKill);
+	safe_delete(targets);
+	safe_delete(hits);
+	safe_delete(misses);
+	safe_delete(parcent);
 }
 
 void ResultUi::Initialize()

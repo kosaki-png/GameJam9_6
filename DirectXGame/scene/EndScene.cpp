@@ -22,6 +22,7 @@ EndScene::~EndScene()
 	delete objSky;
 	delete modelGround;
 	delete modelSky;
+	safe_delete(resultUi);
 }
 
 void EndScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
