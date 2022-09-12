@@ -26,7 +26,7 @@ void Ranking::setScore(std::string key, float data)
 	{
 		for (int j = i + 1; j < nog.size(); j++)
 		{
-			if (nog[i].get<float>() < nog[j].get<float>())
+			if (nog[i].get<double>() < nog[j].get<double>())
 			{
 				tmp = nog[i];
 				nog[i] = nog[j];
