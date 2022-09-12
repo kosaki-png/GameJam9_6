@@ -1,5 +1,35 @@
 {
-    "FlickWave": [
+    "test": [
+        0,
+        0,
+        0
+    ],
+    "easy": [
+        0,
+        0,
+        0
+    ],
+    "flick_easy": [
+        0,
+        0,
+        0
+    ],
+    "flick_normal": [
+        0,
+        0,
+        0
+    ],
+    "flick_hard": [
+        0,
+        0,
+        0
+    ],
+    "flick_hell": [
+        0,
+        0,
+        0
+    ],
+    "follow": [
         0,
         0,
         0
