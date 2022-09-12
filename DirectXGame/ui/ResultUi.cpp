@@ -18,20 +18,20 @@ ResultUi::~ResultUi()
 
 void ResultUi::Initialize()
 {
-	//ƒXƒRƒA
+	//ã‚¹ã‚³ã‚¢
 	ui = new Ui();
 	score = new Score();
 	score->Initialize(UI_FONT_1);
 	score->SetPos(150,350);
 	score->SetSize(1.5f);
 
-	//–½’†—¦
+	//å‘½ä¸­çŽ‡
 	accuracy = new Score();
 	accuracy->Initialize(UI_FONT_1);
 	accuracy->SetPos(830,350);
 	accuracy->SetSize(1.5f);
 
-	//ƒp[ƒZƒ“ƒg•\‹L
+	//ãƒ‘ãƒ¼ã‚»ãƒ³ãƒˆè¡¨è¨˜
 	parcent = new Score();
 	parcent->Initialize(UI_FONT_2);
 
@@ -41,19 +41,19 @@ void ResultUi::Initialize()
 	timeToKill->SetPos(1430, 350);
 	timeToKill->SetSize(1.5f);
 	
-	//Œ‚‚Á‚½”
+	//æ’ƒã£ãŸæ•°
 	targets = new Score();
 	targets->Initialize(UI_FONT_1);
 	targets->SetPos(150, 800);
 	targets->SetSize(1.5f);
 
-	//“–‚½‚Á‚½”
+	//å½“ãŸã£ãŸæ•°
 	hits = new Score();
 	hits->Initialize(UI_FONT_1);
 	hits->SetPos(830,800);
 	hits->SetSize(1.5f);
 
-	//ŠO‚µ‚½”
+	//å¤–ã—ãŸæ•°
 	misses = new Score();
 	misses->Initialize(UI_FONT_1);
 	misses->SetPos(1460, 800);
