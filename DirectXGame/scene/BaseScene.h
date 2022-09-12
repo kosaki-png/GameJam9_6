@@ -24,6 +24,13 @@ private: // エイリアス
 	using XMMATRIX = DirectX::XMMATRIX;
 
 public:
+	struct Button
+	{
+		XMFLOAT2 position = { 0,0 };
+		XMFLOAT2 size = { 1,1 };
+	};
+
+public:
 	BaseScene();
 	virtual ~BaseScene();
 

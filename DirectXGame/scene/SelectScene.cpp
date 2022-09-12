@@ -8,6 +8,8 @@
 #include <sstream>
 #include <iomanip>
 
+#include "Collision.h"
+
 using namespace DirectX;
 
 SelectScene::SelectScene()
@@ -77,6 +79,33 @@ void SelectScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio
 	camera->SetTarget({ 0, 1, 0 });
 	camera->SetDistance(10.0f);
 
+	// ボタンの初期化
+	{
+		// モード指定用
+		for (int i = 0; i < modeButton.size(); i++)
+		{
+			if (i % 3 == 0)
+			{
+				modeButton[i].position = {(float)100, (float)(225 * (i / 3) + 200)};
+			}
+			if (i % 3 == 1)
+			{
+				modeButton[i].position = { (float)(1920 / 2 - 275), (float)(225 * (i / 3) + 200) };
+			}
+			if (i % 3 == 2)
+			{
+				modeButton[i].position = { (float)(1920 - 650), (float)(225 * (i / 3) + 200) };
+			}
+
+			// サイズ設定
+			modeButton[i].size = { 550.0f, 150.0f };
+		}
+
+		// 開始用
+		startButton.position = { 1250.0f, 400.0f };
+		startButton.size = { 400.0f, 400.0f };
+	}
+
 	// 各クラスの初期化
 	{
 	}
@@ -94,26 +123,39 @@ void SelectScene::Update()
 	// モードを選び、クリックしたとき
 	if (select && input->TriggerMouseLeft())
 	{
-		//ゲームシーンへ
-		nextScene = new GameScene();
+		// 現在のマウス座標を取得
+		DirectX::XMFLOAT2 mousePos = input->GetClientMousePos();
+
+		// マウス座標とボタンとの当たり判定
+		if (Collision::CheckPoint2Box(mousePos, startButton.position, startButton.size))
+		{
+			// ウェーブモードセット
+			WaveManager::GetInstance()->SetWaveMode(selectMode);
+			//ゲームシーンへ
+			nextScene = new GameScene();
+		}
 	}
 
 	// モード選択
-	/*if (input->TriggerMouseLeft())
-	{
-		select = true;
-	}*/
 	if (!select)
 	{
-		if (input->TriggerKey(DIK_1))
+		if (input->TriggerMouseLeft())
 		{
-			WaveManager::GetInstance()->SetWaveMode(WaveMode::flick_easy);
-			select = true;
-		}
-		if (input->TriggerKey(DIK_2))
-		{
-			WaveManager::GetInstance()->SetWaveMode(WaveMode::flick_hard);
-			select = true;
+			// 現在のマウス座標を取得
+			DirectX::XMFLOAT2 mousePos = input->GetClientMousePos();
+
+			// マウス座標とボタンとの当たり判定
+			for (int i = 0; i < modeButton.size(); i++)
+			{
+				if (Collision::CheckPoint2Box(mousePos, modeButton[i].position, modeButton[i].size))
+				{
+					// モードセット
+					SetSelectMode(i);
+
+					// 選ぶ
+					select = true;
+				}
+			}
 		}
 	}
 	if (input->TriggerMouseRight())
@@ -180,5 +222,42 @@ void SelectScene::Draw()
 		}
 		// スプライト描画後処理
 		Sprite::PostDraw();
+	}
+}
+
+void SelectScene::SetSelectMode(int mode)
+{
+	switch (mode)
+	{
+	case 0:
+		selectMode = WaveMode::test;
+		break;
+	case 1:
+		selectMode = WaveMode::easy;
+		break;
+	case 2:
+		selectMode = WaveMode::flick_easy;
+		break;
+	case 3:
+		selectMode = WaveMode::filck_normal;
+		break;
+	case 4:
+		selectMode = WaveMode::flick_hard;
+		break;
+	case 5:
+		selectMode = WaveMode::flick_hell;
+		break;
+	case 6:
+		selectMode = WaveMode::follow;
+		break;
+	case 7:
+		selectMode = WaveMode::test;
+		break;
+	case 8:
+		selectMode = WaveMode::test;
+		break;
+	case 9:
+		selectMode = WaveMode::test;
+		break;
 	}
 }

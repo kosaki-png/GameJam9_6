@@ -3,6 +3,7 @@
 
 #include "BaseScene.h"
 #include "XinputControll.h"
+#include <array>
 
 class SelectScene :
 	public BaseScene
@@ -18,6 +19,9 @@ public:
 	void Draw() override;
 
 private:
+	void SetSelectMode(int mode);
+
+private:
 	Object3d* objField = nullptr;
 	Object3d* objSky = nullptr;
 
@@ -25,4 +29,10 @@ private:
 	Sprite* score = nullptr;
 
 	bool select = false;
+
+	// 選択用ボタン
+	std::array<Button, 9> modeButton;
+	Button startButton;
+
+	WaveMode selectMode = WaveMode::test;
 };
