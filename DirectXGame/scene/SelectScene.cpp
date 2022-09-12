@@ -42,7 +42,10 @@ void SelectScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio
 		// デバッグテキスト初期化
 		text = Text::GetInstance();
 		//ランキング初期化
-		ranking.Initialize();
+		ranking = new Ranking();
+		ranking->Initialize();
+		waveMng = WaveManager::GetInstance();
+		waveMng->Initialize(input,camera);
 		// ライト生成
 		lightGroup = LightGroup::Create();
 		// 3Dオブエクトにライトをセット
@@ -148,6 +151,8 @@ void SelectScene::Update()
 		{
 			// 現在のマウス座標を取得
 			DirectX::XMFLOAT2 mousePos = input->GetClientMousePos();
+			BaseWave* tmpWave = WaveManager::GetInstance()->GetWave();
+			selectUi->Update(tmpWave->GetCurrentKey(), ranking->json.obj);
 			// マウス座標とボタンとの当たり判定
 			for (int i = 0; i < modeButton.size(); i++)
 			{
@@ -238,31 +243,24 @@ void SelectScene::SetSelectMode(int mode)
 	{
 	case 0:
 		selectMode = WaveMode::test;
-		selectUi->Update("test",ranking.json.obj);
 		break;
 	case 1:
 		selectMode = WaveMode::easy;
-		selectUi->Update("easy", ranking.json.obj);
 		break;
 	case 2:
 		selectMode = WaveMode::flick_easy;
-		selectUi->Update("flick_easy", ranking.json.obj);
 		break;
 	case 3:
 		selectMode = WaveMode::filck_normal;
-		selectUi->Update("filck_normal", ranking.json.obj);
 		break;
 	case 4:
 		selectMode = WaveMode::flick_hard;
-		selectUi->Update("flick_hard", ranking.json.obj);
 		break;
 	case 5:
 		selectMode = WaveMode::flick_hell;
-		selectUi->Update("flick_hell", ranking.json.obj);
 		break;
 	case 6:
 		selectMode = WaveMode::follow;
-		selectUi->Update("follow", ranking.json.obj);
 		break;
 	case 7:
 		selectMode = WaveMode::test;

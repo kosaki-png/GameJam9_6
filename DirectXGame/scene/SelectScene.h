@@ -39,5 +39,5 @@ private:
 	Button startButton;
 
 	WaveMode selectMode = WaveMode::test;
-	Ranking ranking;
+	Ranking* ranking;
 };
