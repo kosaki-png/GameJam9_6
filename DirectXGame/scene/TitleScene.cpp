@@ -85,11 +85,9 @@ void TitleScene::Update()
 	{
 		nextScene = new SelectScene();
 	}
-
-	// ESCAPEでゲーム終了
-	if (input->PushKey(DIK_ESCAPE))
+	if (input->TriggerMouseLeft())
 	{
-		PostQuitMessage(0);
+		nextScene = new SelectScene();
 	}
 
 	// 3Dオブジェクト更新

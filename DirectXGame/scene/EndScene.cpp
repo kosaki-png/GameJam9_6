@@ -92,6 +92,12 @@ void EndScene::Update()
 		// 繧ｿ繧､繝医Ν繧ｷ繝ｼ繝ｳ縺ｸ
 		nextScene = new TitleScene();
 	}
+	// Enterで指定のシーンへ
+	if (input->TriggerMouseLeft())
+	{
+		// タイトルシーンへ
+		nextScene = new TitleScene();
+	}
 
 	// ESCAPE縺ｧ繧ｲ繝ｼ繝邨ゆｺ�
 	if (input->PushKey(DIK_ESCAPE))
