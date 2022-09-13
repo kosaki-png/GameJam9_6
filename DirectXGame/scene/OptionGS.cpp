@@ -42,22 +42,6 @@ void OptionGS::Initialize()
 		sensiTex->SetPos(600,300);
 		fovTex->SetSize(0.8f);
 
-		// 感度取得
-		sensi = camera->GetSensi();
-		bar_ratio[0] = camera->GetSensi() / 3;
-
-		// 視野角取得
-		fov = camera->GetFov();
-		bar_ratio[1] = (fov - 60.0f) / 60;
-
-		// SE音量取得
-		bar_ratio[2];
-
-		// 初期の長さ適用
-		for (int i = 0; i < 3; i++)
-		{
-			option_bar[i]->SetSize({ bar_ratio[i] * 800, 10 });
-		}
 		json.ReadJson("Resources/json/option.json");
 
 		node.name = "option";
@@ -68,6 +52,23 @@ void OptionGS::Initialize()
 		for (int i = 0; i < 3; i++)
 		{
 			node.datas.push_back(nog[i].get<double>());
+		}
+
+		// 感度取得
+		sensi = node.datas[0];
+		bar_ratio[0] = camera->GetSensi() / 3;
+
+		// 視野角取得
+		fov = node.datas[1];
+		bar_ratio[1] = (fov - 60.0f) / 60;
+
+		// SE音量取得
+		bar_ratio[2];
+
+		// 初期の長さ適用
+		for (int i = 0; i < 3; i++)
+		{
+			option_bar[i]->SetSize({ bar_ratio[i] * 800, 10 });
 		}
 	}
 }
