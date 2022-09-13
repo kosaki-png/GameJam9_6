@@ -8,6 +8,13 @@
 class JsonFileManager
 {
 public:
+	struct Node
+	{
+		std::string name;
+		std::vector<float> datas;
+	};
+
+public:
 	//テキストファイル読み込み
 	inline std::string ReadTxt(std::string const& filePath);
 	//jsonファイル読み込み

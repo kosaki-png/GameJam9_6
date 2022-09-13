@@ -4,6 +4,7 @@
 #include "Audio.h"
 #include "Sprite.h"
 #include "Score.h"
+#include <base/JsonFileManager.h>
 #include <array>
 
 class OptionGS
@@ -18,6 +19,8 @@ public:
 
 	void ChangeIsOption();
 	bool GetIsOption() { return isOption; }
+
+	void WriteJson();
 
 private:
 	Input* input = nullptr;
@@ -42,4 +45,6 @@ private:
 	// Žw’è—p
 	DirectX::XMFLOAT2 mousePos;
 
+	JsonFileManager json;
+	JsonFileManager::Node node;
 };
