@@ -119,6 +119,7 @@ void GameScene::Update()
 		ranking->setScore(tmpWave->GetCurrentKey(), (float)tmpWave->GetScore());
 		ranking->WriteJson();
 
+		option->WriteJson();
 		nextScene = new EndScene();
 	}
 
