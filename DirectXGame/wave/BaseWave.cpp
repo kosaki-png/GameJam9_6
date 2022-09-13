@@ -10,6 +10,7 @@ BaseWave::BaseWave(std::string key)
 
 BaseWave::~BaseWave()
 {
+	delete ui;
 	delete base;
 	delete click;
 	delete start;

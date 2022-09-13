@@ -4,7 +4,7 @@
 #include "FlickWave.h"
 #include "FollowWave.h"
 #include "TestWave.h"
-#include "Audio.h"
+#include "AroundWave.h"
 
 enum class WaveMode
 {
@@ -14,7 +14,8 @@ enum class WaveMode
 	flick_normal = 3,
 	flick_hard = 4,
 	flick_hell = 5,
-	follow = 6
+	follow = 6,
+	around = 7
 };
 
 class WaveManager

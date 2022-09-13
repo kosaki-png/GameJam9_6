@@ -13,8 +13,6 @@ FlickWave::~FlickWave()
 	{
 		delete targets[i];
 	}
-
-	delete ui;
 }
 
 void FlickWave::Initialize(Input* input, Camera* camera, Audio* audio)
@@ -31,8 +29,25 @@ void FlickWave::Initialize(Input* input, Camera* camera, Audio* audio)
 			targets[i]->Initialize("sphere");
 
 			// 難易度に応じて大きさ変更
-			float scale = 1.0f - 0.3f * 1;//後で直す
-			targets[i]->SetScale({ scale, scale , scale });
+			float scale = 0;
+			if (currentKey == "flick_easy")
+			{
+				scale = 1.0f - 0.3f * 0;
+			}
+			if (currentKey == "flick_normal")
+			{
+				scale = 1.0f - 0.3f * 1;
+			}
+			if (currentKey == "flick_hard")
+			{
+				scale = 1.0f - 0.3f * 2;
+			}
+			if (currentKey == "flick_hell")
+			{
+				scale = 1.0f - 0.3f * 3;
+			}
+			
+			targets[i]->SetScale({ scale, scale, scale });
 		}
 
 		// 全て生成してから位置リセット

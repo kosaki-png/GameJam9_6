@@ -10,7 +10,6 @@ FollowWave::FollowWave(std::string key)
 FollowWave::~FollowWave()
 {
 	delete target;
-	delete ui;
 }
 
 void FollowWave::Initialize(Input* input, Camera* camera, Audio* audio)
