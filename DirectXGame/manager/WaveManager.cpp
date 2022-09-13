@@ -13,6 +13,11 @@ WaveManager* WaveManager::GetInstance()
 
 void WaveManager::Initialize(Input* input, Camera* camera)
 {
+    if (wave)
+    {
+        delete wave;
+    }
+
     switch (mode)
     {
     case WaveMode::test:
@@ -91,8 +96,7 @@ bool WaveManager::GetClearFlag()
 
 void WaveManager::DestroyWave()
 {
-    delete wave;
-    wave = nullptr;
+    //delete wave;
     mode = WaveMode::test;
 }
 

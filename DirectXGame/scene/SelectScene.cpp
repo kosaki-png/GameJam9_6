@@ -23,6 +23,7 @@ SelectScene::~SelectScene()
 	delete menu;
 	delete score;
 	safe_delete(selectUi);
+	safe_delete(ranking);
 }
 
 void SelectScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
