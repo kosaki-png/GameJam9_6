@@ -13,8 +13,6 @@ FlickWave::~FlickWave()
 	{
 		delete targets[i];
 	}
-
-	delete ui;
 }
 
 void FlickWave::Initialize(Input* input, Camera* camera, Audio* audio)

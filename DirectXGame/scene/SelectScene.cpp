@@ -279,14 +279,10 @@ void SelectScene::SetSelectMode(int a)
 		mode = WaveMode::follow;
 		break;
 	case 7:
-		selectMode = "test";
-		mode = WaveMode::test;
+		selectMode = "around";
+		mode = WaveMode::around;
 		break;
 	case 8:
-		selectMode = "test";
-		mode = WaveMode::test;
-		break;
-	case 9:
 		selectMode = "test";
 		mode = WaveMode::test;
 		break;

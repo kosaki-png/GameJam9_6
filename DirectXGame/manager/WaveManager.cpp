@@ -48,6 +48,10 @@ void WaveManager::Initialize(Input* input, Camera* camera, Audio* audio)
         wave = new FollowWave("follow");
         break;
 
+    case WaveMode::around:
+        wave = new AroundWave("around");
+        break;
+
     default:
         wave = new TestWave("test");
         break;
