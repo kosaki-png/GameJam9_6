@@ -86,7 +86,7 @@ void TestScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 
 		// ウェーブの初期化
 		wave = new FlickWave("test");
-		wave->Initialize(input, camera);
+		wave->Initialize(input, camera, audio);
 	}
 
 	// カーソルを消す

@@ -15,7 +15,6 @@ Ui::Ui()
 Ui::~Ui()
 {
 	safe_delete(ui);
-	//delete score;
 	safe_delete(score);
 	safe_delete(timeLimit);
 	safe_delete(rate);
@@ -92,11 +91,14 @@ void Ui::Draw(ID3D12GraphicsCommandList* cmdList)
 
 void Ui::TimerManage()
 {
+	if (!IsTimeUp())
+	{
+		onePlace -= 0.016f;
+	}
+	
 	if (onePlace < 0)
 	{
-		//SetNum(initialValue, 9);
 		onePlace = 9;
-		//timer->restart();
 		tenPlace--;
 	}
 
@@ -109,8 +111,4 @@ void Ui::TimerManage()
 			hundredPlace--;
 		}
 	}
-
-	//onePlace = initialValue - timer->getElapsedSeconds();
-	//onePlace = initialValue;
-	onePlace -= 0.016f;
 }

@@ -94,7 +94,7 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 		// ウェーブの初期化
 		waveMng = WaveManager::GetInstance();
 		//waveMng->SetWaveMode(WaveMode::flick_easy);
-		waveMng->Initialize(input, camera);
+		waveMng->Initialize(input, camera,audio);
 
 		// オプションの初期化
 		option = new OptionGS(input, camera, audio);
@@ -174,10 +174,22 @@ void GameScene::Update()
 
 		// カーソルを中心固定
 		SetCursorPos(centerX, centerY);
+
+		//銃声を鳴らす
+		if (!waveMng->GetIsCount() && input->TriggerMouseLeft())
+		{
+			audio->PlayWave(L"Resources/sound/銃声.wav");
+		}
 	}
 	else
 	{
 		option->Update();
+
+		//クリック音を鳴らす
+		if (input->TriggerMouseLeft())
+		{
+			audio->PlayWave(L"Resources/sound/w0cz1-hiuw9.wav");
+		}
 	}
 }
 

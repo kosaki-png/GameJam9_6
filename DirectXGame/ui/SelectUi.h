@@ -33,18 +33,17 @@ public:
 	/// </summary>
 	void Draw(ID3D12GraphicsCommandList* cmdList);
 
+	/// <summary>
+	/// スコアセッター
+	/// </summary>
+	/// <param name="num">スコア</param>
 	void SetScore(int num) {
 		scoreNum = num;
 	}
 
 private:
 	Score* score[3];
-
-	//Score* firstScore;
-	//Score* secondScore;
-	//Score* thirdScore;
-
-	int scoreNum;
+	int scoreNum = 0;
 	Ranking ranking;
 };
 

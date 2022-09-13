@@ -119,6 +119,14 @@ void EndScene::Update()
 		objGround->Update();
 		objSky->Update();
 	}
+	//その他更新
+	{
+		//クリック音を鳴らす
+		if (input->TriggerMouseLeft())
+		{
+			audio->PlayWave(L"Resources/sound/w0cz1-hiuw9.wav");
+		}
+	}
 
 }
 

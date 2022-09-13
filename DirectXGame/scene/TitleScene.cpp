@@ -26,6 +26,8 @@ void TitleScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 	// nullptrチェック
 	BaseScene::Initialize(dxCommon, input, audio);
 
+	audio->Stop();
+
 	// 汎用的初期化
 	{
 		// カメラ生成
@@ -98,6 +100,12 @@ void TitleScene::Update()
 
 	// 各クラス更新
 	{
+		//クリック音
+		if (input->TriggerMouseLeft())
+		{
+			audio->PlayWave(L"Resources/sound/w0cz1-hiuw9.wav");
+		}
+
 		lightGroup->Update();
 		rot.x += 0.1f;
 		camera->SetRotation(rot);
