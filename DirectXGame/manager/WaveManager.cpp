@@ -32,8 +32,8 @@ void WaveManager::Initialize(Input* input, Camera* camera, Audio* audio)
         wave = new FlickWave("flick_easy");
         break;
 
-    case WaveMode::filck_normal:
-        wave = new FlickWave("filck_normal");
+    case WaveMode::flick_normal:
+        wave = new FlickWave("flick_normal");
         break;
 
     case WaveMode::flick_hard:

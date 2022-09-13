@@ -14,5 +14,12 @@ public:
     void DrawUi(ID3D12GraphicsCommandList* cmdList) override;
 
 private:
+    XMFLOAT3 ResetPos();
 
+private:
+    // “I
+    static const int TARGET_AMOUNT = 4;
+    std::array<BaseTarget*, TARGET_AMOUNT> targets;
+
+    std::array<std::array<bool, 4>, 5> isPos;
 };

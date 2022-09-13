@@ -11,7 +11,7 @@ enum class WaveMode
 	test = 0,
 	easy = 1,
 	flick_easy = 2,
-	filck_normal = 3,
+	flick_normal = 3,
 	flick_hard = 4,
 	flick_hell = 5,
 	follow = 6

@@ -47,6 +47,8 @@ void FollowWave::Update()
 				// ¶‚«‚Ä‚¢‚é‚È‚çŽE‚·
 					ui->AddScore(1);
 					ui->AddCount();
+					//ƒqƒbƒg‰¹‚ð–Â‚ç‚·
+					audio->PlayWave(L"Resources/sound/r7nlp-8pgbr.wav");
 			}
 			else
 			{
