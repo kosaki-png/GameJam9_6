@@ -58,6 +58,17 @@ void OptionGS::Initialize()
 		{
 			option_bar[i]->SetSize({ bar_ratio[i] * 800, 10 });
 		}
+		json.ReadJson("Resources/json/option.json");
+
+		node.name = "option";
+
+		//jsonデータ呼び出し
+		auto nog = json.obj.at(node.name).get<picojson::array>();
+
+		for (int i = 0; i < 3; i++)
+		{
+			node.datas.push_back(nog[i].get<double>());
+		}
 	}
 }
 
@@ -66,6 +77,9 @@ void OptionGS::Update()
 	// マウスの座標取得
 	mousePos = input->GetClientMousePos();
 
+	//jsonデータ呼び出し
+	auto nog = json.obj.at(node.name).get<picojson::array>();
+	
 	// 割合変更
 	if (input->PushMouseLeft())
 	{
@@ -91,12 +105,14 @@ void OptionGS::Update()
 		// 感度セット
 		sensi = bar_ratio[0] * 3.0f;
 		camera->SetSensi(sensi);
+		nog[0] = picojson::value(sensi);
 
 		// 視野角セット
 		fov = bar_ratio[1] * 60.0f + 60.0f;
 		camera->SetFov(fov);
-
+		nog[1] = picojson::value(fov);
 		// SE音量セット
+		nog[2] = picojson::value(sensi);
 
 	}
 
@@ -110,6 +126,16 @@ void OptionGS::Update()
 		fovTex->Printf("%.1f", fov);
 		// SE音量		中心約(600 * 700)
 
+	}
+
+	{
+
+		picojson::array arr;
+		for (int i = 0; i < nog.size(); i++)
+		{
+			arr.emplace_back(picojson::value(nog[i]));
+		}
+		json.obj[node.name] = picojson::value(arr);
 	}
 }
 
@@ -133,4 +159,9 @@ void OptionGS::ChangeIsOption()
 {
 	isOption = !isOption;
 	ShowCursor(isOption);
+}
+
+void OptionGS::WriteJson()
+{
+	json.WriteJson("Resources/json/option.json");
 }
