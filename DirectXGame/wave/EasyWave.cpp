@@ -9,10 +9,10 @@ EasyWave::~EasyWave()
 {
 }
 
-void EasyWave::Initialize(Input* input, Camera* camera)
+void EasyWave::Initialize(Input* input, Camera* camera, Audio* audio)
 {
 	// ui‚Ì‰Šú‰»
-	BaseWave::Initialize(input, camera);
+	BaseWave::Initialize(input, camera, audio);
 
 	// ‚±‚±‚É‰Šú‰»ˆ—
 	{

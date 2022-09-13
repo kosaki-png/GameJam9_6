@@ -7,6 +7,7 @@
 #include "Camera.h"
 #include "DirectXCommon.h"
 #include "Sprite.h"
+#include "Audio.h"
 
 #include <array>
 #include "BaseTarget.h"
@@ -30,7 +31,7 @@ public:
 	BaseWave(std::string key);
 	virtual ~BaseWave();
 
-	virtual void Initialize(Input* input, Camera* camera);
+	virtual void Initialize(Input* input, Camera* camera, Audio* audio);
 	virtual void Update();
 	virtual void Draw();
 	virtual void DrawUi(ID3D12GraphicsCommandList* cmdList);
@@ -77,6 +78,9 @@ protected:
 
 	//現在のキー
 	std::string currentKey;
+
+	//オーディオ
+	Audio* audio;
 
 	// 視線レイ用
 	Camera* camera = nullptr;

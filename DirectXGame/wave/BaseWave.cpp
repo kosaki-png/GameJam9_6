@@ -15,17 +15,18 @@ BaseWave::~BaseWave()
 	delete start;
 }
 
-void BaseWave::Initialize(Input* input, Camera* camera)
+void BaseWave::Initialize(Input* input, Camera* camera, Audio* audio)
 {
 	this->input = input;
 	this->camera = camera;
+	this->audio = audio;
 
 	// Ž‹üƒŒƒC‚Ì‰ŠúÝ’è
 	XMFLOAT3 tmp = camera->GetEye();
 	ray.start = XMVectorSet(tmp.x, tmp.y, tmp.z, 1.0f);
 	tmp = camera->GetDir();
 	ray.dir = XMVectorSet(tmp.x, tmp.y, tmp.z, 1.0f);
-
+	
 	ui = new Ui();
 	ui->Initialize();
 

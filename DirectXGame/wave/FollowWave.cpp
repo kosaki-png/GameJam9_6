@@ -13,10 +13,10 @@ FollowWave::~FollowWave()
 	delete ui;
 }
 
-void FollowWave::Initialize(Input* input, Camera* camera)
+void FollowWave::Initialize(Input* input, Camera* camera, Audio* audio)
 {
 	// ui‚Ì‰Šú‰»
-	BaseWave::Initialize(input, camera);
+	BaseWave::Initialize(input, camera, audio);
 
 	// ‚±‚±‚É‰Šú‰»ˆ—
 	{

@@ -8,7 +8,7 @@ public:
     FollowWave(std::string key);
     ~FollowWave();
 
-    void Initialize(Input* input, Camera* camera) override;
+    void Initialize(Input* input, Camera* camera, Audio* audio) override;
     void Update() override;
 
     void Draw() override;

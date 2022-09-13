@@ -31,6 +31,8 @@ void SelectScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio
 	// nullptrチェック
 	BaseScene::Initialize(dxCommon, input, audio);
 
+	audio->Stop();
+
 	// 汎用的初期化
 	{
 		// カメラ生成
@@ -46,7 +48,7 @@ void SelectScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio
 		ranking = new Ranking();
 		ranking->Initialize();
 		waveMng = WaveManager::GetInstance();
-		waveMng->Initialize(input,camera);
+		waveMng->Initialize(input,camera,audio);
 		// ライト生成
 		lightGroup = LightGroup::Create();
 		// 3Dオブエクトにライトをセット
@@ -162,6 +164,12 @@ void SelectScene::Update()
 
 					// 選ぶ
 					select = true;
+
+					//クリック音を鳴らす
+					if (input->TriggerMouseLeft())
+					{
+						audio->PlayWave(L"Resources/sound/w0cz1-hiuw9.wav");
+					}
 				}
 			}
 		}

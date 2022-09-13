@@ -17,10 +17,10 @@ FlickWave::~FlickWave()
 	delete ui;
 }
 
-void FlickWave::Initialize(Input* input, Camera* camera)
+void FlickWave::Initialize(Input* input, Camera* camera, Audio* audio)
 {
 	// uiの初期化
-	BaseWave::Initialize(input, camera);
+	BaseWave::Initialize(input, camera, audio);
 
 	// ここに初期化処理
 	{
@@ -71,8 +71,11 @@ void FlickWave::Update()
 			{
 				if (input->TriggerMouseLeft())
 				{
+					//スコア追加
 					ui->AddScore(10);
 					ui->AddCount();
+					//ヒット音を鳴らす
+					audio->PlayWave(L"Resources/sound/r7nlp-8pgbr.wav");
 
 					// 位置リセット
 					targets[i]->SetPosition(ResetPos());

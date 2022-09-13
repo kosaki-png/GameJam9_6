@@ -4,6 +4,7 @@
 #include "FlickWave.h"
 #include "FollowWave.h"
 #include "TestWave.h"
+#include "Audio.h"
 
 enum class WaveMode
 {
@@ -24,12 +25,14 @@ public:
 	void SetWaveMode(WaveMode mode) { this->mode = mode; }
 	WaveMode GetWaveMode() { return mode; }
 
-	void Initialize(Input* input, Camera* camera);
+	void Initialize(Input* input, Camera* camera, Audio* audio);
 	void Update();
 	void Draw();
 	void DrawUi(ID3D12GraphicsCommandList* cmdList);
 
 	bool GetClearFlag();
+
+	bool GetIsCount();
 
 	void DestroyWave();
 	void Destroy();

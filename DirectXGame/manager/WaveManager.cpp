@@ -11,7 +11,7 @@ WaveManager* WaveManager::GetInstance()
     return instance;
 }
 
-void WaveManager::Initialize(Input* input, Camera* camera)
+void WaveManager::Initialize(Input* input, Camera* camera, Audio* audio)
 {
     if (wave)
     {
@@ -54,7 +54,7 @@ void WaveManager::Initialize(Input* input, Camera* camera)
     }
 
     // ‰Šú‰»
-    wave->Initialize(input, camera);
+    wave->Initialize(input, camera,audio);
 }
 
 void WaveManager::Update()
@@ -92,6 +92,11 @@ void WaveManager::DrawUi(ID3D12GraphicsCommandList* cmdList)
 bool WaveManager::GetClearFlag()
 {
     return wave->GetClearFlag();
+}
+
+bool WaveManager::GetIsCount()
+{
+    return wave->GetIsCount();
 }
 
 void WaveManager::DestroyWave()

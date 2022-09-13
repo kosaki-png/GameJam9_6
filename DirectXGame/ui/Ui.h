@@ -112,9 +112,19 @@ public:
 		return GetHundredPlace() < 0;
 	}
 
+	bool IsHundredZero()
+	{
+		return GetHundredPlace() < 0;
+	}
+
+	bool IsTenZero()
+	{
+		return GetTenPlace() < 0;
+	}
+
 	//getter
 	const float& GetOnePlace() { return onePlace; }//タイムの１の位
-	const float& GetTnePlace() { return tenPlace; }//タイムの10の位
+	const float& GetTenPlace() { return tenPlace; }//タイムの10の位
 	const float& GetHundredPlace() { return hundredPlace; }//タイムの100の位
 	const float& GetRate() { return rateNum; }
 	const float& GetMiss() { return missNum; }
@@ -133,10 +143,10 @@ private:
 	Score* parcent;
 	std::unique_ptr<diagnostics::Stopwatch> timer;
 	
-	float onePlace;  //1の位
-	int tenPlace;    //10の位
-	int hundredPlace;//100の位
-	int initialValue;//初期値
+	float onePlace = 0;  //1の位
+	int tenPlace = 0;    //10の位
+	int hundredPlace = 0;//100の位
+	int initialValue = 0;//初期値
 	static float targetsNum;
 	static float countNum;  //当てた数
 	static float missNum;   //外した数
