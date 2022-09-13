@@ -4,7 +4,7 @@
 
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
-const wchar_t WinApp::windowClassName[] = L"327_できるだけ走れメロス";
+const wchar_t WinApp::windowClassName[] = L"4026_FlickerTracker";
 
 // ウィンドウプロシージャ
 LRESULT WinApp::WindowProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
