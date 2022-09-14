@@ -264,7 +264,7 @@ void SelectScene::SetSelectMode(int a)
 		break;
 	case 3:
 		selectMode = "filck_normal";
-		mode = WaveMode::filck_normal;
+		mode = WaveMode::flick_normal;
 		break;
 	case 4:
 		selectMode = "flick_hard";
