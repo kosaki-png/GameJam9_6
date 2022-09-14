@@ -1,25 +1,25 @@
 #pragma once
 #include "BaseWave.h"
-#include "EasyTarget.h"
-
-class EasyWave :
+#include "ScaleTarget.h"
+class ScaleWave :
     public BaseWave
 {
 public:
-    EasyWave(std::string key);
-    ~EasyWave();
+    ScaleWave(std::string key);
+    ~ScaleWave();
 
     void Initialize(Input* input, Camera* camera, Audio* audio) override;
     void Update() override;
     void Draw() override;
     void DrawUi(ID3D12GraphicsCommandList* cmdList) override;
-    
-    void ResetTarget();
 
+private:
     XMFLOAT3 ResetPos();
 
 private:
     // “I
-    EasyTarget* target = nullptr;
+    static const int TARGET_AMOUNT = 4;
+    std::array<BaseTarget*, TARGET_AMOUNT> targets;
     std::array<std::array<bool, 4>, 5> isPos;
 };
+

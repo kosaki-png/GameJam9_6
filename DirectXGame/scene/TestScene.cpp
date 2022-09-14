@@ -11,6 +11,8 @@
 #include "Collision.h"
 #include "TestWave.h"
 #include "FlickWave.h"
+#include "EasyWave.h"
+#include "ScaleWave.h"
 
 using namespace DirectX;
 
@@ -85,7 +87,9 @@ void TestScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 		sensi = camera->GetSensi();
 
 		// ウェーブの初期化
-		wave = new FlickWave("test");
+		//wave = new FlickWave("test");
+		//wave = new EasyWave("easy");
+		//wave = new ScaleWave("scale");
 		wave->Initialize(input, camera, audio);
 	}
 
