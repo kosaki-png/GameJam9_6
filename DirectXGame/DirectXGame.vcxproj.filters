@@ -62,6 +62,7 @@
     <ClCompile Include="ui\SelectUi.cpp" />
     <ClCompile Include="ui\Ranking.cpp" />
     <ClCompile Include="wave\AroundWave.cpp" />
+    <ClCompile Include="wave\TrackWave.cpp" />
     <ClCompile Include="target\EasyTarget.cpp" />
     <ClCompile Include="target\ScaleTarget.cpp" />
     <ClCompile Include="wave\ScaleWave.cpp" />
@@ -122,6 +123,7 @@
     <ClInclude Include="manager\WaveManager.h" />
     <ClInclude Include="ui\SelectUi.h" />
     <ClInclude Include="wave\AroundWave.h" />
+    <ClInclude Include="wave\TrackWave.h" />
     <ClInclude Include="target\EasyTarget.h" />
     <ClInclude Include="target\ScaleTarget.h" />
     <ClInclude Include="wave\ScaleWave.h" />
