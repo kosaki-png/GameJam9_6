@@ -31,10 +31,18 @@ void AroundWave::Update()
 
 	if (input->TriggerMouseLeft())
 	{
+		//Œ‚‚Á‚½”ƒJƒEƒ“ƒg
+		ui->AddTargets();
+
 		if (Collision::CheckRay2Sphere(ray, target->GetSphere()))
 		{
 			ui->AddScore();
+			ui->AddCount();
 			ResetPos();
+		}
+		else 
+		{
+			ui->AddMiss();
 		}
 	}
 
