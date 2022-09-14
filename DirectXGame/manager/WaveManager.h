@@ -5,17 +5,19 @@
 #include "FollowWave.h"
 #include "TestWave.h"
 #include "AroundWave.h"
+#include "EasyWave.h"
 
 enum class WaveMode
 {
-	test = 0,
-	easy = 1,
-	flick_easy = 2,
-	filck_normal = 3,
-	flick_hard = 4,
-	flick_hell = 5,
+	traning = 0,
+	flick_easy = 1,
+	flick_normal = 2,
+	flick_hard = 3,
+	flick_hell = 4,
+	around = 5,
 	follow = 6,
-	around = 7
+	track = 7,
+	scale = 8
 };
 
 class WaveManager
@@ -46,7 +48,7 @@ private:
 
 	static WaveManager* instance;
 
-	WaveMode mode = WaveMode::test;
+	WaveMode mode = WaveMode::traning;
 
 	BaseWave* wave = nullptr;
 };

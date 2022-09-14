@@ -1,13 +1,11 @@
-#include "FlickWave.h"
+#include "ScaleWave.h"
 
-using namespace DirectX;
-
-FlickWave::FlickWave(std::string key)
-	: BaseWave::BaseWave(key)
+ScaleWave::ScaleWave(std::string key)
+    :  BaseWave::BaseWave(key)
 {
 }
 
-FlickWave::~FlickWave()
+ScaleWave::~ScaleWave()
 {
 	for (int i = 0; i < TARGET_AMOUNT; i++)
 	{
@@ -15,7 +13,7 @@ FlickWave::~FlickWave()
 	}
 }
 
-void FlickWave::Initialize(Input* input, Camera* camera, Audio* audio)
+void ScaleWave::Initialize(Input* input, Camera* camera, Audio* audio)
 {
 	// uiの初期化
 	BaseWave::Initialize(input, camera, audio);
@@ -25,29 +23,9 @@ void FlickWave::Initialize(Input* input, Camera* camera, Audio* audio)
 		for (int i = 0; i < TARGET_AMOUNT; i++)
 		{
 			// ターゲット生成
-			targets[i] = new BaseTarget();
+			targets[i] = new ScaleTarget();
 			targets[i]->Initialize("sphere");
-
-			// 難易度に応じて大きさ変更
-			float scale = 0;
-			if (currentKey == "flick1")
-			{
-				scale = 1.0f - 0.3f * 0;
-			}
-			if (currentKey == "flick2")
-			{
-				scale = 1.0f - 0.3f * 1;
-			}
-			if (currentKey == "grid1")
-			{
-				scale = 1.0f - 0.3f * 2;
-			}
-			if (currentKey == "grid2")
-			{
-				scale = 1.0f - 0.3f * 3;
-			}
-			
-			targets[i]->SetScale({ scale, scale, scale });
+			targets[i]->SetVelocity({ 0.003f,0.003f,0.003f });
 		}
 
 		// 全て生成してから位置リセット
@@ -59,16 +37,16 @@ void FlickWave::Initialize(Input* input, Camera* camera, Audio* audio)
 	}
 }
 
-void FlickWave::Update()
+void ScaleWave::Update()
 {
 	// ここに更新処理
 	{
 		// 視線レイの更新
 		{
 			XMFLOAT3 tmp = camera->GetEye();
-			ray.start = XMVectorSet(tmp.x, tmp.y, tmp.z, 1.0f);
+			ray.start = DirectX::XMVectorSet(tmp.x, tmp.y, tmp.z, 1.0f);
 			tmp = camera->GetDir();
-			ray.dir = XMVectorSet(tmp.x, tmp.y, tmp.z, 1.0f);
+			ray.dir = DirectX::XMVectorSet(tmp.x, tmp.y, tmp.z, 1.0f);
 		}
 
 		if (input->TriggerMouseLeft())
@@ -91,7 +69,8 @@ void FlickWave::Update()
 					ui->AddCount();
 					//ヒット音を鳴らす
 					audio->PlayWave(L"Resources/sound/r7nlp-8pgbr.wav");
-
+					//スケールを初期値に戻す
+					targets[i]->SetScale({ 1.0f,1.0f,1.0f });
 					// 位置リセット
 					targets[i]->SetPosition(ResetPos());
 				}
@@ -115,6 +94,16 @@ void FlickWave::Update()
 		for (int i = 0; i < TARGET_AMOUNT; i++)
 		{
 			targets[i]->Update();
+
+			if (targets[i]->GetScale().x < 0)
+			{
+				// ミスを増やす
+				ui->AddMiss();
+				//スケールを初期値に戻す
+				targets[i]->SetScale({ 1.0f,1.0f,1.0f });
+				// 位置リセット
+				targets[i]->SetPosition(ResetPos());
+			}
 		}
 
 		// クリア条件
@@ -127,7 +116,7 @@ void FlickWave::Update()
 	BaseWave::Update();
 }
 
-void FlickWave::Draw()
+void ScaleWave::Draw()
 {
 	// ここに描画処理
 	{
@@ -139,13 +128,13 @@ void FlickWave::Draw()
 	}
 }
 
-void FlickWave::DrawUi(ID3D12GraphicsCommandList* cmdList)
+void ScaleWave::DrawUi(ID3D12GraphicsCommandList* cmdList)
 {
 	// uiの描画
 	BaseWave::DrawUi(cmdList);
 }
 
-XMFLOAT3 FlickWave::ResetPos()
+DirectX::XMFLOAT3 ScaleWave::ResetPos()
 {
 	XMFLOAT3 result = { (float)(rand() % 5) - 2, (float)(rand() % 4) - 1, 0 };
 
@@ -154,7 +143,7 @@ XMFLOAT3 FlickWave::ResetPos()
 		auto tmp = targets[i]->GetPosition();
 		if (tmp.x == result.x && tmp.y == result.y)
 		{
-			return FlickWave::ResetPos();
+			return ScaleWave ::ResetPos();
 		}
 	}
 

@@ -12,33 +12,30 @@ void MoveTarget::Initialize(std::string modelName, XMFLOAT3 pos, XMFLOAT3 vel, f
 
 void MoveTarget::Update()
 {
-	float movetime;
-
-
-	static XMFLOAT3 ease;
-
-	if (ease.x > amplitude.x * 2 + sphere.radius/2)
+	if (changeTime < 0)
 	{
-		float num = 1+rand() % 6;
-		velocity.x = num / 100;
-		ease.x = 0;
+		vel.x = rand() % 6 * 0.01f;
+		vel.y = rand() % 6 * 0.01f;
+		vel.z = rand() % 6 * 0.01f;
+		changeTime = rand() % 400;
 	}
 
-	ease.x += velocity.x;
-	ease.y += velocity.y;
-	ease.z += velocity.z;
+	rad.x += vel.x;
+	rad.y += vel.y;
+	rad.z += vel.z;
 
-	position.x = sinf(ease.x) * amplitude.x;
-	position.y = sinf(ease.y) * amplitude.y;
-	position.z = sinf(ease.z) * amplitude.z;
+	position.x = sinf(rad.x) * 3;
+	position.y = cosf(rad.y) * 3;
+	position.z = cosf(rad.z) * 3;
+
 
 	sphere.center = DirectX::XMVectorSet(position.x, position.y, position.z, 0);
-
 	obj->SetPosition(position);
 
 	//Object3DXV
 	obj->Update();
 
+	changeTime--;
 }
 
 void MoveTarget::Draw()
