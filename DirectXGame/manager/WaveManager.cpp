@@ -20,40 +20,42 @@ void WaveManager::Initialize(Input* input, Camera* camera, Audio* audio)
 
     switch (mode)
     {
-    case WaveMode::test:
-        wave = new TestWave("test");
-        break;
-
-    case WaveMode::easy:
-        wave = new EasyWave("easy");
+    case WaveMode::traning:
+        wave = new EasyWave("traning");
         break;
 
     case WaveMode::flick_easy:
-        wave = new FlickWave("flick_easy");
+        wave = new FlickWave("flick1");
         break;
 
     case WaveMode::flick_normal:
-        wave = new FlickWave("flick_normal");
+        wave = new FlickWave("flick2");
         break;
 
     case WaveMode::flick_hard:
-        wave = new FlickWave("flick_hard");
+        wave = new FlickWave("grid1");
         break;
 
     case WaveMode::flick_hell:
-        wave = new FlickWave("flick_hell");
+        wave = new FlickWave("grid2");
         break;
 
     case WaveMode::follow:
-        wave = new FollowWave("follow");
+        wave = new FollowWave("track1");
+        break;
+
+    case WaveMode::track:
+        wave = new AroundWave("track2");
         break;
 
     case WaveMode::around:
-        wave = new AroundWave("around");
+        wave = new AroundWave("360");
         break;
+
     case WaveMode::scale:
-        wave = new AroundWave("scale");
+        wave = new AroundWave("shrink");
         break;
+
     default:
         wave = new TestWave("test");
         break;
@@ -108,7 +110,7 @@ bool WaveManager::GetIsCount()
 void WaveManager::DestroyWave()
 {
     //delete wave;
-    mode = WaveMode::test;
+    mode = WaveMode::traning;
 }
 
 void WaveManager::Destroy()

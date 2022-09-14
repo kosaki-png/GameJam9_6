@@ -5,7 +5,8 @@
 #include "SelectUi.h"
 #include "XinputControll.h"
 #include <array>
-#include <ui/Ranking.h>
+#include "Ranking.h"
+#include "Text.h"
 
 class SelectScene :
 	public BaseScene
@@ -33,12 +34,13 @@ private:
 	SelectUi* selectUi = nullptr;
 
 	bool select = false;
+	Text* text = nullptr;
 
 	// 選択用ボタン
 	std::array<Button, 9> modeButton;
 	Button startButton;
 
-	std::string selectMode = "test";
-	WaveMode mode = WaveMode::test;
+	std::string selectMode = "traning";
+	WaveMode mode = WaveMode::traning;
 	Ranking* ranking;
 };

@@ -1,43 +1,53 @@
 {
-  "around": [
-    230,
-    0,
-    0
-  ],
-  "easy": [
+  "360": [
     0,
     0,
     0
   ],
-  "flick_easy": [
+  "flick1": [
     0,
     0,
     0
   ],
-  "flick_hard": [
+  "grid1": [
     0,
     0,
     0
   ],
-  "flick_hell": [
+  "grid2": [
     0,
     0,
     0
   ],
-  "flick_normal": [
+  "flick2": [
     0,
     0,
     0
   ],
-  "follow": [
+  "track1": [
+    0,
+    0,
+    0
+  ],
+  "shrink": [
     0,
     0,
     0
   ],
   "test": [
-    1760,
-    1750,
-    1620
+    0,
+    0,
+    0
+  ],
+  "track2": [
+    0,
+    0,
+    0
+  ],
+  "traning": [
+    0,
+    0,
+    0
   ]
 }
 

@@ -101,6 +101,32 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 		option->Initialize();
 	}
 
+	// jsonから設定を適用
+	{
+		JsonFileManager json;
+		JsonFileManager::Node node;
+
+		json.ReadJson("Resources/json/option.json");
+
+		node.name = "option";
+
+		//jsonデータ呼び出し
+		auto nog = json.obj.at(node.name).get<picojson::array>();
+
+		for (int i = 0; i < 3; i++)
+		{
+			node.datas.push_back(nog[i].get<double>());
+		}
+
+		// 感度取得
+		sensi = node.datas[0];
+		camera->SetSensi(sensi);
+
+		// 視野角取得
+		float fov = node.datas[1];
+		camera->SetFov(fov);
+	}
+
 	// カーソルを消す
 	ShowCursor(false);
 }

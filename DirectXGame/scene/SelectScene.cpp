@@ -119,6 +119,7 @@ void SelectScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio
 
 	// 各クラスの初期化
 	{
+		text = Text::GetInstance();
 	}
 }
 
@@ -131,19 +132,25 @@ void SelectScene::Update()
 		nextScene = new GameScene();
 	}
 
-	// モードを選び、クリックしたとき
-	if (select && input->TriggerMouseLeft())
+	// モードを選んだ時
+	if (select)
 	{
-		// 現在のマウス座標を取得
-		DirectX::XMFLOAT2 mousePos = input->GetClientMousePos();
+		// モード表示
+		text->Print(selectMode, 50.0f, 0.0f, 2.0f);
 
-		// マウス座標とボタンとの当たり判定
-		if (Collision::CheckPoint2Box(mousePos, startButton.position, startButton.size))
+		if (input->TriggerMouseLeft())
 		{
-			// ウェーブモードセット
-			WaveManager::GetInstance()->SetWaveMode(mode);
-			//ゲームシーンへ
-			nextScene = new GameScene();
+			// 現在のマウス座標を取得
+			DirectX::XMFLOAT2 mousePos = input->GetClientMousePos();
+
+			// マウス座標とボタンとの当たり判定
+			if (Collision::CheckPoint2Box(mousePos, startButton.position, startButton.size))
+			{
+				// ウェーブモードセット
+				WaveManager::GetInstance()->SetWaveMode(mode);
+				//ゲームシーンへ
+				nextScene = new GameScene();
+			}
 		}
 	}
 
@@ -174,6 +181,7 @@ void SelectScene::Update()
 			}
 		}
 	}
+	// 右クリックで戻る
 	if (input->TriggerMouseRight())
 	{
 		select = false;
@@ -233,6 +241,7 @@ void SelectScene::Draw()
 			else
 			{
 				score->Draw();
+				text->DrawAll(cmdList);
 
 				// スコア描画
 				selectUi->Draw(cmdList);
@@ -251,40 +260,40 @@ void SelectScene::SetSelectMode(int a)
 	switch (a)
 	{
 	case 0:
-		selectMode = "test";
-		mode = WaveMode::test;
+		selectMode = "traning";
+		mode = WaveMode::traning;
 		break;
 	case 1:
-		selectMode = "easy";
-		mode = WaveMode::easy;
-		break;
-	case 2:
-		selectMode = "flick_easy";
+		selectMode = "flick1";
 		mode = WaveMode::flick_easy;
 		break;
-	case 3:
-		selectMode = "filck_normal";
+	case 2:
+		selectMode = "flick2";
 		mode = WaveMode::flick_normal;
 		break;
-	case 4:
-		selectMode = "flick_hard";
+	case 3:
+		selectMode = "grid1";
 		mode = WaveMode::flick_hard;
 		break;
-	case 5:
-		selectMode = "flick_hell";
+	case 4:
+		selectMode = "grid2";
 		mode = WaveMode::flick_hell;
 		break;
-	case 6:
-		selectMode = "follow";
+	case 5:
+		selectMode = "track1";
 		mode = WaveMode::follow;
 		break;
+	case 6:
+		selectMode = "track2";
+		mode = WaveMode::track;
+		break;
 	case 7:
-		selectMode = "around";
+		selectMode = "360";
 		mode = WaveMode::around;
 		break;
 	case 8:
-		selectMode = "test";
-		mode = WaveMode::test;
+		selectMode = "shrink";
+		mode = WaveMode::scale;
 		break;
 	}
 }
