@@ -39,22 +39,23 @@ void FollowWave::Update()
 		}
 
 		// 視線レイと的との当たり判定
-		if (input->PushMouseLeft())
+		if (Collision::CheckRay2Sphere(ray, target->GetSphere()))
 		{
-			if (Collision::CheckRay2Sphere(ray, target->GetSphere()))
-			{
 				// 生きているなら殺す
-					ui->AddScore(1);
-					ui->AddCount();
-					//ヒット音を鳴らす
-					audio->PlayWave(L"Resources/sound/r7nlp-8pgbr.wav");
-			}
-			else
-			{
-				// 死んでいたならミスカウントを増やす
-				ui->AddMiss();
-			}
+				ui->AddScore(1);
+				ui->AddCount();
 		}
+		else
+		{
+			// 死んでいたならミスカウントを増やす
+			ui->AddMiss();
+		}
+		
+		if (ui->IsTimeUp())
+		{
+			clearFlag = true;
+		}
+
 
 		target->Update();
 	}

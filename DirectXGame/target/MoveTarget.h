@@ -15,7 +15,12 @@ public:
 
     void SetAmplitude(XMFLOAT3 amp) { amplitude = amp; }
 
-protected:
+private:
     XMFLOAT3 amplitude = { 0,0,0 };
+
+    float changeTime = 0;
+    XMFLOAT3 vel = { 0,0,0 };
+    XMFLOAT3 rad = { 0,0,0 };
+    float num = 0;
 };
 
