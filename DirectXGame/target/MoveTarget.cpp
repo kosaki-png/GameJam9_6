@@ -31,9 +31,11 @@ void MoveTarget::Update()
 
 	sphere.center = DirectX::XMVectorSet(position.x, position.y, position.z, 0);
 	obj->SetPosition(position);
+	sub_obj->SetPosition(position);
 
 	//Object3DXV
 	obj->Update();
+	sub_obj->Update();
 
 	changeTime--;
 }

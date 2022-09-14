@@ -17,6 +17,7 @@ void ModelManager::LoadModel()
     AddModel(FIELD, "field");
     AddModel(SPHERE, "sphere", true);
     AddModel(SKYDOME, "skydome", true);
+    AddModel(SPHERE_RED, "sphere_red", true);
 }
 
 Model* ModelManager::GetModel(const int modelNum)
