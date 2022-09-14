@@ -170,7 +170,7 @@ void GameScene::Update()
 		nextScene = new EndScene();
 	}
 
-	// ESCAPEでゲーム終了
+	// ESCAPEでオプションを開く
 	if (input->TriggerKey(DIK_ESCAPE))
 	{
 		option->ChangeIsOption();

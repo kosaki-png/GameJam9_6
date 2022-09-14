@@ -85,6 +85,12 @@ void OptionGS::Update()
 	// マウスの座標取得
 	mousePos = input->GetClientMousePos();
 
+	// 右クリックで戻る
+	if (input->TriggerMouseRight())
+	{
+		ChangeIsOption();
+	}
+
 	//jsonデータ呼び出し
 	auto nog = json.obj.at(node.name).get<picojson::array>();
 	
