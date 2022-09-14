@@ -94,15 +94,14 @@ void EndScene::Update()
 		// ウェーブを削除
 		WaveManager::GetInstance()->DestroyWave();
 		// タイトルシーンへ
-		nextScene = new TitleScene();
+		nextScene = new SelectScene();
 	}
-	// Enterで指定のシーンへ
 	if (input->TriggerMouseLeft())
 	{
 		// ウェーブを削除
 		WaveManager::GetInstance()->DestroyWave();
 		// タイトルシーンへ
-		nextScene = new TitleScene();
+		nextScene = new SelectScene();
 	}
 
 	// ESCAPEでゲーム終了

@@ -25,7 +25,7 @@ void ScaleWave::Initialize(Input* input, Camera* camera, Audio* audio)
 			// ターゲット生成
 			targets[i] = new ScaleTarget();
 			targets[i]->Initialize("sphere");
-			targets[i]->SetVelocity({ 0.003f,0.003f,0.003f });
+			targets[i]->SetVelocity({ 0.005f,0.005f,0.005f });
 		}
 
 		// 全て生成してから位置リセット

@@ -53,7 +53,7 @@ void WaveManager::Initialize(Input* input, Camera* camera, Audio* audio)
         break;
 
     case WaveMode::scale:
-        wave = new AroundWave("shrink");
+        wave = new ScaleWave("shrink");
         break;
 
     default:

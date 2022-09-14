@@ -6,6 +6,7 @@
 #include "Score.h"
 #include <base/JsonFileManager.h>
 #include <array>
+#include "BaseScene.h"
 
 class OptionGS
 {
@@ -21,6 +22,8 @@ public:
 	bool GetIsOption() { return isOption; }
 
 	void WriteJson();
+
+	BaseScene* GetNextScene() { return nextScene; }
 
 private:
 	Input* input = nullptr;
@@ -47,4 +50,11 @@ private:
 
 	JsonFileManager json;
 	JsonFileManager::Node node;
+
+	// シーン選択用
+	Sprite* restartBar = nullptr;
+	float ratio = 0;
+	std::array<DirectX::XMFLOAT2, 2> pos;
+	DirectX::XMFLOAT2 restartSize = { 500.0f, 100.0f };
+	BaseScene* nextScene = nullptr;
 };

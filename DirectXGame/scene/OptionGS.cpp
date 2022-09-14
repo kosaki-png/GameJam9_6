@@ -1,6 +1,8 @@
 #include "OptionGS.h"
 #include "SpriteData.h"
 #include "Collision.h"
+#include "GameScene.h"
+#include "SelectScene.h"
 
 using namespace DirectX;
 
@@ -14,6 +16,7 @@ OptionGS::~OptionGS()
 	delete option_base;
 	delete fovTex;
 	delete sensiTex;
+	delete restartBar;
 
 	for (int i = 0; i < 3; i++)
 	{
@@ -32,44 +35,48 @@ void OptionGS::Initialize()
 			option_bar[i]->SetPosition({800.0f, 350.0f + i * 150.0f - 5});
 		}
 
-		fovTex = new Score();
-		fovTex->Initialize(UI_FONT_1);
-		fovTex->SetPos(600,450);
-		fovTex->SetSize(0.8f);
+		pos[0] = { 1920 / 2 - 600, 800 };
+		pos[1] = { 1920 / 2 + 100, 800 };
+		restartBar = Sprite::Create(OPTION_BAR, { 0,0 });
+	}
 
-		sensiTex = new Score();
-		sensiTex->Initialize(UI_FONT_1);
-		sensiTex->SetPos(600,300);
-		fovTex->SetSize(0.8f);
+	fovTex = new Score();
+	fovTex->Initialize(UI_FONT_1);
+	fovTex->SetPos(600, 450);
+	fovTex->SetSize(0.8f);
 
-		json.ReadJson("Resources/json/option.json");
+	sensiTex = new Score();
+	sensiTex->Initialize(UI_FONT_1);
+	sensiTex->SetPos(600, 300);
+	fovTex->SetSize(0.8f);
 
-		node.name = "option";
+	json.ReadJson("Resources/json/option.json");
 
-		//jsonデータ呼び出し
-		auto nog = json.obj.at(node.name).get<picojson::array>();
+	node.name = "option";
 
-		for (int i = 0; i < 3; i++)
-		{
-			node.datas.push_back(nog[i].get<double>());
-		}
+	//jsonデータ呼び出し
+	auto nog = json.obj.at(node.name).get<picojson::array>();
 
-		// 感度取得
-		sensi = node.datas[0];
-		bar_ratio[0] = sensi / 3;
+	for (int i = 0; i < 3; i++)
+	{
+		node.datas.push_back(nog[i].get<double>());
+	}
 
-		// 視野角取得
-		fov = node.datas[1];
-		bar_ratio[1] = (fov - 60.0f) / 60;
+	// 感度取得
+	sensi = node.datas[0];
+	bar_ratio[0] = sensi / 3;
 
-		// SE音量取得
-		bar_ratio[2];
+	// 視野角取得
+	fov = node.datas[1];
+	bar_ratio[1] = (fov - 60.0f) / 60;
 
-		// 初期の長さ適用
-		for (int i = 0; i < 3; i++)
-		{
-			option_bar[i]->SetSize({ bar_ratio[i] * 800, 10 });
-		}
+	// SE音量取得
+	bar_ratio[2];
+
+	// 初期の長さ適用
+	for (int i = 0; i < 3; i++)
+	{
+		option_bar[i]->SetSize({ bar_ratio[i] * 800, 10 });
 	}
 }
 
@@ -77,6 +84,12 @@ void OptionGS::Update()
 {
 	// マウスの座標取得
 	mousePos = input->GetClientMousePos();
+
+	// 右クリックで戻る
+	if (input->TriggerMouseRight())
+	{
+		ChangeIsOption();
+	}
 
 	//jsonデータ呼び出し
 	auto nog = json.obj.at(node.name).get<picojson::array>();
@@ -99,6 +112,36 @@ void OptionGS::Update()
 				bar_ratio[i] = tmpLen / 800.0f;
 			}
 		}
+
+		for (int i = 0; i < 2; i++)
+		{
+			// ボタンに当たっていたら
+			if (Collision::CheckPoint2Box(mousePos, pos[i], restartSize))
+			{
+				// 割合加算
+				if (ratio < 500)
+				{
+					ratio += 4.0f;
+				}
+				restartBar->SetPosition({ pos[i].x, pos[i].y + 87.0f });
+				if (ratio >= 500.0f)
+				{
+					if (i == 0)
+					{
+						nextScene = new GameScene();
+					}
+					if (i == 1)
+					{
+						nextScene = new SelectScene();
+					}
+				}
+			}
+		}
+	}
+	else
+	{
+		// 割合初期化
+		ratio = 0;
 	}
 
 	// パラメーターセット
@@ -115,6 +158,8 @@ void OptionGS::Update()
 		// SE音量セット
 		nog[2] = picojson::value(sensi);
 
+		// 割合セット
+		restartBar->SetSize({ ratio, 10 });
 	}
 
 	// 値を表示
@@ -130,7 +175,6 @@ void OptionGS::Update()
 	}
 
 	{
-
 		picojson::array arr;
 		for (int i = 0; i < nog.size(); i++)
 		{
@@ -150,6 +194,8 @@ void OptionGS::Draw(ID3D12GraphicsCommandList* cmdList)
 		{
 			option_bar[i]->Draw();
 		}
+
+		restartBar->Draw();
 	}
 
 	fovTex->DrawAll(cmdList);

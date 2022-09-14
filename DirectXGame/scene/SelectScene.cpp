@@ -177,6 +177,12 @@ void SelectScene::Update()
 					}
 				}
 			}
+
+			// タイトルへ
+			if (Collision::CheckPoint2Box(mousePos, { 1350, 850 }, { 400, 100 }))
+			{
+				nextScene = new TitleScene();
+			}
 		}
 	}
 	// 右クリックで戻る
