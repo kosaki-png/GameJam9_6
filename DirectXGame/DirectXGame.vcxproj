@@ -98,6 +98,7 @@
     <ClCompile Include="manager\ModelManager.cpp" />
     <ClCompile Include="base\JsonFileManager.cpp" />
     <ClCompile Include="manager\SceneManager.cpp" />
+    <ClCompile Include="wave\TrackWave.cpp" />
     <ClCompile Include="ui\Ranking.cpp" />
     <ClCompile Include="manager\WaveManager.cpp" />
     <ClCompile Include="scene\OptionGS.cpp" />
@@ -225,6 +226,7 @@
     <ClInclude Include="base\JsonFileManager.h" />
     <ClInclude Include="base\picojson.h" />
     <ClInclude Include="manager\SceneManager.h" />
+    <ClInclude Include="wave\TrackWave.h" />
     <ClInclude Include="ui\Ranking.h" />
     <ClInclude Include="manager\WaveManager.h" />
     <ClInclude Include="scene\OptionGS.h" />

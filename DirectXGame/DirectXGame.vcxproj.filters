@@ -62,6 +62,7 @@
     <ClCompile Include="ui\SelectUi.cpp" />
     <ClCompile Include="ui\Ranking.cpp" />
     <ClCompile Include="wave\AroundWave.cpp" />
+    <ClCompile Include="wave\TrackWave.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="2d\Sprite.h" />
@@ -119,6 +120,7 @@
     <ClInclude Include="manager\WaveManager.h" />
     <ClInclude Include="ui\SelectUi.h" />
     <ClInclude Include="wave\AroundWave.h" />
+    <ClInclude Include="wave\TrackWave.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\shader\OBJShaderHeader.hlsli" />

@@ -24,11 +24,16 @@ public:
 	//•`‰æ
 	virtual void Draw();
 
+	void objUpdata();
+
+	void move();
 	//Set
 	void SetPosition(XMFLOAT3 pos) { position = pos; }
 	void SetVelocity(XMFLOAT3 vel) { velocity = vel; }
 	void SetIsDead(bool setDead) { isDead = setDead; }
 	void SetScale(XMFLOAT3 scale) { this->scale = scale; }
+	void SetLife(float targetLife) { life = targetLife; }
+	void SetMoveTime(float time) { moveTime = time; }
 
 	//Get
 	XMFLOAT3 GetPosition() { return position; }
@@ -37,6 +42,8 @@ public:
 	int GetRadius() { return sphere.radius; }
 	Sphere GetSphere() { return sphere; }
 	bool GetIsDead() { return isDead; }
+	float GetLife() { return life; }
+	float GetMoveTime() { return moveTime; }
 
 protected:
 
@@ -47,6 +54,9 @@ protected:
 	XMFLOAT3 velocity = { 0,0,0 };
 	XMFLOAT3 scale = { 1,1,1 };
 
+
 	bool isDead = false;
+	float life = 0;
+	float moveTime = 0;
 };
 
