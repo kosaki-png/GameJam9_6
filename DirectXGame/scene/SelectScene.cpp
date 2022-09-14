@@ -211,7 +211,7 @@ void SelectScene::Draw()
 		// 背景スプライト描画前処理
 		Sprite::PreDraw(cmdList);
 		{
-			//tmpSprite->Draw();
+
 		}
 		Sprite::PostDraw();
 		// 深度バッファクリア
@@ -234,9 +234,11 @@ void SelectScene::Draw()
 		// 前景スプライト描画前処理
 		Sprite::PreDraw(cmdList);
 		{
+			tmpSprite->Draw();
 			if (!select)
 			{
 				menu->Draw();
+				text->SetSize(1.0f);
 			}
 			else
 			{
