@@ -242,6 +242,7 @@ void SelectScene::Draw()
 			{
 				score->Draw();
 				text->DrawAll(cmdList);
+				text->SetSize(1.0f);
 
 				// ƒXƒRƒA•`‰æ
 				selectUi->Draw(cmdList);

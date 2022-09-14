@@ -30,19 +30,19 @@ void FlickWave::Initialize(Input* input, Camera* camera, Audio* audio)
 
 			// “ïˆÕ“x‚É‰‚¶‚Ä‘å‚«‚³•ÏX
 			float scale = 0;
-			if (currentKey == "flick_easy")
+			if (currentKey == "flick1")
 			{
 				scale = 1.0f - 0.3f * 0;
 			}
-			if (currentKey == "flick_normal")
+			if (currentKey == "flick2")
 			{
 				scale = 1.0f - 0.3f * 1;
 			}
-			if (currentKey == "flick_hard")
+			if (currentKey == "grid1")
 			{
 				scale = 1.0f - 0.3f * 2;
 			}
-			if (currentKey == "flick_hell")
+			if (currentKey == "grid2")
 			{
 				scale = 1.0f - 0.3f * 3;
 			}
