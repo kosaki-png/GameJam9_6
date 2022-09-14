@@ -123,12 +123,12 @@ void SelectScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio
 
 void SelectScene::Update()
 {
-	// Enterで指定のシーンへ
-	if (input->TriggerKey(DIK_RETURN))
-	{	
-		//ゲームシーンへ
-		nextScene = new GameScene();
-	}
+	//// Enterで指定のシーンへ
+	//if (input->TriggerKey(DIK_RETURN))
+	//{	
+	//	//ゲームシーンへ
+	//	nextScene = new GameScene();
+	//}
 
 	// モードを選んだ時
 	if (select)
