@@ -26,8 +26,6 @@ void TitleScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 	// nullptrチェック
 	BaseScene::Initialize(dxCommon, input, audio);
 
-	audio->Stop();
-
 	// 汎用的初期化
 	{
 		// カメラ生成
@@ -46,6 +44,8 @@ void TitleScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 		Object3d::SetLightGroup(lightGroup);
 
 		audio->Stop();
+
+		audio->PlayLoop(L"Resources/sound/title.wav");
 	}
 
 	// スプライト初期設定

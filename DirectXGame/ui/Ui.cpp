@@ -82,11 +82,14 @@ void Ui::Update()
 
 void Ui::Draw(ID3D12GraphicsCommandList* cmdList)
 {
-	ui->Draw();
-	score->DrawAll(cmdList);
-	timeLimit->DrawAll(cmdList);
-	rate->DrawAll(cmdList);
-	parcent->DrawAll(cmdList);
+	if (!IsTimeUp())
+	{
+		ui->Draw();
+		score->DrawAll(cmdList);
+		timeLimit->DrawAll(cmdList);
+		rate->DrawAll(cmdList);
+		parcent->DrawAll(cmdList);
+	}
 }
 
 void Ui::TimerManage()
