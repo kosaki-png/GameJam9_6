@@ -6,6 +6,7 @@
 static const int FIELD		= 0;	// フィールド
 static const int SPHERE		= 1;	// 球
 static const int SKYDOME	= 2;	// 天球
+static const int SPHERE_RED = 3;	// 天球
 
 class ModelManager
 {

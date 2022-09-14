@@ -41,14 +41,15 @@ void FollowWave::Update()
 		// 視線レイと的との当たり判定
 		if (Collision::CheckRay2Sphere(ray, target->GetSphere()))
 		{
-				// 生きているなら殺す
-				ui->AddScore(1);
-				ui->AddCount();
+			ui->AddScore(1);
+			ui->AddCount();
+			target->SetMode(true);
 		}
 		else
 		{
 			// 死んでいたならミスカウントを増やす
 			ui->AddMiss();
+			target->SetMode(false);
 		}
 		
 		if (ui->IsTimeUp())

@@ -8,6 +8,7 @@ BaseTarget::BaseTarget()
 BaseTarget::~BaseTarget()
 {
 	safe_delete(obj);
+	safe_delete(sub_obj);
 }
 
 //‰Šú‰»
@@ -15,7 +16,7 @@ void BaseTarget::Initialize(std::string modelName, XMFLOAT3 pos,XMFLOAT3 vel, fl
 {
 	//object3DŠÖ˜A‰Šú‰»
 	obj = Object3d::Create(ModelManager::GetInstance()->GetModel(SPHERE));
-	obj->SetPosition(pos);
+	sub_obj = Object3d::Create(ModelManager::GetInstance()->GetModel(SPHERE_RED));
 
 	position = pos;
 	velocity = vel;
@@ -37,7 +38,14 @@ void BaseTarget::Draw()
 {
 	if(!isDead)
 	{
-		obj->Draw();
+		if (!mode)
+		{
+			obj->Draw();
+		}
+		else
+		{
+			sub_obj->Draw();
+		}
 	}
 }
 
@@ -48,10 +56,14 @@ void BaseTarget::objUpdata()
 	obj->SetPosition(position);
 	obj->SetScale(scale);
 
+	sub_obj->SetPosition(position);
+	sub_obj->SetScale(scale);
+
 	sphere.radius = scale.x / 2;
 
 	//Object3DXV
 	obj->Update();
+	sub_obj->Update();
 }
 
 void BaseTarget::move()

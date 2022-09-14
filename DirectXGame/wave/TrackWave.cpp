@@ -65,8 +65,13 @@ void TrackWave::Update()
 				float life = targets[i]->GetLife();
 				life -= 1;
 				targets[i]->SetLife(life);
+				targets[i]->SetMode(true);
 				// ‚Ç‚ê‚©ˆê‚Â‚É‚Å‚à“–‚½‚Á‚Ä‚¢‚é
 				allColl = true;
+			}
+			else
+			{
+				targets[i]->SetMode(false);
 			}
 
 			if (targets[i]->GetLife() == 0)

@@ -45,9 +45,12 @@ public:
 	float GetLife() { return life; }
 	float GetMoveTime() { return moveTime; }
 
+	void SetMode(bool mode) { this->mode = mode; }
+
 protected:
 
 	Object3d* obj;
+	Object3d* sub_obj;
 
 	Sphere sphere;
 	XMFLOAT3 position = { 0,0,0 };
@@ -58,5 +61,7 @@ protected:
 	bool isDead = false;
 	float life = 0;
 	float moveTime = 0;
+
+	bool mode = false;
 };
 
