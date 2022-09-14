@@ -98,6 +98,8 @@
     <ClCompile Include="manager\ModelManager.cpp" />
     <ClCompile Include="base\JsonFileManager.cpp" />
     <ClCompile Include="manager\SceneManager.cpp" />
+    <ClCompile Include="target\EasyTarget.cpp" />
+    <ClCompile Include="target\ScaleTarget.cpp" />
     <ClCompile Include="ui\Ranking.cpp" />
     <ClCompile Include="manager\WaveManager.cpp" />
     <ClCompile Include="scene\OptionGS.cpp" />
@@ -135,6 +137,7 @@
     <ClCompile Include="wave\BaseWave.cpp" />
     <ClCompile Include="wave\EasyWave.cpp" />
     <ClCompile Include="wave\FlickWave.cpp" />
+    <ClCompile Include="wave\ScaleWave.cpp" />
     <ClCompile Include="wave\TestWave.cpp" />
     <ClCompile Include="xinput\XinputControll.cpp" />
   </ItemGroup>
@@ -225,6 +228,8 @@
     <ClInclude Include="base\JsonFileManager.h" />
     <ClInclude Include="base\picojson.h" />
     <ClInclude Include="manager\SceneManager.h" />
+    <ClInclude Include="target\EasyTarget.h" />
+    <ClInclude Include="target\ScaleTarget.h" />
     <ClInclude Include="ui\Ranking.h" />
     <ClInclude Include="manager\WaveManager.h" />
     <ClInclude Include="scene\OptionGS.h" />
@@ -263,6 +268,7 @@
     <ClInclude Include="wave\BaseWave.h" />
     <ClInclude Include="wave\EasyWave.h" />
     <ClInclude Include="wave\FlickWave.h" />
+    <ClInclude Include="wave\ScaleWave.h" />
     <ClInclude Include="wave\TestWave.h" />
     <ClInclude Include="xinput\XinputControll.h" />
   </ItemGroup>

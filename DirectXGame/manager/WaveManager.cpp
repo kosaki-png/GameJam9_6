@@ -51,7 +51,9 @@ void WaveManager::Initialize(Input* input, Camera* camera, Audio* audio)
     case WaveMode::around:
         wave = new AroundWave("around");
         break;
-
+    case WaveMode::scale:
+        wave = new AroundWave("scale");
+        break;
     default:
         wave = new TestWave("test");
         break;

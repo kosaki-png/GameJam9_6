@@ -15,7 +15,8 @@ enum class WaveMode
 	flick_hard = 4,
 	flick_hell = 5,
 	follow = 6,
-	around = 7
+	around = 7,
+	scale = 8
 };
 
 class WaveManager
