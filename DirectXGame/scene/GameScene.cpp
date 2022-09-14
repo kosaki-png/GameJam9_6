@@ -134,7 +134,7 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 void GameScene::Update()
 {
 	// Enterで指定のシーンへ
-	if (input->TriggerKey(DIK_RETURN))
+	/*if (input->TriggerKey(DIK_RETURN))
 	{
 		if (!option->GetIsOption())
 		{
@@ -147,12 +147,12 @@ void GameScene::Update()
 
 		option->WriteJson();
 		nextScene = new EndScene();
-	}
+	}*/
 
-	// Rでリスタート
-	if (input->TriggerKey(DIK_R))
+	// オプション中で選択されていたら
+	if (option->GetNextScene())
 	{
-		//nextScene = new TestScene();
+		nextScene = option->GetNextScene();
 	}
 
 	// クリアフラグでゲームクリア
