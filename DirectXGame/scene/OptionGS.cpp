@@ -56,7 +56,7 @@ void OptionGS::Initialize()
 
 		// Š´“xæ“¾
 		sensi = node.datas[0];
-		bar_ratio[0] = camera->GetSensi() / 3;
+		bar_ratio[0] = sensi / 3;
 
 		// ‹–ìŠpæ“¾
 		fov = node.datas[1];
