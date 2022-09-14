@@ -47,6 +47,8 @@ void EndScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio)
 		lightGroup = LightGroup::Create();
 		// 3Dオブジェクトにライトを生成
 		Object3d::SetLightGroup(lightGroup);
+
+		audio->PlayLoop(L"Resources/sound/title.wav");
 	}
 
 	// スプライト初期設定

@@ -31,8 +31,6 @@ void SelectScene::Initialize(DirectXCommon* dxCommon, Input* input, Audio* audio
 	// nullptrチェック
 	BaseScene::Initialize(dxCommon, input, audio);
 
-	audio->Stop();
-
 	// 汎用的初期化
 	{
 		// カメラ生成
