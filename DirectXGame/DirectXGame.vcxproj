@@ -98,7 +98,7 @@
     <ClCompile Include="manager\ModelManager.cpp" />
     <ClCompile Include="base\JsonFileManager.cpp" />
     <ClCompile Include="manager\SceneManager.cpp" />
-    <ClCompile Include="wave\TrackWave.cpp" /
+    <ClCompile Include="wave\TrackWave.cpp" />
     <ClCompile Include="target\EasyTarget.cpp" />
     <ClCompile Include="target\ScaleTarget.cpp" />
     <ClCompile Include="ui\Ranking.cpp" />
