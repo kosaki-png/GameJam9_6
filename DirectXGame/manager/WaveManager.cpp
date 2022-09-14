@@ -45,7 +45,7 @@ void WaveManager::Initialize(Input* input, Camera* camera, Audio* audio)
         break;
 
     case WaveMode::track:
-        wave = new AroundWave("track2");
+        wave = new TrackWave("track2");
         break;
 
     case WaveMode::around:

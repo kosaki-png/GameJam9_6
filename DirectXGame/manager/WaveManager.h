@@ -6,6 +6,7 @@
 #include "TestWave.h"
 #include "AroundWave.h"
 #include "EasyWave.h"
+#include "TrackWave.h"
 
 enum class WaveMode
 {
